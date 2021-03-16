@@ -9,7 +9,7 @@ export default function handler(req, res) {
   const {data} = req.query
   console.log(data);
 
-  db.collections("subnmissions").insertOne(data);
-  
+  db.collections("submissions").insertOne(data);
+
   res.status(200).json({ name: 'Data Received' })
 }
