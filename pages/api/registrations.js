@@ -1,16 +1,20 @@
 import {connectToDatabase} from '../../utils/mongodb';
 
-
-const handler = async (req, res) => {
+export const getRegistrations = async () => {
 
   const {db} = await connectToDatabase();
 
+  return await db.collection('registers').find().toArray();
+
+}
+
+const handler = async (req, res) => {
+
+  
   const {firstName, familyName, repl_owner} = req.body;
 
-  console.log(firstName, familyName, repl_owner)
-
-  const result = await db.collection('resgisters').find().toArray();
-
+  const result = await getRegistrations();
+  
   res.status(200).json(result)
   
 }

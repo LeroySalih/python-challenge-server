@@ -11,12 +11,9 @@ const handler = async (req, res) => {
   const {owner, repl_name, successes, fails, progress, main} = req.body;
   const results = JSON.parse(req.body.results);
 
-  
   const data = {owner, repl_name, results, successes, fails, progress, main}
   
-  const result = await db.collection("submissions").insertOne(data);
-
-  console.log( `${result.insertedCount} records` );
+  const result = await db.collection("submissions").insertOne({...data, created: new Date()});
 
   res.status(200).json({ inserted: `${result.insertedCount} records` })
 }

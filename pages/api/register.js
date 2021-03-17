@@ -9,7 +9,7 @@ const handler = async (req, res) => {
 
   console.log(firstName, familyName, repl_owner)
 
-  const result = await db.collection('resgisters').insertOne({firstName, familyName, repl_owner});
+  const result = await db.collection('registers').insertOne({firstName, familyName, repl_owner, created: new Date()});
 
   
   res.status(200).json({msg:"OK", inserted: result.inserted})
