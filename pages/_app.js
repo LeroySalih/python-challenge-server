@@ -7,7 +7,7 @@ import { msalConfig } from "../components/authConfig";
 
 
 const msalInstance = new PublicClientApplication(msalConfig);
-console.log(msalConfig);
+
 
 function MyApp({ Component, pageProps }) {
 

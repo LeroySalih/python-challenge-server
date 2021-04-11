@@ -1,7 +1,8 @@
 
-import styles from "../../styles/lesson.module.css"
+
 import styled from 'styled-components';
-import { useInView } from 'react-intersection-observer';
+
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
 import {useEffect, useState} from 'react'
 import Scrollspy from 'react-scrollspy'
@@ -13,7 +14,11 @@ import Button from '@material-ui/core/Button';
 import Navbar from '../../components/navbar';
 import Drawer from '@material-ui/core/Drawer';
 
-import {CodeExample, Python, CodeInline} from '../../components/code';
+import {CodeExample, 
+        Python, 
+        CodeInline, 
+        ConsoleOutput,
+        Activity} from '../../components/code';
 import {Page, 
         Section, 
         SectionTitle, 
@@ -157,19 +162,20 @@ const ComponentPage = () => {
         <Lesson>
             
                 <section id="what-we-are-building" >
-                    <div style={{display:"grid", gridTemplateColumns:"1fr 1fr"}}>
+                    <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gridGap: "20px"}}>
                         <div>
                             <SectionTitle>What We're Building</SectionTitle>
-                            <SectionVideo/>
-                            <SectionText/>
+                            <SectionDescription>In this lesson you'll learn to output the following to the console.</SectionDescription>
+                            <ConsoleOutput text={`Hello World\n19\n👌`}/>
                         </div>
                         <div>
                         <SectionTitle >Key Terms</SectionTitle>
                             <SectionDescription>In this lesson</SectionDescription>
                             <KeyTerms>
                                 <KeyTermTitle/>
-                                <KeyTerm index="0" term="Output">Displaying information in the console.</KeyTerm>
-                                <KeyTerm index="1" term="Console">The area of the screen where we interact with the program.</KeyTerm>
+                                <KeyTerm index="0" term="Console">The area of the screen where we interact with the program.</KeyTerm>
+                                <KeyTerm index="1" term="Output">Displaying information in the console.</KeyTerm>
+                                
                             </KeyTerms>
                         </div>
                     </div>
@@ -181,9 +187,9 @@ const ComponentPage = () => {
                 <section>
                     <SectionTitle >Print Command</SectionTitle>
                     <SectionText>
-                    <p>We can use the <CodeInline>print</CodeInline> command to display text to the 
-                    console.  In text based programs, this is the main interface that we use to 
-                    allow our program to interact with the user.  In text based programs, other ways that we interact with users include sound and files, but we will deal with these in later lessons.
+                    <p>We can use the <CodeInline>print</CodeInline> command to display numbers, text and characters to the 
+                    console.  In text based programs, the console is the main interface that we use to 
+                    allow our program to interact with the user. Other ways that we interact with users include sound and files, but we will deal with these in later lessons.
                     </p>
                     <p>Typical uses for the <InlineCode>print</InlineCode> command inlude
                         <ul>
@@ -213,43 +219,74 @@ const ComponentPage = () => {
 
                 <section >
                     <SectionTitle >Printing Numbers</SectionTitle>
-                    <SectionDescription>
-
-                    </SectionDescription>
+                    <SectionText>
+                        
+                        <p>To print a number simply put the number between the brackets</p>
+                        <CodeExample 
+                            code={`print(10)\nprint(0.5)\nprint(0.1234567)`}
+                            output={`10\n0.5\n0.1234567`}
+                        />
+                        
+                    </SectionText>
+                    
                 </section>
 
                 <section >
-                    <SectionTitle >Printing Formatted Numbers</SectionTitle>
-                    <SectionDescription>
-
-                    </SectionDescription>
-                </section>
-
-                <section >
-                    <SectionTitle >Printing Words</SectionTitle>
-                    <SectionDescription>
-
-                    </SectionDescription>
+                    <SectionTitle >Printing Characters</SectionTitle>
+                    <SectionText>
+                        
+                        <p>To print a letter, word or sentence number,  We need to put the data ot be outputted in quotation marks.  This tells the program that the data between the brackets is what you want to be printed to the console.</p>
+                        
+                        <CodeExample 
+                            code={`print("Hello")\nprint("World")\nprint("Hello World")`}
+                            output={`Hello\nWorld\nHello World`}
+                        />
+                    </SectionText>
+                    
                 </section>
 
                 <section >
                     <SectionTitle >Printing Emoji</SectionTitle>
-                    <SectionDescription>
+                    <SectionText>
 
-                    </SectionDescription>
+                        <p>It is also possible to print emoji characters, such as <span style={{fontSize: "1.5rem"}}>&#128076;</span></p>
+                        
+                        <ul>To print an emoji:
+                            <li>you can consult the list of emojis, <a href="https://unicode.org/emoji/charts/full-emoji-list.html" target="_new">here</a></li>
+                            <li>find the code for the emoji you would like to print, it will start with a U+, for example, U+1F44C</li>
+                            <li>replace the +, with 000, so U+1F44C, becomes U0001F44C</li>
+                            <li>use <CodeInline>print("\U0001F44C")</CodeInline> to display the emoji in the console.</li>
+                        </ul>
+                    </SectionText>
                 </section>
 
-                <section >
-                    <SectionTitle >What Can Go Wrong</SectionTitle>
-                    <SectionDescription>
-
-                    </SectionDescription>
+                <section>
+                    <SectionTitle>Practice</SectionTitle>
+                    <AuthenticatedTemplate>
+                        <Activity email={'sleroy@bisak.org'} activityId="level-1::output"/>
+                    </AuthenticatedTemplate>
+                    <UnauthenticatedTemplate>
+                        <div>You are not logged in.  Please log in to complete the practice section.</div>
+                    </UnauthenticatedTemplate>
                 </section>
 
             
         </Lesson>
         
         </Page>
+        <style jsx>{`
+        
+            section {
+            
+                margin-bottom: 30px;
+                border: silver 1px solid;
+                padding: 30px;
+                border-radius: 10px;
+                background-color: white;
+                box-shadow: 0px 0px 10px 10px #e0e0e0;
+            }
+        
+        `}</style>
         </>
     )
 }

@@ -6,14 +6,31 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Link from 'next/link';
+import {useAccount, useMsal, useMsalAuthentication, AuthenticatedTemplate, UnauthenticatedTemplate} from "@azure/msal-react";
 
-const Navbar = ({onClick}) => {
+const Navbar = ({onClick, onLogin}) => {
     const handleClick = () => {
         onClick && onClick()
     }
 
+    const { instance, accounts, inProgress } = useMsal();
+    const account = useAccount(accounts[0] || {});
+
+    const name = (account && account.name) || ""
+    
+
+    const {login, logout, result, error} = useMsalAuthentication("popup");
+
+    const handleLogin = () => {
+      login();
+    }
+
+    const handleLogout = () => {
+      instance.logout();
+    }
+    
     return (
-        <AppBar position="static">
+        <AppBar position="fixed">
         <Toolbar>
           <IconButton edge="start" className="menuButton" color="inherit" aria-label="menu" onClick={handleClick}>
             <MenuIcon />
@@ -21,7 +38,16 @@ const Navbar = ({onClick}) => {
           <h6 variant="h6" className="title">
             <Link href="/">Programming With Python</Link>
           </h6>
-          <Button color="inherit">Login</Button>
+          
+          <AuthenticatedTemplate>
+            <span>{name}</span>
+            <Button color="inherit" onClick={handleLogout}>Logout</Button>
+          </AuthenticatedTemplate>
+
+          <UnauthenticatedTemplate>
+            <Button color="inherit" onClick={handleLogin}>Login</Button>
+          </UnauthenticatedTemplate>
+          
         </Toolbar>
         <style jsx>{`
           
