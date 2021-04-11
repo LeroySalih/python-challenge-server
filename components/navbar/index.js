@@ -6,23 +6,30 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Link from 'next/link';
+import Image from 'next/image';
+
 import {useAccount, useMsal, useMsalAuthentication, AuthenticatedTemplate, UnauthenticatedTemplate} from "@azure/msal-react";
 
+
 const Navbar = ({onClick, onLogin}) => {
+
+    // const {login, logout, result, error} = useMsalAuthentication("popup");
+    
     const handleClick = () => {
         onClick && onClick()
     }
 
     const { instance, accounts, inProgress } = useMsal();
-    const account = useAccount(accounts[0] || {});
 
+    
+    const account = useAccount(accounts[0] || {});
     const name = (account && account.name) || ""
     
 
-    const {login, logout, result, error} = useMsalAuthentication("popup");
+    
 
     const handleLogin = () => {
-      login();
+      instance.loginPopup();
     }
 
     const handleLogout = () => {
@@ -36,7 +43,14 @@ const Navbar = ({onClick, onLogin}) => {
             <MenuIcon />
           </IconButton>
           <h6 variant="h6" className="title">
-            <Link href="/">Programming With Python</Link>
+            <Link href="/">
+              <Image 
+                src="/images/logo.png"
+                width="146"
+                height="34"
+
+              />
+            </Link>
           </h6>
           
           <AuthenticatedTemplate>

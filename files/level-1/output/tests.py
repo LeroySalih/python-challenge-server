@@ -39,7 +39,7 @@ class MainTestEngine (TestEngine):
 
       result = run(["python", "main.py"], input=user_input, capture_output=True)
         
-      expected = b"Hello World\n"
+      expected = b'Hello World\n15\n\xf0\x9f\x91\x8c\n'
 
       self.assertEqual(expected,  result.stdout, "\nExpected:\n{0}\nReceived:\n{1}".format(expected, result.stdout))
 

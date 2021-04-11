@@ -42,6 +42,7 @@ export default function handler(req, res) {
     // specific files
     const tests_py = fs.readFileSync(`./files/${filePath}/tests.py`, {encoding:'utf8'})
     const main_py = fs.readFileSync(`./files/${filePath}/main.py`, {encoding:'utf8'})
-    
-    res.status(200).json({msg:"OK", params, tests_py, main_py, tests_main_py, tests_colour_py, tests_testengine_py});
+    const challenge_md = fs.readFileSync(`./files/${filePath}/challenge.md`, {encoding:'utf8'})
+
+    res.status(200).json({msg:"OK", params, tests_py, challenge_md, main_py, tests_main_py, tests_colour_py, tests_testengine_py});
 }

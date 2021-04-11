@@ -24,9 +24,9 @@ const Component = ({code, email, activityId}) => {
 
 
     <iframe 
-        height="400px" 
+        height="800px" 
         width="100%" 
-        src="https://replit.com/@mrsalih/Host?lite=true" 
+        src="https://replit.com/@mrsalih/Host?lite=false" 
         scrolling="no" 
         frameBorder="no" 
         allowtransparency="true" 

@@ -35,7 +35,7 @@ export default function Home() {
 
   const [tabIndex, setTabIndex] = useState(0);
   
-  const {login, result, error} = useMsalAuthentication("popup");
+  
   // console.log(login, result, error);
 
   const { instance, accounts, inProgress } = useMsal();
@@ -50,6 +50,7 @@ export default function Home() {
   }
 
   const doLogIn  = () => {
+    const {login, result, error} = useMsalAuthentication("popup");
     login();
   }
 
@@ -90,11 +91,8 @@ export default function Home() {
         <div style={{width: "80%", marginLeft: "auto", marginRight: "auto", marginTop: "30px", display: "flex", flexDirection: "row"}}>
           <div>
             <h1>Learning Computing, Computer Science and ICT concepts</h1>
-            <div><Button variant="outlined">Sign In</Button></div>
-            <div>
-              <div><Button onClick={() => setTabIndex(0)}> Programming with Python</Button></div>
-              <div><Button  onClick={() => setTabIndex(1)}> Building Web Pages</Button></div>
-            </div>
+            <UnauthenticatedTemplate><Button variant="outlined">Log In</Button></UnauthenticatedTemplate>
+            
           </div>
           <div>
               <Image
@@ -107,16 +105,14 @@ export default function Home() {
 
         </div>
         
-
-        <AuthenticatedTemplate>
-            <Link href="/profile">Request Profile Information</Link>
-        </AuthenticatedTemplate>
-
-        <UnauthenticatedTemplate>
-          <center>Please sign-in to see your profile information.</center>
-        </UnauthenticatedTemplate>
-        
-        {tabIndex == 0 && <div>
+        {/* Topic Choser */}
+        <div className="topic-grid">
+          <div>
+            <div><Button onClick={() => setTabIndex(0)}> Programming with Python</Button></div>
+            <div><Button  onClick={() => setTabIndex(1)}> Building Web Pages</Button></div>
+          </div>
+          <div>
+          {tabIndex == 0 && <div>
           <div className="level-title">Level 1 - Learn the Language</div>
           <div className="level-container">
 
@@ -204,49 +200,52 @@ export default function Home() {
         
           
         </div>
-        }
+          }
 
-        {tabIndex == 1 && <div>
+          {tabIndex == 1 && <div>
+            
+          <div className="level-title">Level 1 - White Belt</div>  
+          <div className="level-container">
+            <ul>Layout
+              <li>Anatomy of a Web Page</li>
+              <li>Block markup</li>
+              <li>Inline markup</li>
+            </ul>
+
+            <ul> Styling
+              <li>Inline Styling</li>
+              <li>RBG Colours</li>
+              <li>Inline markup</li>
+            </ul>
+            <ul> Interaction
+              <li>Interactive Styling</li>
+              <li></li>
+            </ul>
+          </div>
           
-        <div className="level-title">Level 1 - White Belt</div>  
-        <div className="level-container">
-          <ul>Layout
-            <li>Anatomy of a Web Page</li>
-            <li>Block markup</li>
-            <li>Inline markup</li>
-          </ul>
 
-          <ul> Styling
-            <li>Inline Styling</li>
-            <li>RBG Colours</li>
-            <li>Inline markup</li>
-          </ul>
-          <ul> Interaction
-            <li>Interactive Styling</li>
-            <li></li>
-          </ul>
+          <div className="level-title">Level 2 - Green Belt</div>  
+          <div className="level-container">
+            <ul></ul>
+            <ul></ul>
+            <ul></ul>
+          </div>
+
+          <div className="level-title">Level 3 - Black Belt</div>  
+          <div className="level-container">
+            <ul></ul>
+            <ul></ul>
+            <ul></ul>
+          </div>
+
+
+        </div>
+          }
+          </div>
         </div>
         
-
-        <div className="level-title">Level 2 - Green Belt</div>  
-        <div className="level-container">
-          <ul></ul>
-          <ul></ul>
-          <ul></ul>
-        </div>
-
-        <div className="level-title">Level 3 - Black Belt</div>  
-        <div className="level-container">
-          <ul></ul>
-          <ul></ul>
-          <ul></ul>
-        </div>
-
-
-      </div>
         
         
-        }
 
       </main>
 
@@ -268,6 +267,13 @@ export default function Home() {
           display: flex;
           flex-direction: column;
           align-items: center;
+
+      }
+
+      .topic-grid {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        width: 80%
 
       }
 

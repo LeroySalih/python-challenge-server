@@ -2,12 +2,12 @@ import '../styles/globals.css'
 
 
 import { MsalProvider } from "@azure/msal-react";
-import { PublicClientApplication } from "@azure/msal-browser";
+import { UserAgentApplication, PublicClientApplication } from "@azure/msal-browser";
 import { msalConfig } from "../components/authConfig";
 
 
 const msalInstance = new PublicClientApplication(msalConfig);
-
+// const msalInstance = new UserAgentApplication(msalConfig);
 
 function MyApp({ Component, pageProps }) {
 

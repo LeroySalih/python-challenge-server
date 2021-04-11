@@ -21,11 +21,13 @@ const Component = ({title, lo}) => (
             
             font-size: 4rem;
             grid-area: title;
-            background-color: #2e307b;
-            color: #efdf14;;
+            background-color: #35276d;
+            color: #fff903;
             margin-top: 0px;
             padding-left: 10px;
-            
+            padding-top: 30px;
+            padding-bottom: 30px;
+            border-radius: 10px;
         }
 
         .lo-title {

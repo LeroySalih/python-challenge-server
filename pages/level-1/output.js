@@ -3,6 +3,7 @@
 import styled from 'styled-components';
 
 import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
+import {useMsal, useAccount} from '@azure/msal-react'
 
 import {useEffect, useState} from 'react'
 import Scrollspy from 'react-scrollspy'
@@ -94,7 +95,14 @@ const InlineCode = ({children}) => {
 
 const ComponentPage = () => {
 
+    const { instance, accounts, inProgress } = useMsal();
+
+    const account = useAccount(accounts[0] || {});
+    const name = (account && account.name) || ""
+    const email = account && account.username.toLowerCase();
+
     
+
     const handleDrawerClick = () => {
         setShowDraw(true);
     }
@@ -263,7 +271,7 @@ const ComponentPage = () => {
                 <section>
                     <SectionTitle>Practice</SectionTitle>
                     <AuthenticatedTemplate>
-                        <Activity email={'sleroy@bisak.org'} activityId="level-1::output"/>
+                        <Activity email={email} activityId="level-1::output"/>
                     </AuthenticatedTemplate>
                     <UnauthenticatedTemplate>
                         <div>You are not logged in.  Please log in to complete the practice section.</div>

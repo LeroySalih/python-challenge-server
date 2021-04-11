@@ -8,6 +8,7 @@ const Component = ({children}) => {
                 font-size: 2rem;
                 font-family: 'Roboto Condensed', sans-serif;
                 margin-bottom: 1rem;
+                color: #35276d;
             }
         `}</style>
         </>)
