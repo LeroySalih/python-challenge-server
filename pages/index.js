@@ -153,7 +153,7 @@ export default function Home() {
               <li>Processing Lists</li>
               <li>Files - Create &amp; Write</li>
               <li>Files - Read &amp; Process</li>
-              <li>Input Validation</li>
+              <li><Link href="/level-2/input-validation">Input Validation</Link></li>
               <li>Counters</li>
             </ul>
 
