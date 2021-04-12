@@ -54,7 +54,7 @@ const Navbar = ({onClick, onLogin}) => {
           </h6>
           
           <AuthenticatedTemplate>
-            <span>{name}</span>
+            <Link href="/profile"><span>{name}</span></Link>
             <Button color="inherit" onClick={handleLogout}>Logout</Button>
           </AuthenticatedTemplate>
 

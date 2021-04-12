@@ -33,7 +33,7 @@ export default function handler(req, res) {
     
     // general files
     const tests_main_py = fs.readFileSync("./files/tests/__main__.py", {encoding:'utf8'})
-                                .replace("::CHALLENGE_NAME::", "level-1::output")
+                                .replace("::CHALLENGE_NAME::", challenge)
                                 .replace("::EMAIL::", email)
     const tests_colour_py = fs.readFileSync("./files/tests/colour.py", {encoding:'utf8'})
     const tests_testengine_py = fs.readFileSync("./files/tests/testengine.py", {encoding:'utf8'})

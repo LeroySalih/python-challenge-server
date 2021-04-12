@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link';
 
 import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 import { MsalAuthenticationTemplate, useMsal, useAccount } from "@azure/msal-react";
@@ -10,7 +11,7 @@ import { loginRequest } from "../components/authConfig";
 import {useState} from 'react';
 
 
-import Link from 'next/link';
+
 
 import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
