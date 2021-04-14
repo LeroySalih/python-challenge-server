@@ -18,13 +18,14 @@ const Component = ({title, lo}) => (
         .lesson-title {
             margin-top: 1rem;
             font-family: 'Cutive Mono', monospace;
-            
+            line-height: 4rem;
             font-size: 4rem;
             grid-area: title;
             background-color: #35276d;
             color: #fff903;
             margin-top: 0px;
             padding-left: 10px;
+            padding-right: 20px;
             padding-top: 30px;
             padding-bottom: 30px;
             border-radius: 10px;

@@ -6,12 +6,12 @@ const Component = ({code, output}) => {
     
     <div className="container">
         <Python code={code}/>
-        <ConsoleOutput text={output}/>
+        {output && <ConsoleOutput text={output}/>}
     </div>
     <style jsx>{`
         .container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: ${output ? '1fr 1fr' : '1fr'};
             width: 80%;
             grid-gap : 20px;
         }

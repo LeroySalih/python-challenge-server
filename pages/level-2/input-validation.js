@@ -171,16 +171,23 @@ const ComponentPage = () => {
                     <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gridGap: "20px"}}>
                         <div>
                             <SectionTitle>What We're Building</SectionTitle>
-                            <SectionDescription>In this lesson you'll learn to output the following to the console.</SectionDescription>
-                            <ConsoleOutput text={`Hello World\n19\n👌`}/>
+                            <SectionDescription>In this lesson you'll practise validating data from a user va.</SectionDescription>
+                            <ConsoleOutput text={`Enter a number between 1 and 10: -5\n
+Incorrect value, please try again.\n
+Enter a number between 1 and 10: 0\n
+Incorrect value, please try again.\n
+Enter a number between 1 and 10: 11\n
+Incorrect value, please try again.\n
+Enter a number between 1 and 10: 1\n
+Thank you, please continue`}/>
                         </div>
                         <div>
                         <SectionTitle >Key Terms</SectionTitle>
                             <SectionDescription>In this lesson</SectionDescription>
                             <KeyTerms>
                                 <KeyTermTitle/>
-                                <KeyTerm index="0" term="Console">The area of the screen where we interact with the program.</KeyTerm>
-                                <KeyTerm index="1" term="Output">Displaying information in the console.</KeyTerm>
+                                <KeyTerm index="0" term="Validate">Ensure that data is within expected range and format.</KeyTerm>
+                                <KeyTerm index="1" term="">.</KeyTerm>
                                 
                             </KeyTerms>
                         </div>
@@ -191,78 +198,104 @@ const ComponentPage = () => {
                 
 
                 <section>
-                    <SectionTitle >Print Command</SectionTitle>
+                    <SectionTitle >What is Validation?</SectionTitle>
                     <SectionText>
-                    <p>We can use the <CodeInline>print</CodeInline> command to display numbers, text and characters to the 
-                    console.  In text based programs, the console is the main interface that we use to 
-                    allow our program to interact with the user. Other ways that we interact with users include sound and files, but we will deal with these in later lessons.
+                    <p>Validation means that the program will check that data is of a value and format that teh program expects.
                     </p>
-                    <p>Typical uses for the <InlineCode>print</InlineCode> command inlude
+                    <p>Typical example sof validation are:
                         <ul>
-                            <li>Letting the user know the result of a calculation</li>
-                            <li>Giving the user an update on a long running operation</li>
-                            <li>Letting the user know something has gone wrong</li>
-                            <li>Letting the user know that the program has ended.</li>
+                            <li>Ensuring that only numbers are entered when required</li>
+                            <li>Ensuring that a password meets criteria</li>
+                            <li>Ensuring that a string is of a given length</li>
+                            <li>Ensuring that a file exists and can be accessed by the computer.</li>
                         </ul>
                     </p>
+                    <p>We validate data to prevent the program from producing incorrect output or worse still, crashing.  Remember the saying "Garbage in, garbage out"</p>
+                    </SectionText>
+                    
+                </section>
 
+                <section >
+                    <SectionTitle >How Validation Works</SectionTitle>
+                    <SectionText>
+                        
+                        <p>Validation will always follow the same pattern:</p>
+                        <CodeExample 
+                            code={`define the is_valid def
+get the input
+while not (data is valid)
+    tell the user
+    get the input
+continue with the program
+`}
+                            
+                        />
+                        
+                    </SectionText>
+                    
+                </section>
+
+                <section >
+                    <SectionTitle >Defining the is_valid def</SectionTitle>
+                    <SectionText>
+                        
+                        <p>To define the valid data, we create a <CodeInline>def</CodeInline> that accepts the user input and returns a True (if input is valid) or False (if input is invalid).</p>
+                        <p>The def is usually named as <CodeInline>is_valid_[...]</CodeInline>, such as 
+
+                            <ul>
+                                <li><CodeInline>is_valid_height</CodeInline> may check that the user has entered a height between 0 and 200 cms </li>
+                                <li><CodeInline>is_valid_date</CodeInline> may check that the user has entered a valid date</li>
+                                <li><CodeInline>is_valid_email</CodeInline> may check that the user has entered a valid email address</li>
+                            </ul>
+                        
+                        </p>
+
+                        <p>
+                            An <CodeInline>is_valid def</CodeInline> will generally use boolean operators, such as <CodeInline>&nbsp;, nbsp;= == not, and </CodeInline>to determine whether the 
+                            input data is valid or not.
+                        </p>
+                        <CodeExample 
+                            code={`def is_valid_height(height):
+    return 0 <= height <= 200
+
+print(is_valid_height(-5))
+print(is_valid_height(203))
+print(is_valid_height(176))
+    `}
+                            output={`False
+False
+True`}
+                        />
+                    </SectionText>
+                    
+                </section>
+
+                <section >
+                    <SectionTitle >Full Validation Pattern</SectionTitle>
+                    <SectionText>
+
+                    <p>Validation will always follow the same pattern:</p>
+                        <CodeExample 
+                            code={`define the is_valid def
+get the input
+while not (data is valid)
+    tell the user
+    get the input
+continue with the program
+`}
+                            
+                        />
                     <p>
-                        To use the <CodeInline>print</CodeInline> command, type:
-                    </p>
+                        <ul>
+                            <ol>First we define (and test) the <CodeInline>is_valid</CodeInline> def</ol>
+                            <ol>Then we get the data.  If this is data from the user, it will probably use an <CodeInline>input()</CodeInline> command.  Other ways to get data may inlcude reading a file or accessign the internet.</ol>
+                            <ol>Line 3 starts the while loop, which will execute while the data is <CodeInline>not valid</CodeInline></ol>
+                            <ol>Line 4 is the first line fo the while loop, and informs the user of the error</ol>
+                            <ol>Line 5 allows the user to re enter the data.  This is the end fo the while loop, so we return to line 3.</ol>
+                            <ol>If the data is valid, then the while loop will return False, and so will not execute, allowing the program to continue.</ol>
 
-
-                    <Python code={`print(<something to output to console>)`}/>
-                    
-                    
-                    <p>Some examples are:</p>
-                    <CodeExample 
-                        code={`print("Hello World")\nprint(10 + 5)`}
-                        output={`Hello World\n15`}
-                    />
-                    
-                    </SectionText>
-                </section>
-
-                <section >
-                    <SectionTitle >Printing Numbers</SectionTitle>
-                    <SectionText>
-                        
-                        <p>To print a number simply put the number between the brackets</p>
-                        <CodeExample 
-                            code={`print(10)\nprint(0.5)\nprint(0.1234567)`}
-                            output={`10\n0.5\n0.1234567`}
-                        />
-                        
-                    </SectionText>
-                    
-                </section>
-
-                <section >
-                    <SectionTitle >Printing Characters</SectionTitle>
-                    <SectionText>
-                        
-                        <p>To print a letter, word or sentence number,  We need to put the data ot be outputted in quotation marks.  This tells the program that the data between the brackets is what you want to be printed to the console.</p>
-                        
-                        <CodeExample 
-                            code={`print("Hello")\nprint("World")\nprint("Hello World")`}
-                            output={`Hello\nWorld\nHello World`}
-                        />
-                    </SectionText>
-                    
-                </section>
-
-                <section >
-                    <SectionTitle >Printing Emoji</SectionTitle>
-                    <SectionText>
-
-                        <p>It is also possible to print emoji characters, such as <span style={{fontSize: "1.5rem"}}>&#128076;</span></p>
-                        
-                        <ul>To print an emoji:
-                            <li>you can consult the list of emojis, <a href="https://unicode.org/emoji/charts/full-emoji-list.html" target="_new">here</a></li>
-                            <li>find the code for the emoji you would like to print, it will start with a U+, for example, U+1F44C</li>
-                            <li>replace the +, with 000, so U+1F44C, becomes U0001F44C</li>
-                            <li>use <CodeInline>print("\U0001F44C")</CodeInline> to display the emoji in the console.</li>
                         </ul>
+                    </p>
                     </SectionText>
                 </section>
 
