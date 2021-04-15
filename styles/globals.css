@@ -27,4 +27,12 @@ div {
   font-family: 'Open Sans';
 }
 
+a {
+  color: blue;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 

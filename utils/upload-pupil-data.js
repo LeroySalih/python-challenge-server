@@ -34,9 +34,11 @@ const parseClassMembers = (classes, data) => {
     
     data.forEach(row => {
         
-        if (! classes[`${row[`Academic Year`]}::${row[`Class`]}`].members.includes(row['Email']))
+        const newEmail = row['Email'].replace('student.', '');
+
+        if (! classes[`${row[`Academic Year`]}::${row[`Class`]}`].members.includes(newEmail))
         {
-            classes[`${row[`Academic Year`]}::${row[`Class`]}`].members.push(row['Email'])
+            classes[`${row[`Academic Year`]}::${row[`Class`]}`].members.push(newEmail)
         }
         
     })
@@ -49,11 +51,11 @@ const parsePupils = (data) => {
 
     data.forEach(row => {
 
-        key = row['Email'];
+        const key = row['Email'].replace('student.', '');
 
         p[key] = {
             _id: key,
-            email : row['Email'],
+            email : key,
             name: row['Name'],
             upn: row['UPN'],
             parentEmails: [] 
@@ -66,7 +68,8 @@ const parsePupils = (data) => {
 const parseParentEmails = (pupils, data) => {
 
     data.forEach(row => {
-        row['Primary Email'] && pupils[row['Email']].parentEmails.push(row['Primary Email'])
+        const key = row['Email'].replace('student.', '');
+        row['Primary Email'] && pupils[key].parentEmails.push(row['Primary Email'])
     })
 
     return pupils;

@@ -7,10 +7,10 @@ const handler = async (req, res) => {
 
   const {db} = await connectToDatabase()
   
-  const {email, challenge_name, repl_owner, repl_slug, successes, fails, progress, main} = req.body;
+  const { email, challenge_name, repl_owner, repl_slug, successes, fails, progress, main} = req.body;
   const results = JSON.parse(req.body.results);
   const data = {
-    email, 
+    email,
     repl_owner, 
     repl_slug, 
     challenge_name, 

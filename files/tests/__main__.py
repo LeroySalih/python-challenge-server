@@ -8,8 +8,9 @@ import json
 #print(os.getenv("REPL_SLUG"))
 
 #this variable gets replaced by the API
-challenge_name = "::CHALLENGE_NAME::"
-email = "::EMAIL::"
+challenge_name = "level-1::input-validation"
+email = sys.argv[1]
+
 
 # Add the parent directory to the current path so the main file can be found
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
@@ -123,7 +124,6 @@ if __name__ == "__main__":
     mainText = mainFile.read()
 
     data = {
-        
         "email" : email,
         "challenge_name" : challenge_name,
         "repl_owner" : os.getenv("REPL_OWNER"),
@@ -143,7 +143,3 @@ if __name__ == "__main__":
     result = requests.post(url, data=data)
 
     print(result.status_code)
-    #print(result.text)
-
-    #engine = MainTestEngine("Step1")
-    #createTestSuite(engine)

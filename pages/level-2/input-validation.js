@@ -171,7 +171,7 @@ const ComponentPage = () => {
                     <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gridGap: "20px"}}>
                         <div>
                             <SectionTitle>What We're Building</SectionTitle>
-                            <SectionDescription>In this lesson you'll practise validating data from a user va.</SectionDescription>
+                            <SectionDescription>In this lesson you'll practise validating data from a user.</SectionDescription>
                             <ConsoleOutput text={`Enter a number between 1 and 10: -5\n
 Incorrect value, please try again.\n
 Enter a number between 1 and 10: 0\n
@@ -187,7 +187,8 @@ Thank you, please continue`}/>
                             <KeyTerms>
                                 <KeyTermTitle/>
                                 <KeyTerm index="0" term="Validate">Ensure that data is within expected range and format.</KeyTerm>
-                                <KeyTerm index="1" term="">.</KeyTerm>
+                                <KeyTerm index="1" term="Boolean Operator">An operator that returns <CodeInline>True</CodeInline> or <CodeInline>False</CodeInline>.</KeyTerm>
+                                <KeyTerm index="2" term="is_valid def">A <CodeInline>def</CodeInline> that we define to determine whether data is valid (True) or not (False).</KeyTerm>
                                 
                             </KeyTerms>
                         </div>

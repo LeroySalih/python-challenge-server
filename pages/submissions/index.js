@@ -1,7 +1,7 @@
 import { getSubmissionByReplName } from "../api/submissions";
 
 
-const SubmissionsIndex =  ({submissionStr}) => {
+
 
     const submissions = JSON.parse(submissionStr);
 

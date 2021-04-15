@@ -96,14 +96,8 @@ export default function Home() {
             
           </div>
           <div>
-              <Image
-                src="/images/index-header.png"
-                alt="Picture of the author"
-                width={500}
-                height={400}
-              />
+              
         </div>
-
         </div>
         
         {/* Topic Choser */}

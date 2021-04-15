@@ -1,16 +1,7 @@
-
-
 import styled from 'styled-components';
-
-import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 import {useMsal, useAccount} from '@azure/msal-react'
+import {useState} from 'react'
 
-import {useEffect, useState} from 'react'
-import Scrollspy from 'react-scrollspy'
-import useScrollSpy from 'react-use-scrollspy';
-import {useRef} from 'react';
-
-import Button from '@material-ui/core/Button';
 
 import Navbar from '../../components/navbar';
 import Drawer from '@material-ui/core/Drawer';
@@ -20,56 +11,26 @@ import {CodeExample,
         CodeInline, 
         ConsoleOutput,
         Activity} from '../../components/code';
+
 import {Page, 
+        Lesson,
         Section, 
         SectionTitle, 
         SectionVideo, 
         SectionDescription, 
         SectionText, 
+        KeyTerms,
+        KeyTerm,
+        KeyTermTitle,
         LessonHeader} from '../../components/format'
 
-const Lesson = styled.div`
-
-`
 
 
 
-const MainPage = styled.div`
-    
-    overflow-y: auto;
-    height: calc(100vh - 100px)
-`
 
-const KeyTerms = styled.div`
-    display: grid;
-    grid-template-columns : 100px auto;
-    grid-row-gap: 20px;
-    margin: 20px;
-`
 
-const KeyTermTitle = () => (
-    [<div key="ktt0" style={
-        {
-            fontWeight: 'bold',
-            borderBottom: 'dashed silver 1px'
-        }
-        }>Term</div>, <div key="ktt1" style={
-            {fontWeight: 'bold', 
-            borderBottom: 'dashed silver 1px'
-        }
-        }>Description</div>]
-)
 
-const KeyTermStyled = styled.div`
-    font-weight: bold;
-`
 
-const KeyTerm = ({term, index, children}) => (
-    [
-        <KeyTermStyled key={`kts${index}`}>{term}</KeyTermStyled>,
-        <div key={`kt${index}`}>{children}</div>
-    ]
-)
 
 const MeasuringProgress = ({bronze, silver, gold}) => (
     <>
@@ -85,13 +46,6 @@ const MeasuringProgress = ({bronze, silver, gold}) => (
 
 
 
-
-
-
-
-const InlineCode = ({children}) => {
-    return (<span>{children}</span>)
-}
 
 const ComponentPage = () => {
 
@@ -113,19 +67,6 @@ const ComponentPage = () => {
 
     const [showDraw, setShowDraw] = useState(false);
 
-    
-    const sectionRefs = [
-        useRef(null),
-        useRef(null),
-        useRef(null),
-      ];
-    
-    const activeSection = useScrollSpy({
-        sectionElementRefs: sectionRefs,
-        offsetPx: -80,
-      });
-    
-
     return (
         <>
         <Navbar onClick={handleDrawerClick}></Navbar>
@@ -137,7 +78,7 @@ const ComponentPage = () => {
                 <ul>
                     <li><a href="#what-we-are-building">What we're building</a></li>
                     <li><a href="#key-terms">Key Terms</a></li>
-                    <li><a href="#print-command"><InlineCode>print</InlineCode> Command</a></li>
+                    <li><a href="#print-command"><CodeInline>print</CodeInline> Command</a></li>
                     <li><a href="#printing-numbers">Printing numbers</a></li>
                     <li><a href="#printing-words">Printing Words</a></li>
                     <li><a href="#printing-emoji">Printing Emoji</a></li>
@@ -149,7 +90,7 @@ const ComponentPage = () => {
                 <MeasuringProgress
                     bronze="I can displaymy name to the console."
                     silver="I can output numbers and text to the console."
-                    gold="I can use the advanced options of <InlineCode>print</InlineCode>."
+                    gold="I can use the advanced options of <CodeInline>print</CodeInline>."
                     >
                 </MeasuringProgress>
 
@@ -159,9 +100,6 @@ const ComponentPage = () => {
                     <li>Operators</li>
                 </ul>
                 
-            
-            
-
         </Drawer>
 
         <Page>
@@ -169,7 +107,7 @@ const ComponentPage = () => {
         <LessonHeader title="Output" lo="How do I display data in the console?"/>
         <Lesson>
             
-                <section id="what-we-are-building" >
+                <Section id="what-we-are-building" >
                     <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gridGap: "20px"}}>
                         <div>
                             <SectionTitle>What We're Building</SectionTitle>
@@ -188,18 +126,18 @@ const ComponentPage = () => {
                         </div>
                     </div>
                     
-                </section>
+                </Section>
                 
                 
 
-                <section>
+                <Section>
                     <SectionTitle >Print Command</SectionTitle>
                     <SectionText>
                     <p>We can use the <CodeInline>print</CodeInline> command to display numbers, text and characters to the 
                     console.  In text based programs, the console is the main interface that we use to 
                     allow our program to interact with the user. Other ways that we interact with users include sound and files, but we will deal with these in later lessons.
                     </p>
-                    <p>Typical uses for the <InlineCode>print</InlineCode> command inlude
+                    <p>Typical uses for the <CodeInline>print</CodeInline> command inlude
                         <ul>
                             <li>Letting the user know the result of a calculation</li>
                             <li>Giving the user an update on a long running operation</li>
@@ -223,9 +161,9 @@ const ComponentPage = () => {
                     />
                     
                     </SectionText>
-                </section>
+                </Section>
 
-                <section >
+                <Section >
                     <SectionTitle >Printing Numbers</SectionTitle>
                     <SectionText>
                         
@@ -237,9 +175,9 @@ const ComponentPage = () => {
                         
                     </SectionText>
                     
-                </section>
+                </Section>
 
-                <section >
+                <Section >
                     <SectionTitle >Printing Characters</SectionTitle>
                     <SectionText>
                         
@@ -251,9 +189,9 @@ const ComponentPage = () => {
                         />
                     </SectionText>
                     
-                </section>
+                </Section>
 
-                <section >
+                <Section >
                     <SectionTitle >Printing Emoji</SectionTitle>
                     <SectionText>
 
@@ -266,35 +204,15 @@ const ComponentPage = () => {
                             <li>use <CodeInline>print("\U0001F44C")</CodeInline> to display the emoji in the console.</li>
                         </ul>
                     </SectionText>
-                </section>
+                </Section>
 
-                <section>
-                    <SectionTitle>Practice</SectionTitle>
-                    <AuthenticatedTemplate>
-                        <Activity email={email} activityId="level-1::output"/>
-                    </AuthenticatedTemplate>
-                    <UnauthenticatedTemplate>
-                        <div>You are not logged in.  Please log in to complete the practice section.</div>
-                    </UnauthenticatedTemplate>
-                </section>
+                <Activity repl="https://replit.com/@mrsalih/output#main.py" email={email}/>
 
             
         </Lesson>
         
         </Page>
-        <style jsx>{`
         
-            section {
-            
-                margin-bottom: 30px;
-                border: silver 1px solid;
-                padding: 30px;
-                border-radius: 10px;
-                background-color: white;
-                box-shadow: 0px 0px 10px 10px #e0e0e0;
-            }
-        
-        `}</style>
         </>
     )
 }

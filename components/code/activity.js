@@ -1,45 +1,33 @@
 import {CodeInline} from '../code';
 import Button from '@material-ui/core/Button';
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
-const Component = ({code, email, activityId}) => {
+import {Page, 
+    Section, 
+    SectionTitle, 
+    SectionVideo, 
+    SectionDescription, 
+    SectionText, 
+    LessonHeader} from '../../components/format'
 
+const Component = ({repl, email, title}) => {
 
-    const cmdStart = (email, activityId) => (`python start.py ${email} ${activityId}`)
-    const cmdTest = () => (`python ./tests`)
+    const cmdTest = () => (`python ./tests ${email}`)
 
     return (<section>
-   
-    <p>To begin the activity, copy and paste the following command to the <u>shell</u> tab</p>
-    <p>
-        <Button onClick={() => {navigator.clipboard.writeText(cmdStart(email, activityId))}}>Copy</Button>
-        <CodeInline>{cmdStart(email, activityId)}</CodeInline>
-    </p>
-    
-    <div>To test your work, copy and paste the following command to the <u>shell</u> tab</div>
-    <div>
-        <Button onClick={() => {navigator.clipboard.writeText(cmdTest())}}>Copy</Button>
-        <CodeInline>{cmdTest()}</CodeInline>
-    </div>
-    
-
-
-    <iframe 
-        height="800px" 
-        width="100%" 
-        src="https://replit.com/@mrsalih/Host?lite=false" 
-        scrolling="no" 
-        frameBorder="no" 
-        allowtransparency="true" 
-        allowFullScreen={true}
-        sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals">
-
-        </iframe>
-    <style jsx>{`
-    
-    
-    `}
-    </style>
-
+        <SectionTitle>Practice: {title}</SectionTitle>
+        
+        <AuthenticatedTemplate>
+            <p>Instructions:</p>
+            <ul>
+                <li>Fork this <a href={repl}>repl</a></li>
+                <li>Complete the exercise in the challenge.md file</li>
+                <li>To submit your work, type <CodeInline>{cmdTest()}</CodeInline><Button variant="outlined" onClick={() => {navigator.clipboard.writeText(cmdStart(email, activityId))}}>Copy</Button> in the <b>shell</b> window</li>
+            </ul>
+        </AuthenticatedTemplate>
+        <UnauthenticatedTemplate>
+            <div>You are not logged in.  Please log in to complete the practice section.</div>
+        </UnauthenticatedTemplate>
     </section>)
 }
 
