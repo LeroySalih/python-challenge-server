@@ -125,7 +125,7 @@ export default function Home() {
             <ul>
               <li>Operators - Boolean Equalities</li>
               <li>Operators - Boolean Logic</li>
-              <li>Decisions</li>
+              <li><Link target="_new" href="/level-1/decisions">Decisions</Link></li>
               <li>Compound Decisions</li>
               
             </ul>
@@ -149,23 +149,16 @@ export default function Home() {
               <li>Files - Create &amp; Write</li>
               <li>Files - Read &amp; Process</li>
               <li><Link href="/level-2/input-validation">Input Validation</Link></li>
+            </ul>
+
+            <ul>
+              <li>Odds or Evens</li>
+              <li>FizzBuzz</li>
               <li>Counters</li>
             </ul>
 
             <ul>
-              <li>Anatomy of a Web Page</li>
-              <li>HTML Mark Up</li>
-              <li>Block Elements</li>
-              <li>Inline Elements</li>
-            </ul>
-
-            <ul>
-              <li>Basic Selectors </li>
-              <li>Styling with CSS</li>
-              <li>Colours</li>
-              <li>Fonts</li>
-              <li></li>
-              <li>Advanced Selectors</li>
+              
             </ul>
             
           </div>
@@ -188,7 +181,9 @@ export default function Home() {
            
 
             <ul>
-              
+              <li>Ceasar Cypher</li>
+              <li><Link href="/level-3/transpose">Transpose Cypher</Link></li>
+              <li></li>
             </ul>
             
           </div>

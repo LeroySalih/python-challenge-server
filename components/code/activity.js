@@ -22,7 +22,7 @@ const Component = ({repl, email, title}) => {
             <ul>
                 <li>Fork this <a href={repl}>repl</a></li>
                 <li>Complete the exercise in the challenge.md file</li>
-                <li>To submit your work, type <CodeInline>{cmdTest()}</CodeInline><Button variant="outlined" onClick={() => {navigator.clipboard.writeText(cmdStart(email, activityId))}}>Copy</Button> in the <b>shell</b> window</li>
+                <li>To submit your work, type <CodeInline>{cmdTest()}</CodeInline><Button variant="outlined" onClick={() => {navigator.clipboard.writeText(cmdTest())}}>Copy</Button> in the <b>shell</b> window</li>
             </ul>
         </AuthenticatedTemplate>
         <UnauthenticatedTemplate>

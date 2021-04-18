@@ -48,6 +48,8 @@ const Component = () => {
 
                 <Select value={currentChallenge} onChange={(e) => setCurrentChallenge(e.target.value)}>
                     <MenuItem value={"level-1::output"}>Level 1 - Output</MenuItem>
+                    <MenuItem value={"level-2::decisions-2"}>Level 1 - Decisions 2</MenuItem>
+                    <MenuItem value={"level-2::decisions-3"}>Level 1 - Decisions 3</MenuItem>
                     <MenuItem value={"level-2::input-validation"}>Level 2 - Input Validation</MenuItem>
                 </Select>
                 <Button onClick={()=> {setLastUpdate(DateTime.now())}}>Refresh</Button>

@@ -19,7 +19,7 @@ const handler = async (req, res) => {
     fails, 
     progress, 
     main}
-  console.log(data);
+  console.log(email, challenge_name, progress);
   const result = await db.collection("submissions").insertOne({...data, created: new Date()});
 
   res.status(200).json({ inserted: `${result.insertedCount} records` })
