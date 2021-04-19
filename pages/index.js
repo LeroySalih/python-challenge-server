@@ -92,7 +92,7 @@ export default function Home() {
         <div style={{width: "80%", marginLeft: "auto", marginRight: "auto", marginTop: "30px", display: "flex", flexDirection: "row"}}>
           <div>
             <h1>Learning Computing, Computer Science and ICT concepts</h1>
-            <UnauthenticatedTemplate><Button variant="outlined">Log In</Button></UnauthenticatedTemplate>
+            <UnauthenticatedTemplate></UnauthenticatedTemplate>
             
           </div>
           <div>
@@ -104,7 +104,7 @@ export default function Home() {
         <div className="topic-grid">
           <div>
             <div><Button onClick={() => setTabIndex(0)}> Programming with Python</Button></div>
-            <div><Button  onClick={() => setTabIndex(1)}> Building Web Pages</Button></div>
+            
           </div>
           <div>
           {tabIndex == 0 && <div>
