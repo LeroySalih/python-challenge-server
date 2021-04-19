@@ -1,8 +1,11 @@
+
+console.log("Server ID: ", process.env.NEXT_PUBLIC_SERVER_ID)
+
 export const msalConfig = {
     auth: {
         clientId: "9acf3705-515a-4ee6-81af-85b5e9663734",
-        redirectUri: "https://3000-crimson-earwig-bzsjx0xu.ws-eu03.gitpod.io",
-        postLogoutRedirectUri: "https://3000-crimson-earwig-bzsjx0xu.ws-eu03.gitpod.io"
+        redirectUri: process.env.NEXT_PUBLIC_SERVER_ID,
+        postLogoutRedirectUri: process.env.NEXT_PUBLIC_SERVER_ID
     }
 };
 

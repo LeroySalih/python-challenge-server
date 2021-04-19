@@ -11,6 +11,8 @@ const msalInstance = new PublicClientApplication(msalConfig);
 
 function MyApp({ Component, pageProps }) {
 
+  console.log("Server ID::", process.env.NEXT_PUBLIC_SERVER_ID)
+
   return (
    
   <MsalProvider instance={msalInstance}>
