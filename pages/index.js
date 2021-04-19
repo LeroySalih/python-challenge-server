@@ -174,7 +174,7 @@ export default function Home() {
 
             <ul>
               <li>Break the code</li>
-              <li>Letter Counter</li>
+              <li><Link href="/level-3/letter-count">Letter Count</Link></li>
               <li>Dictionary Searcher</li>
             </ul>
 
