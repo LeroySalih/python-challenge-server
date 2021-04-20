@@ -1,5 +1,5 @@
 
-console.log("Server ID: ", process.env.NEXT_PUBLIC_SERVER_ID)
+
 
 export const msalConfig = {
     auth: {

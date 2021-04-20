@@ -170,7 +170,7 @@ const ComponentPage = () => {
 
                 
                 <Activity title="Letter Count"
-                          repl="https://replit.com/@mrsalih/letter-count/challenge.md" 
+                          repl="https://replit.com/@mrsalih/letter-count#challenge.md" 
                           email={email} 
                           challengeName="level-3::letter-count" 
                           pupilProgress={pupilProgress}

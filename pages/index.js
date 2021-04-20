@@ -194,7 +194,11 @@ export default function Home() {
             </ul>
 
             <ul>
-              <li>Odds or Evens</li>
+              <li><PupilProgressLink 
+                  href="/level-2/odds-or-evens" 
+                  email={email} title="Odds or Evens" 
+                  challengeName="level-2::odds-or-evens" 
+                  pupilProgress={pupilProgress} />  </li>
               <li>FizzBuzz</li>
               <li>Counters</li>
             </ul>
