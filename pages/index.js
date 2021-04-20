@@ -8,11 +8,11 @@ import { useMsalAuthentication } from "@azure/msal-react";
 
 import { InteractionStatus, InteractionType } from "@azure/msal-browser";
 import { loginRequest } from "../components/authConfig";
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 
 
-
+import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
 import Navbar from '../components/navbar';
@@ -35,12 +35,32 @@ export default function Home() {
   const [showDraw, setShowDrawer] = useState (false);
 
   const [tabIndex, setTabIndex] = useState(0);
-  
+  const [email, setEmail] = useState(null);
+  const [pupilProgress, setPupilProgress] = useState(null);
   
   // console.log(login, result, error);
 
   const { instance, accounts, inProgress } = useMsal();
   const account = useAccount(accounts[0] || {});
+
+
+  useEffect(async () => {
+    console.log('Account logged in', account)
+
+    if (account) {
+      setEmail(account.username.toLowerCase())
+      const {data} = await axios.get(`/api/watch-pupil/${account.username.toLowerCase()}`)
+
+      setPupilProgress(data);
+
+
+    } else {
+      setEmail(null);
+      setPupilProgress(null);
+    }
+    
+
+  }, [account])
 
   const authRequest = {
     ...loginRequest
@@ -92,6 +112,7 @@ export default function Home() {
         <div style={{width: "80%", marginLeft: "auto", marginRight: "auto", marginTop: "30px", display: "flex", flexDirection: "row"}}>
           <div>
             <h1>Learning Computing, Computer Science and ICT concepts</h1>
+            {email && <h3>{email}</h3>}
             <UnauthenticatedTemplate></UnauthenticatedTemplate>
             
           </div>
