@@ -17,6 +17,8 @@ import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
 import Navbar from '../components/navbar';
 
+import PupilProgressLink from '../components/format/pupil-progress-link';
+
 import Image from 'next/image'
 
 const ErrorComponent = ({error}) => {
@@ -37,7 +39,7 @@ export default function Home() {
   const [tabIndex, setTabIndex] = useState(0);
   const [email, setEmail] = useState(null);
   const [pupilProgress, setPupilProgress] = useState(null);
-  
+
   // console.log(login, result, error);
 
   const { instance, accounts, inProgress } = useMsal();
@@ -134,7 +136,12 @@ export default function Home() {
 
             <ul>
               <li>
-                <Link href="/level-1/output">Output</Link>
+                
+                <PupilProgressLink 
+                  href="/level-1/output" 
+                  email={email} title="Output" 
+                  challengeName="level-1::output" 
+                  pupilProgress={pupilProgress} />
                 </li>
               <li>Operators - Numeric</li>
               <li>Operators - Strings</li>
@@ -146,7 +153,14 @@ export default function Home() {
             <ul>
               <li>Operators - Boolean Equalities</li>
               <li>Operators - Boolean Logic</li>
-              <li><Link target="_new" href="/level-1/decisions">Decisions</Link></li>
+              <li>
+                
+                <PupilProgressLink 
+                  href="/level-1/decisions" 
+                  email={email} title="Decisions" 
+                  challengeName="level-1::decisions" 
+                  pupilProgress={pupilProgress} />  
+              </li>
               <li>Compound Decisions</li>
               
             </ul>
