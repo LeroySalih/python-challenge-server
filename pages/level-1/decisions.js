@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import {useMsal, useAccount} from '@azure/msal-react'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
+import axios from 'axios'
 
 import Navbar from '../../components/navbar';
 import Drawer from '@material-ui/core/Drawer';
@@ -53,8 +54,26 @@ const ComponentPage = () => {
 
     const account = useAccount(accounts[0] || {});
     const name = (account && account.name) || ""
-    const email = account && account.username.toLowerCase();
+    
+    const [email, setEmail] = useState(null);
+    const [pupilProgress, setPupilProgress] = useState(null);
 
+    useEffect(async () => {
+        console.log('Account logged in', account)
+    
+        if (account) {
+          setEmail(account.username.toLowerCase())
+          const {data} = await axios.get(`/api/watch-pupil/${account.username.toLowerCase()}`)
+    
+          setPupilProgress(data);
+    
+    
+        } else {
+          setEmail(null);
+          setPupilProgress(null);
+        }
+        
+      }, [account])
     
 
     const handleDrawerClick = () => {
@@ -248,8 +267,19 @@ const ComponentPage = () => {
 
                 
 
-                <Activity title="Decisions: IF-THEN-ELSE" repl="https://replit.com/@mrsalih/decisons-2-IF-THEN-ELSE#challenge.md" email={email}/>
-                <Activity title="Decisions: IF-THEN-ELIF-ELSE" repl="https://replit.com/@mrsalih/decisons-3-IF-THEN-ELIF-ELSE-1#challenge.md" email={email}/>
+                
+                <Activity repl="https://replit.com/@mrsalih/decisons-2-IF-THEN-ELSE#challenge.md" 
+                          email={email} 
+                          challengeName="level-1::decisions-2" 
+                          pupilProgress={pupilProgress}
+                          />
+                
+                <Activity title="Decisions: IF-THEN-ELIF-ELSE"
+                          repl="https://replit.com/@mrsalih/decisons-3-IF-THEN-ELIF-ELSE-1#challenge.md" 
+                          email={email} 
+                          challengeName="level-1::decisions-3" 
+                          pupilProgress={pupilProgress}
+                          />
             
         </Lesson>
         

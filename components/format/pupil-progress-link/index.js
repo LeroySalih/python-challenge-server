@@ -19,7 +19,16 @@ const Component = ({href, title, challengeName, pupilProgress}) => {
     return <>
         <Link href={href}><span className="link">{title} {pupilProgress && displayProgress()}</span></Link>
         <style jsx>{` 
-            .link {color: blue}`}</style>
+            .link {
+                color: blue;
+                cursor: pointer;
+            }
+            
+            .link:hover {
+                text-decoration : underline
+            }
+            
+            `}</style>
     </>
 }
 

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import {useMsal, useAccount} from '@azure/msal-react'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
+import axios from 'axios'
 
 
 import Navbar from '../../components/navbar';
@@ -53,7 +54,25 @@ const ComponentPage = () => {
 
     const account = useAccount(accounts[0] || {});
     const name = (account && account.name) || ""
-    const email = account && account.username.toLowerCase();
+    const [email, setEmail] = useState(null);
+    const [pupilProgress, setPupilProgress] = useState(null);
+
+    useEffect(async () => {
+        console.log('Account logged in', account)
+    
+        if (account) {
+          setEmail(account.username.toLowerCase())
+          const {data} = await axios.get(`/api/watch-pupil/${account.username.toLowerCase()}`)
+    
+          setPupilProgress(data);
+    
+    
+        } else {
+          setEmail(null);
+          setPupilProgress(null);
+        }
+        
+      }, [account])
 
     
 
@@ -149,8 +168,13 @@ const ComponentPage = () => {
                     </SectionText>
                 </Section>
 
-                <Activity repl="https://replit.com/@mrsalih/letter-count/challenge.md" email={email}/>
-
+                
+                <Activity title="Letter Count"
+                          repl="https://replit.com/@mrsalih/letter-count/challenge.md" 
+                          email={email} 
+                          challengeName="level-3::letter-count" 
+                          pupilProgress={pupilProgress}
+                          />
             
         </Lesson>
         

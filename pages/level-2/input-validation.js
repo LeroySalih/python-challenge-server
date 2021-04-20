@@ -4,6 +4,8 @@ import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-reac
 import {useMsal, useAccount} from '@azure/msal-react'
 
 import {useEffect, useState} from 'react'
+import axios from 'axios'
+
 import Scrollspy from 'react-scrollspy'
 import useScrollSpy from 'react-use-scrollspy';
 import {useRef} from 'react';
@@ -97,7 +99,25 @@ const ComponentPage = () => {
 
     const account = useAccount(accounts[0] || {});
     const name = (account && account.name) || ""
-    const email = account && account.username.toLowerCase();
+    const [email, setEmail] = useState(null);
+    const [pupilProgress, setPupilProgress] = useState(null);
+
+    useEffect(async () => {
+        console.log('Account logged in', account)
+    
+        if (account) {
+          setEmail(account.username.toLowerCase())
+          const {data} = await axios.get(`/api/watch-pupil/${account.username.toLowerCase()}`)
+    
+          setPupilProgress(data);
+    
+    
+        } else {
+          setEmail(null);
+          setPupilProgress(null);
+        }
+        
+      }, [account])
 
     
 
@@ -301,9 +321,15 @@ continue with the program
                 </section>
 
                 <section>
-                    <SectionTitle>Practice</SectionTitle>
+                    <SectionTitle></SectionTitle>
                     <AuthenticatedTemplate>
-                        <Activity email={email} activityId="level-2::input-validation"/>
+                        
+                        <Activity title="Input Validation"
+                          repl="https://replit.com/@mrsalih/input-validation" 
+                          email={email} 
+                          challengeName="level-2::input-validation" 
+                          pupilProgress={pupilProgress}
+                          />
                     </AuthenticatedTemplate>
                     <UnauthenticatedTemplate>
                         <div>You are not logged in.  Please log in to complete the practice section.</div>

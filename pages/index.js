@@ -158,7 +158,7 @@ export default function Home() {
                 <PupilProgressLink 
                   href="/level-1/decisions" 
                   email={email} title="Decisions" 
-                  challengeName="level-1::decisions" 
+                  challengeName="level-1::decisions-2" 
                   pupilProgress={pupilProgress} />  
               </li>
               <li>Compound Decisions</li>
@@ -183,7 +183,14 @@ export default function Home() {
               <li>Processing Lists</li>
               <li>Files - Create &amp; Write</li>
               <li>Files - Read &amp; Process</li>
-              <li><Link href="/level-2/input-validation">Input Validation</Link></li>
+              <li>
+              <PupilProgressLink 
+                  href="/level-2/input-validation" 
+                  email={email} 
+                  title="Input Validation" 
+                  challengeName="level-2::input-validation" 
+                  pupilProgress={pupilProgress} />  
+                </li>
             </ul>
 
             <ul>
@@ -209,7 +216,15 @@ export default function Home() {
 
             <ul>
               <li>Break the code</li>
-              <li><Link href="/level-3/letter-count">Letter Count</Link></li>
+              <li>
+              <PupilProgressLink 
+                  href="/level-3/letter-count" 
+                  email={email} 
+                  title="Letter Count" 
+                  challengeName="level-3::letter-count" 
+                  pupilProgress={pupilProgress} /> 
+
+                </li>
               <li>Dictionary Searcher</li>
             </ul>
 
@@ -217,7 +232,15 @@ export default function Home() {
 
             <ul>
               <li>Ceasar Cypher</li>
-              <li><Link href="/level-3/transpose">Transpose Cypher</Link></li>
+              <li>
+                
+                <PupilProgressLink 
+                  href="/level-3/transpose" 
+                  email={email} 
+                  title="Transpose Cypher" 
+                  challengeName="level-3::transpose" 
+                  pupilProgress={pupilProgress} /> 
+              </li>
               <li></li>
             </ul>
             
