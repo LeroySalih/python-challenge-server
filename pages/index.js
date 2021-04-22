@@ -170,6 +170,11 @@ export default function Home() {
               <li>Loops - While</li>
               <li>Defs & parameters</li>
               <li>Defs with Returns</li>
+              <li><PupilProgressLink 
+                  href="/level-1/modulo-operator" 
+                  email={email} title="Modulo" 
+                  challengeName="level-1::modulo" 
+                  pupilProgress={pupilProgress} />  </li>
               <li>Lists</li>
               <li>Dictionaries</li>
             </ul>

@@ -184,31 +184,23 @@ const ComponentPage = () => {
 
         <Page>
         
-        <LessonHeader title="Input Validation" lo="How do I validate data?"/>
+        <LessonHeader title="Odds or Evens" lo="How do I use the modulo operator?"/>
         <Lesson>
             
                 <section id="what-we-are-building" >
                     <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gridGap: "20px"}}>
                         <div>
                             <SectionTitle>What We're Building</SectionTitle>
-                            <SectionDescription>In this lesson you'll practise validating data from a user.</SectionDescription>
-                            <ConsoleOutput text={`Enter a number between 1 and 10: -5\n
-Incorrect value, please try again.\n
-Enter a number between 1 and 10: 0\n
-Incorrect value, please try again.\n
-Enter a number between 1 and 10: 11\n
-Incorrect value, please try again.\n
-Enter a number between 1 and 10: 1\n
-Thank you, please continue`}/>
+                            <SectionDescription>In this lesson you'll practise using the modulo operator to find if a number is odd or even.</SectionDescription>
+                            <ConsoleOutput text={`IsEven(4) #True\nIsEven(2) #False`}/>
                         </div>
                         <div>
                         <SectionTitle >Key Terms</SectionTitle>
                             <SectionDescription>In this lesson</SectionDescription>
                             <KeyTerms>
                                 <KeyTermTitle/>
-                                <KeyTerm index="0" term="Validate">Ensure that data is within expected range and format.</KeyTerm>
-                                <KeyTerm index="1" term="Boolean Operator">An operator that returns <CodeInline>True</CodeInline> or <CodeInline>False</CodeInline>.</KeyTerm>
-                                <KeyTerm index="2" term="is_valid def">A <CodeInline>def</CodeInline> that we define to determine whether data is valid (True) or not (False).</KeyTerm>
+                                <KeyTerm index="0" term="Even">An even number is a number that has a factor of 2.</KeyTerm>
+                                <KeyTerm index="0" term="Odd">An odd number is a number that does not have a factor of 2.</KeyTerm>
                                 
                             </KeyTerms>
                         </div>
@@ -218,107 +210,30 @@ Thank you, please continue`}/>
                 
                 
 
-                <section>
-                    <SectionTitle >What is Validation?</SectionTitle>
-                    <SectionText>
-                    <p>Validation means that the program will check that data is of a value and format that teh program expects.
-                    </p>
-                    <p>Typical example sof validation are:
-                        <ul>
-                            <li>Ensuring that only numbers are entered when required</li>
-                            <li>Ensuring that a password meets criteria</li>
-                            <li>Ensuring that a string is of a given length</li>
-                            <li>Ensuring that a file exists and can be accessed by the computer.</li>
-                        </ul>
-                    </p>
-                    <p>We validate data to prevent the program from producing incorrect output or worse still, crashing.  Remember the saying "Garbage in, garbage out"</p>
-                    </SectionText>
-                    
-                </section>
+                
+
+                
 
                 <section >
-                    <SectionTitle >How Validation Works</SectionTitle>
+                    <SectionTitle >Reminder: Finding a factor with modulo</SectionTitle>
                     <SectionText>
                         
-                        <p>Validation will always follow the same pattern:</p>
-                        <CodeExample 
-                            code={`define the is_valid def
-get the input
-while not (data is valid)
-    tell the user
-    get the input
-continue with the program
-`}
-                            
+                        <p>We can use the modulo (<CodeInline>%</CodeInline>) operator to find out whether a number is a factor of another number.</p>
+                        <p>To find whether 3 is a factor of 10, we can calculate <CodeInline>10 % 3</CodeInline>.</p>
+                        <p>If this result is 0, then 3 is a factor of 10.  If it is any other number, then 3 is not a factor of 10</p>
+                        <CodeExample
+                            code={`print ((10 % 3) == 0)`}
+                            output={`False`}
                         />
-                        
-                    </SectionText>
-                    
-                </section>
-
-                <section >
-                    <SectionTitle >Defining the is_valid def</SectionTitle>
-                    <SectionText>
-                        
-                        <p>To define the valid data, we create a <CodeInline>def</CodeInline> that accepts the user input and returns a True (if input is valid) or False (if input is invalid).</p>
-                        <p>The def is usually named as <CodeInline>is_valid_[...]</CodeInline>, such as 
-
-                            <ul>
-                                <li><CodeInline>is_valid_height</CodeInline> may check that the user has entered a height between 0 and 200 cms </li>
-                                <li><CodeInline>is_valid_date</CodeInline> may check that the user has entered a valid date</li>
-                                <li><CodeInline>is_valid_email</CodeInline> may check that the user has entered a valid email address</li>
-                            </ul>
-                        
-                        </p>
-
                         <p>
-                            An <CodeInline>is_valid def</CodeInline> will generally use boolean operators, such as <CodeInline>&nbsp;, nbsp;= == not, and </CodeInline>to determine whether the 
-                            input data is valid or not.
+                            Here we can see that 3 is not a factor of 10.
                         </p>
-                        <CodeExample 
-                            code={`def is_valid_height(height):
-    return 0 <= height <= 200
-
-print(is_valid_height(-5))
-print(is_valid_height(203))
-print(is_valid_height(176))
-    `}
-                            output={`False
-False
-True`}
-                        />
+                        <p>You can use this information to find whether a number is even or odd</p>
                     </SectionText>
                     
                 </section>
 
-                <section >
-                    <SectionTitle >Full Validation Pattern</SectionTitle>
-                    <SectionText>
-
-                    <p>Validation will always follow the same pattern:</p>
-                        <CodeExample 
-                            code={`define the is_valid def
-get the input
-while not (data is valid)
-    tell the user
-    get the input
-continue with the program
-`}
-                            
-                        />
-                    <p>
-                        <ul>
-                            <ol>First we define (and test) the <CodeInline>is_valid</CodeInline> def</ol>
-                            <ol>Then we get the data.  If this is data from the user, it will probably use an <CodeInline>input()</CodeInline> command.  Other ways to get data may inlcude reading a file or accessign the internet.</ol>
-                            <ol>Line 3 starts the while loop, which will execute while the data is <CodeInline>not valid</CodeInline></ol>
-                            <ol>Line 4 is the first line fo the while loop, and informs the user of the error</ol>
-                            <ol>Line 5 allows the user to re enter the data.  This is the end fo the while loop, so we return to line 3.</ol>
-                            <ol>If the data is valid, then the while loop will return False, and so will not execute, allowing the program to continue.</ol>
-
-                        </ul>
-                    </p>
-                    </SectionText>
-                </section>
+                
 
                 <section>
                     <SectionTitle></SectionTitle>

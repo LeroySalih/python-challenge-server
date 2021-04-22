@@ -50,6 +50,7 @@ const Component = () => {
                     <MenuItem value={"level-1::output"}>Level 1 - Output</MenuItem>
                     <MenuItem value={"level-1::decisions-2"}>Level 1 - Decisions 2</MenuItem>
                     <MenuItem value={"level-1::decisions-3"}>Level 1 - Decisions 3</MenuItem>
+                    <MenuItem value={"level-1::modulo"}>Level 1 - Modulo</MenuItem>
                     <MenuItem value={"level-2::input-validation"}>Level 2 - Input Validation</MenuItem>
                     <MenuItem value={"level-3::letter-count"}>Level 3 - Letter Count</MenuItem>
                     <MenuItem value={"level-3::transpose"}>Level 3 - Transpose</MenuItem>
