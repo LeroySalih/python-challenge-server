@@ -110,6 +110,7 @@ export default function Home() {
 
       <main className="main">
         
+        
 
         <div style={{width: "80%", marginLeft: "auto", marginRight: "auto", marginTop: "30px", display: "flex", flexDirection: "row"}}>
           <div>
