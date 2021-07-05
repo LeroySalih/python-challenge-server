@@ -143,7 +143,6 @@ const ComponentPage = () => {
                             </KeyTerms>
                         </div>
                     </div>
-                    
                 </Section>
                 
                 

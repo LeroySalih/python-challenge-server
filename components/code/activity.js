@@ -9,14 +9,22 @@ import {Page,
     SectionDescription, 
     SectionText, 
     LessonHeader} from '../../components/format'
+import {useState, useEffect} from 'react';
+import {useMsal, useAccount} from '@azure/msal-react'
+import axios from 'axios'
 
-const Component = ({repl, email, title, challengeName, pupilProgress}) => {
+const Component = ({repl, email, title, challengeName}) => {
 
+    const { instance, accounts, inProgress } = useMsal();
+
+    const account = useAccount(accounts[0] || {});
+    const [pupilProgress, setPupilProgress] = useState(null);
+    
     const cmdTest = () => (`python ./tests ${email}`)
 
     const displayRepls = (challengeName, pupilProgress) => {
 
-        if (!pupilProgress)
+        if (!pupilProgress || pupilProgress.length === 0)
             return <div>No history found</div>
 
         console.log('pupilprogress', pupilProgress)
@@ -46,20 +54,37 @@ const Component = ({repl, email, title, challengeName, pupilProgress}) => {
             </>
 
     }
+
+    useEffect(async () => {
+
+        if (account && email) {
+          
+          const {data} = await axios.get(`/api/watch-pupil/${email.toLowerCase()}`)
+    
+          console.log('Progress Data Received:', data);
+          setPupilProgress(data);
+    
+        } else {
+          setPupilProgress(null);
+        }
+        
+      }, [email])
+
+
     return (<section>
         <SectionTitle>Practice: {challengeName}</SectionTitle>
         
         <AuthenticatedTemplate>
             <h3>Instructions:</h3>
             <ul>
-                <li>Fork this <a href={repl}>repl</a></li>
+                <li>Fork this <a href={repl} target="_new">repl</a></li>
                 <li>Complete the exercise in the challenge.md file</li>
                 <li>To submit your work, type <CodeInline>{cmdTest()}</CodeInline><Button variant="outlined" onClick={() => {navigator.clipboard.writeText(cmdTest())}}>Copy</Button> in the <b>shell</b> window</li>
             </ul>
             <h3>Your repls:</h3>
             <p>Here is a list of repls you have proviously used</p>
             <div style={{marginBottom: "4rem"}}>{displayRepls(challengeName, pupilProgress)}</div>
-            
+            <div>Debug Info:<pre>{JSON.stringify(pupilProgress, 2, null)}</pre></div>
         </AuthenticatedTemplate>
         <UnauthenticatedTemplate>
             <div>You are not logged in.  Please log in to complete the practice section.</div>

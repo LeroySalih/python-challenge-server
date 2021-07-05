@@ -1,0 +1,3 @@
+tasks:
+  - command: echo "Running .gitpod commands"
+  - command: gp env NEXT_PUBLIC_SERVER_ID=$(gp url 3000)

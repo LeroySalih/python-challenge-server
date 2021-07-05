@@ -11,7 +11,7 @@ const Component = ({code, output}) => {
     <style jsx>{`
         .container {
             display: grid;
-            grid-template-columns: ${output ? '1fr 1fr' : '1fr'};
+            grid-template-columns: 1fr;
             width: 80%;
             grid-gap : 20px;
         }

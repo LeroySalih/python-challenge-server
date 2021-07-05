@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link';
+import { useRouter } from 'next/router'
 
 import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 import { MsalAuthenticationTemplate, useMsal, useAccount } from "@azure/msal-react";
@@ -10,16 +11,20 @@ import { InteractionStatus, InteractionType } from "@azure/msal-browser";
 import { loginRequest } from "../components/authConfig";
 import {useState, useEffect} from 'react';
 
+import {AnimatePresence, motion} from 'framer-motion';
+import styled, { createGlobalStyle } from 'styled-components';
+
+
 
 
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
-import Drawer from '@material-ui/core/Drawer';
-import Navbar from '../components/navbar';
+
 
 import PupilProgressLink from '../components/format/pupil-progress-link';
 
 import Image from 'next/image'
+import CodePanelAnimation from '../components/code-panel';
 
 const ErrorComponent = ({error}) => {
   return <div >An Error Occurred: {error.errorCode}</div>;
@@ -32,9 +37,56 @@ const Loading = () => {
 
 
 
+
+const HeroPanel = styled.div`
+  height: calc(100vh - 80px);
+  width:100vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  & .title-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+   
+  }
+
+  & .animation-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  & .title-block {
+    
+    font-family: 'Tourney';
+    margin-left: 5rem;
+    h1 {
+      line-height : 0.1rem;
+      font-size: 3rem;
+    }
+
+    h2 {
+      line-height: 0.1rem;
+    }
+
+    h3 {
+      font-family: 'Open Sans';
+      font-size: 0.8rem;
+    }
+  }
+
+
+
+  
+`
+
 export default function Home() {
   
-  const [showDraw, setShowDrawer] = useState (false);
+  
+  const [showTitle, setShowTitle] = useState(true);
 
   const [tabIndex, setTabIndex] = useState(0);
   const [email, setEmail] = useState(null);
@@ -45,6 +97,15 @@ export default function Home() {
   const { instance, accounts, inProgress } = useMsal();
   const account = useAccount(accounts[0] || {});
 
+  const [hover, setHover] = useState(false)
+
+  const router = useRouter();
+
+  const handleClick = () => {
+    console.log("Clicked")
+    //setShowTitle(prev => !prev)
+    router.push('/levels')
+  }
 
   useEffect(async () => {
     console.log('Account logged in', account)
@@ -68,50 +129,47 @@ export default function Home() {
     ...loginRequest
   };
 
-  const handleTabClick = (index) => {
-    setTabIndex(index);
-  }
 
-  const doLogIn  = () => {
-    const {login, result, error} = useMsalAuthentication("popup");
-    login();
-  }
 
-  const doLogOut = () => {
-    instance.logout()
-  }
-
-  const handleDrawerClick = () => {
-    setShowDrawer(true);
-  }
-
-  const toggleDrawer = (state) => {
-    setShowDrawer(state)
-  }
-
-  
 
   return (
     <>
     <div className="container">
+
       <Head>
         <title>Python Challenges</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Navbar onClick={handleDrawerClick}></Navbar>
-      <Drawer anchor="left" 
-              open={showDraw} 
-              onClose={() => toggleDrawer(false)}>
-        <div className="drawer-inner">Hello World</div>
-      </Drawer>
-
+   
       
 
-      <main className="main">
-        
-        
 
+      <main className="main">
+        <div>Server ID: {JSON.stringify(process.env.NEXT_PUBLIC_SERVER_ID)}</div>
+        <HeroPanel>
+          <AnimatePresence exitBeforeEnter>
+          {showTitle && <motion.div className="title-panel"
+            initial={{opacity: 0, y: -100}}
+            animate={{opacity: 1, y: 0}}
+            exit={{opacity: 0, y: 100}}
+
+            >
+            <motion.div className="title-block">
+            <h2>mr salih's</h2>
+            <h1>Python Challenges</h1>
+            <h3>
+              A collection of resources and challenges to help you learn programming in python.
+            </h3>
+            <h3>Click <b><u>Start Coding</u></b> to begin.</h3>
+            </motion.div>
+          </motion.div>
+          }
+          </AnimatePresence >
+          <div className="animation-panel">
+            <CodePanelAnimation hover={hover} setHover={setHover} onClick={handleClick} />
+          </div>
+        </HeroPanel>
+        
         <div style={{width: "80%", marginLeft: "auto", marginRight: "auto", marginTop: "30px", display: "flex", flexDirection: "row"}}>
           <div>
             <h1>Learning Computing, Computer Science and ICT concepts</h1>
