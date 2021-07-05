@@ -9,7 +9,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import {useAccount, useMsal, useMsalAuthentication, AuthenticatedTemplate, UnauthenticatedTemplate} from "@azure/msal-react";
-
+import AppCtx from '../../pages/app-context';
+import {useContext, useEffect} from 'react';
+import axios from 'axios'
 
 const Navbar = ({onClick, onLogin}) => {
 
@@ -19,13 +21,30 @@ const Navbar = ({onClick, onLogin}) => {
         onClick && onClick()
     }
 
+    const {email, setEmail, pupilProgress, setPupilProgress} = useContext(AppCtx);
+    
     const { instance, accounts, inProgress } = useMsal();
 
-    
     const account = useAccount(accounts[0] || {});
     const name = (account && account.name) || ""
     
+    useEffect(async ()=> {
+      
+      setEmail((account && account.username.toLowerCase()) || 'Not Set')
 
+      if (account && email) {
+          
+        const {data} = await axios.get(`/api/watch-pupil/${email.toLowerCase()}`)
+  
+        
+        setPupilProgress(data);
+  
+      } else {
+        setPupilProgress(null);
+      }
+
+
+    }, [account])
     
 
     const handleLogin = () => {
@@ -52,7 +71,8 @@ const Navbar = ({onClick, onLogin}) => {
               />
             </Link>
           </h6>
-          
+
+
           <AuthenticatedTemplate>
             <Link href="/profile"><span>{name}</span></Link>
             <Button color="inherit" onClick={handleLogout}>Logout</Button>

@@ -15,10 +15,10 @@ const Component = () => {
 
 
     useEffect(async ()=> {
-        console.log("Refreshing Data")
+        
         const {data} = await axios.get(`/api/watch-class/${currentClass}/${currentChallenge}`);
         setProgressData(data);
-        console.log(data);
+        
     }, [currentClass, currentChallenge, lastUpdate])
 
 

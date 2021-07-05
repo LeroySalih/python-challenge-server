@@ -64,7 +64,7 @@ const HeroPanel = styled.div`
     font-family: 'Tourney';
     margin-left: 5rem;
     h1 {
-      line-height : 0.1rem;
+      line-height : 2.3rem;
       font-size: 3rem;
     }
 
@@ -92,8 +92,6 @@ export default function Home() {
   const [email, setEmail] = useState(null);
   const [pupilProgress, setPupilProgress] = useState(null);
 
-  // console.log(login, result, error);
-
   const { instance, accounts, inProgress } = useMsal();
   const account = useAccount(accounts[0] || {});
 
@@ -102,13 +100,13 @@ export default function Home() {
   const router = useRouter();
 
   const handleClick = () => {
-    console.log("Clicked")
+    
     //setShowTitle(prev => !prev)
     router.push('/levels')
   }
 
   useEffect(async () => {
-    console.log('Account logged in', account)
+    
 
     if (account) {
       setEmail(account.username.toLowerCase())

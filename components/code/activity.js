@@ -9,16 +9,17 @@ import {Page,
     SectionDescription, 
     SectionText, 
     LessonHeader} from '../../components/format'
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import {useMsal, useAccount} from '@azure/msal-react'
 import axios from 'axios'
+import AppCtx from '../../pages/app-context';
 
-const Component = ({repl, email, title, challengeName}) => {
+const Component = ({repl, title, challengeName}) => {
 
     const { instance, accounts, inProgress } = useMsal();
-
+    const {email, pupilProgress} = useContext(AppCtx);
+    
     const account = useAccount(accounts[0] || {});
-    const [pupilProgress, setPupilProgress] = useState(null);
     
     const cmdTest = () => (`python ./tests ${email}`)
 
@@ -27,7 +28,7 @@ const Component = ({repl, email, title, challengeName}) => {
         if (!pupilProgress || pupilProgress.length === 0)
             return <div>No history found</div>
 
-        console.log('pupilprogress', pupilProgress)
+        console.log(pupilProgress)
 
         const activityHistory = pupilProgress.filter(h => h._id.challenge_name == challengeName);
         const displayCreatedDate = (dt) => DateTime.fromISO(dt).toFormat('dd LLL yyyy')
@@ -55,20 +56,6 @@ const Component = ({repl, email, title, challengeName}) => {
 
     }
 
-    useEffect(async () => {
-
-        if (account && email) {
-          
-          const {data} = await axios.get(`/api/watch-pupil/${email.toLowerCase()}`)
-    
-          console.log('Progress Data Received:', data);
-          setPupilProgress(data);
-    
-        } else {
-          setPupilProgress(null);
-        }
-        
-      }, [email])
 
 
     return (<section>
@@ -84,7 +71,9 @@ const Component = ({repl, email, title, challengeName}) => {
             <h3>Your repls:</h3>
             <p>Here is a list of repls you have proviously used</p>
             <div style={{marginBottom: "4rem"}}>{displayRepls(challengeName, pupilProgress)}</div>
-            <div>Debug Info:<pre>{JSON.stringify(pupilProgress, 2, null)}</pre></div>
+            <div>
+                <pre>{JSON.stringify(pupilProgress, 2, null)}</pre>
+            </div>
         </AuthenticatedTemplate>
         <UnauthenticatedTemplate>
             <div>You are not logged in.  Please log in to complete the practice section.</div>

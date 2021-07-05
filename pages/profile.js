@@ -38,7 +38,7 @@ export default function Profile() {
         if (!email)
             return;
 
-        console.log(`Getting details for ${email}`);
+        
         const {data} = await axios.get(`/api/profile/${email}`)
         setProfile(data[0]);
         setProgress(data[1]);

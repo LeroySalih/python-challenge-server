@@ -58,7 +58,7 @@ const ComponentPage = () => {
     const [pupilProgress, setPupilProgress] = useState(null);
 
     useEffect(async () => {
-        console.log('Account logged in', account)
+        
     
         if (account) {
           setEmail(account.username.toLowerCase())

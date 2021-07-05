@@ -1,8 +1,7 @@
-console.log(process.env.MONGODB_URI);
-console.log(process.env.MONGODB_DB);
+
 
 const {connectToDatabase} = require('./cli-mongo.js');
-console.log(connectToDatabase)
+
 XLSX = require('xlsx');
 
 var workbook = XLSX.readFile('./utils/pupil-db.xlsx')
@@ -90,12 +89,9 @@ const main = async () => {
     const {db, client} = await connectToDatabase();
 
     let result = await db.collection('classes').insertMany(Object.values(classes));
-
-    console.log(`Inserted ${result.insertedCount} classes`);
-
+    
     result = await db.collection('pupils').insertMany(Object.values(pupils));
 
-    console.log(`Inserted ${result.insertedCount} pupils`);
 
     client.close();
 

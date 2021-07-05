@@ -9,6 +9,7 @@ import { AnimatePresence } from 'framer-motion';
 
 import Drawer from '@material-ui/core/Drawer';
 import Navbar from '../components/navbar';
+import AppCtx from './app-context';
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -57,6 +58,9 @@ const msalInstance = new PublicClientApplication(msalConfig);
 function MyApp({ Component, pageProps, router }) {
   const [showDraw, setShowDrawer] = useState (false);
 
+  const [email, setEmail] = useState(null);
+  const [pupilProgress, setPupilProgress] = useState(null);
+
   const handleDrawerClick = () => {
     setShowDrawer(true);
   }
@@ -64,23 +68,27 @@ function MyApp({ Component, pageProps, router }) {
   const toggleDrawer = (state) => {
     setShowDrawer(state)
   }
+
+  const AppState = {email, setEmail, pupilProgress, setPupilProgress}
   
   return (
    
   <MsalProvider instance={msalInstance}>
-    <AnimatePresence exitBeforeEnter key={router.route}>
-     <GlobalStyles />
-     <Navbar onClick={handleDrawerClick}></Navbar>
+    <AppCtx.Provider value={AppState}>
+      
+      <GlobalStyles />
+      <Navbar onClick={handleDrawerClick}></Navbar>
 
-      <Drawer anchor="left" 
-              open={showDraw} 
-              onClose={() => toggleDrawer(false)}>
-        <div className="drawer-inner">Hello World</div>
-      </Drawer>
-      <Page>
-        <Component {...pageProps} />
-      </Page>
-    </AnimatePresence>
+        <Drawer anchor="left" 
+                open={showDraw} 
+                onClose={() => toggleDrawer(false)}>
+          <div className="drawer-inner">Hello World</div>
+        </Drawer>
+        <Page>
+          <Component {...pageProps} />
+        </Page>
+      
+    </AppCtx.Provider>
   </MsalProvider>
   
   )

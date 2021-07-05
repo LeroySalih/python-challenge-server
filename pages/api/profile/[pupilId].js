@@ -61,11 +61,11 @@ const handler = async (req, res) => {
 
     const {pupilId} = req.query;
 
-    console.log(`Searching for ${pupilId}`);
+    
 
     const result = await Promise.all([getPupilProfileById(pupilId), getPupilProgressById(pupilId)]);
    
-    console.log(`Returning: `, result)
+    
 
     res.status(200).json(result)
     

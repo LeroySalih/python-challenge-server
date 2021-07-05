@@ -24,7 +24,7 @@ export default function handler(req, res) {
 
     
     const filePath = challenge.replace("::", "/");
-    console.log(filePath)
+    
 
     // log start request to progress
     // edit the test file to ensure that the correct 

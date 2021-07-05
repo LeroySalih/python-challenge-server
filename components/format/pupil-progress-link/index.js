@@ -11,7 +11,7 @@ const Component = ({href, title, challengeName, pupilProgress}) => {
         
         const {progress} = (progressData && progressData[0] && progressData[0].submissions && progressData[0].submissions[0] ) || {progress : 0}
         
-        console.log(title, progressData)
+        
         return <span>{parseFloat(progress).toFixed(1)}%</span>
     }
 
