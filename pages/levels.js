@@ -4,6 +4,14 @@ import {useState, useEffect} from 'react';
 import {useMsal, useAccount} from '@azure/msal-react'
 
 import OutputMarkUp from '../components/level-1/output';
+import DecisionMarkUp from '../components/level-1/decisions';
+
+
+import InputValidationMarkUp from '../components/level-2/input-validation';
+import OddsOrEvensMarkUp from '../components/level-2/odds-or-evens';
+
+import LetterCountMarkUp from '../components/level-3/letter-count';
+import TransposeMarkUp from '../components/level-3/transpose';
 
 import {Page, 
     Lesson,
@@ -57,9 +65,17 @@ const LevelsPage = () => {
 
     const generateMarkUp = (email) => ({
         Learn : [
-            {title: "Output", markup: <OutputMarkUp email={email} />}],
-        Blocks : [],
-        Challenges: [],
+            {title: "Output", markup: <OutputMarkUp email={email} />},
+            {title: "Decisions", markup: <DecisionMarkUp email={email} />}],
+        Blocks : [
+            {title: "Input Validation", markup: <InputValidationMarkUp email={email} />},
+            {title: "Odds or Evens", markup: <OddsOrEvensMarkUp email={email} />}
+        ],
+        Challenges: [
+            {title: "Letter Count ", markup: <LetterCountMarkUp email={email} />},
+            {title: "Transpose", markup: <TransposeMarkUp email={email} />}
+
+        ],
 
     })
 

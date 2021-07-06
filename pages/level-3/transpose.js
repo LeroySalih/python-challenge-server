@@ -143,11 +143,8 @@ const ComponentPage = () => {
                             </KeyTerms>
                         </div>
                     </div>
-                    
                 </Section>
                 
-                
-
                 <Section>
                     <SectionTitle >Transpose Cypher</SectionTitle>
                     <SectionText>
@@ -155,18 +152,16 @@ const ComponentPage = () => {
                     console.  In text based programs, the console is the main interface that we use to 
                     allow our program to interact with the user. Other ways that we interact with users include sound and files, but we will deal with these in later lessons.
                     </p>
-                    <p>Typical uses for the <CodeInline>print</CodeInline> command inlude
-                        <ul>
-                            <li>Letting the user know the result of a calculation</li>
-                            <li>Giving the user an update on a long running operation</li>
-                            <li>Letting the user know something has gone wrong</li>
-                            <li>Letting the user know that the program has ended.</li>
-                        </ul>
-                    </p>
+                    <p>Typical uses for the <CodeInline>print</CodeInline> command inlude:</p>
+                    <ul>
+                        <li>Letting the user know the result of a calculation</li>
+                        <li>Giving the user an update on a long running operation</li>
+                        <li>Letting the user know something has gone wrong</li>
+                        <li>Letting the user know that the program has ended.</li>
+                    </ul>
+                    
 
-                    <p>
-                        To use the <CodeInline>print</CodeInline> command, type:
-                    </p>
+                    <p>To use the <CodeInline>print</CodeInline> command, type:</p>
 
 
                     <Python code={`print(<something to output to console>)`}/>
