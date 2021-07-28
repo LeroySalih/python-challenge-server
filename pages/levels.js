@@ -4,6 +4,9 @@ import {useState, useEffect} from 'react';
 import {useMsal, useAccount} from '@azure/msal-react'
 
 import OutputMarkUp from '../components/level-1/output';
+import OperatorsNumericMarkUp from '../components/level-1/operators-numeric';
+import InputsMarkUp from '../components/level-1/inputs';
+import VariablesMarkUp from '../components/level-1/variables';
 import DecisionMarkUp from '../components/level-1/decisions';
 
 
@@ -12,6 +15,7 @@ import OddsOrEvensMarkUp from '../components/level-2/odds-or-evens';
 
 import LetterCountMarkUp from '../components/level-3/letter-count';
 import TransposeMarkUp from '../components/level-3/transpose';
+import TrianglesMarkUp from '../components/level-3/triangles';
 
 import {Page, 
     Lesson,
@@ -66,15 +70,41 @@ const LevelsPage = () => {
     const generateMarkUp = (email) => ({
         Learn : [
             {title: "Output", markup: <OutputMarkUp email={email} />},
-            {title: "Decisions", markup: <DecisionMarkUp email={email} />}],
-        Blocks : [
+            {title: "Operators - Numeric", markup: <OperatorsNumericMarkUp email={email} />},
+            {title: "Variables", markup: <VariablesMarkUp email={email}/>},
+            {title: "Inputs", markup: <InputsMarkUp email={email}/>},
+            {title: "Decisions", markup: <DecisionMarkUp email={email} />}
+        ],
+           
+            /*
+            Variables
+            Input
+            Data Types
+            Operators - String
+            Operators - Logical
+            Decisions - IF
+            Decisions - IF ELSE
+            Decisions - IF ELIF ELSE
+            Loops - For
+            Loops - While
+            Defs - No params
+            Defs - Params
+            Defs - Return
+            */
+
+        Algorithms : [
             {title: "Input Validation", markup: <InputValidationMarkUp email={email} />},
+            // Play again Loop
+
             {title: "Odds or Evens", markup: <OddsOrEvensMarkUp email={email} />}
         ],
         Challenges: [
             {title: "Letter Count ", markup: <LetterCountMarkUp email={email} />},
-            {title: "Transpose", markup: <TransposeMarkUp email={email} />}
-
+            {title: "Transpose", markup: <TransposeMarkUp email={email} />},
+            {title: "Triangle", markup: <TrianglesMarkUp email={email}/>}
+            // Pasword Generator
+            // Find First in List
+            // Find Highest in List
         ],
 
     })

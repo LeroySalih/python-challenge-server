@@ -71,9 +71,7 @@ const Component = ({repl, title, challengeName}) => {
             <h3>Your repls:</h3>
             <p>Here is a list of repls you have proviously used</p>
             <div style={{marginBottom: "4rem"}}>{displayRepls(challengeName, pupilProgress)}</div>
-            <div>
-                <pre>{JSON.stringify(pupilProgress, 2, null)}</pre>
-            </div>
+            
         </AuthenticatedTemplate>
         <UnauthenticatedTemplate>
             <div>You are not logged in.  Please log in to complete the practice section.</div>

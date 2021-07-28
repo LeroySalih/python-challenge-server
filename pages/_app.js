@@ -42,6 +42,17 @@ const GlobalStyles = createGlobalStyle`
   a:hover {
     text-decoration: underline;
   }
+
+  table {
+    text-align: center;
+    border-spacing: 30px;
+  }
+
+  table tr th {
+    font-weight: bold;
+    border-bottom: solid 1px silver;
+
+  }
 `
 
 const Page = styled.div`
