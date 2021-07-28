@@ -9,7 +9,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import {useAccount, useMsal, useMsalAuthentication, AuthenticatedTemplate, UnauthenticatedTemplate} from "@azure/msal-react";
-import AppCtx from '../../pages/app-context';
+import AppCtx from '../app-context';
 import {useContext, useEffect} from 'react';
 import axios from 'axios'
 

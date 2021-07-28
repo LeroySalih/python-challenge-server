@@ -9,7 +9,7 @@ import { AnimatePresence } from 'framer-motion';
 
 import Drawer from '@material-ui/core/Drawer';
 import Navbar from '../components/navbar';
-import AppCtx from './app-context';
+import AppCtx from '../components/app-context';
 
 const GlobalStyles = createGlobalStyle`
   * {

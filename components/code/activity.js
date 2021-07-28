@@ -12,7 +12,7 @@ import {Page,
 import {useState, useEffect, useContext} from 'react';
 import {useMsal, useAccount} from '@azure/msal-react'
 import axios from 'axios'
-import AppCtx from '../../pages/app-context';
+import AppCtx from '../app-context';
 
 const Component = ({repl, title, challengeName}) => {
 
