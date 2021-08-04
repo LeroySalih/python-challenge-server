@@ -8,7 +8,7 @@ import OperatorsNumericMarkUp from '../components/level-1/operators-numeric';
 import InputsMarkUp from '../components/level-1/inputs';
 import VariablesMarkUp from '../components/level-1/variables';
 import DecisionMarkUp from '../components/level-1/decisions';
-
+import OperatorsStringMarkUp from '../components/level-1/operators-string';
 
 import InputValidationMarkUp from '../components/level-2/input-validation';
 import OddsOrEvensMarkUp from '../components/level-2/odds-or-evens';
@@ -73,6 +73,7 @@ const LevelsPage = () => {
             {title: "Operators - Numeric", markup: <OperatorsNumericMarkUp email={email} />},
             {title: "Variables", markup: <VariablesMarkUp email={email}/>},
             {title: "Inputs", markup: <InputsMarkUp email={email}/>},
+            {title: "Operators - Strings", markup: <OperatorsStringMarkUp email={email}/>},
             {title: "Decisions", markup: <DecisionMarkUp email={email} />}
         ],
            
@@ -105,6 +106,7 @@ const LevelsPage = () => {
             // Pasword Generator
             // Find First in List
             // Find Highest in List
+            // Is each item in a correct position (items to the left are lower, items to the right are higher)
         ],
 
     })
