@@ -9,6 +9,7 @@ import InputsMarkUp from '../components/level-1/inputs';
 import VariablesMarkUp from '../components/level-1/variables';
 import DecisionMarkUp from '../components/level-1/decisions';
 import OperatorsStringMarkUp from '../components/level-1/operators-string';
+import OperatorsBooleanMarkUp from '../components/level-1/operators-boolean';
 
 import InputValidationMarkUp from '../components/level-2/input-validation';
 import OddsOrEvensMarkUp from '../components/level-2/odds-or-evens';
@@ -74,6 +75,7 @@ const LevelsPage = () => {
             {title: "Variables", markup: <VariablesMarkUp email={email}/>},
             {title: "Inputs", markup: <InputsMarkUp email={email}/>},
             {title: "Operators - Strings", markup: <OperatorsStringMarkUp email={email}/>},
+            {title: "Operators - Booleans", markup: <OperatorsBooleanMarkUp email={email}/>},
             {title: "Decisions", markup: <DecisionMarkUp email={email} />}
         ],
            

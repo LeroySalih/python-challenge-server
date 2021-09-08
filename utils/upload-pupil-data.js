@@ -75,9 +75,6 @@ const parseParentEmails = (pupils, data) => {
 }
 
 
-
-
-
 const main = async () => {
 
     let classes = parseClasses(data);
@@ -91,7 +88,6 @@ const main = async () => {
     let result = await db.collection('classes').insertMany(Object.values(classes));
     
     result = await db.collection('pupils').insertMany(Object.values(pupils));
-
 
     client.close();
 

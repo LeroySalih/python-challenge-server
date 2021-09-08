@@ -25,7 +25,7 @@ const MarkUp = ({email,  pupilProgress}) => (<motion.div variants={ContainerVari
    <Section id="what-we-are-building" >
         <SectionTitle>What We're Building</SectionTitle>
         <SectionDescription>In this challenge, you'll create a simple, user configured display of a triangle.</SectionDescription>
-        <ConsoleOutput text={`   *   \n *** \n*****\n`}/>
+        <ConsoleOutput text={`  *   \n *** \n*****\n`}/>
     </Section>
     
             
