@@ -13,6 +13,8 @@ import AppCtx from '../app-context';
 import {useContext, useEffect} from 'react';
 import axios from 'axios'
 
+
+
 const Navbar = ({onClick, onLogin}) => {
 
     // const {login, logout, result, error} = useMsalAuthentication("popup");
@@ -21,7 +23,7 @@ const Navbar = ({onClick, onLogin}) => {
         onClick && onClick()
     }
 
-    const {email, setEmail, pupilProgress, setPupilProgress} = useContext(AppCtx);
+    const {email, setEmail, pupilProgress, setPupilProgress, setDetails} = useContext(AppCtx);
     
     const { instance, accounts, inProgress } = useMsal();
 
@@ -34,10 +36,22 @@ const Navbar = ({onClick, onLogin}) => {
 
       if (account && email) {
           
-        const {data} = await axios.get(`/api/watch-pupil/${email.toLowerCase()}`)
-  
         
-        setPupilProgress(data);
+  
+        const pupilDetails = await axios.get(`/api/details/${email.toLowerCase()}`)
+
+        if (pupilDetails) {
+          setDetails (pupilDetails)
+          const {data} = await axios.get(`/api/watch-pupil/${email.toLowerCase()}`)
+          setPupilProgress(data);
+        } else {
+          // Create a new pupil. 
+          const result = await axios.get(`/api/details/create/${email.toLowerCase()}`)
+          // redirect to the new pupil page.
+          router.push(`/user-details/${email.toLowerCase()}`)
+
+        }
+        
   
       } else {
         setPupilProgress(null);

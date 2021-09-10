@@ -1,13 +1,6 @@
 
 
-const {connectToDatabase} = require('./cli-mongo.js');
 
-XLSX = require('xlsx');
-
-var workbook = XLSX.readFile('./utils/pupil-db.xlsx')
-var sheet = workbook.Sheets["Sheet1"]
-
-data = XLSX.utils.sheet_to_json(sheet)
 
 
 const parseClasses = (data) => {
@@ -92,5 +85,14 @@ const main = async () => {
     client.close();
 
 }
+
+const {connectToDatabase} = require('./cli-mongo.js');
+
+XLSX = require('xlsx');
+
+var workbook = XLSX.readFile('./utils/pupil-db.xlsx')
+var sheet = workbook.Sheets["Sheet1"]
+
+data = XLSX.utils.sheet_to_json(sheet)
 
 main();
