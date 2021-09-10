@@ -17,11 +17,11 @@ import AppCtx from '../app-context';
 const Component = ({repl, title, challengeName}) => {
 
     const { instance, accounts, inProgress } = useMsal();
-    const {email, pupilProgress} = useContext(AppCtx);
+    const {getEmail, pupilProgress} = useContext(AppCtx);
     
     const account = useAccount(accounts[0] || {});
     
-    const cmdTest = () => (`python ./tests ${email}`)
+    const cmdTest = () => (`python ./tests ${getEmail()}`)
 
     const displayRepls = (challengeName, pupilProgress) => {
 
