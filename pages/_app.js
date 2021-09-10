@@ -1,6 +1,6 @@
 import '../styles/globals.css'
 
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { MsalProvider } from "@azure/msal-react";
 import { UserAgentApplication, PublicClientApplication } from "@azure/msal-browser";
 import { msalConfig } from "../components/authConfig";
@@ -10,6 +10,8 @@ import { AnimatePresence } from 'framer-motion';
 import Drawer from '@material-ui/core/Drawer';
 import Navbar from '../components/navbar';
 import AppCtx from '../components/app-context';
+import {useAccount, useMsal, useMsalAuthentication, AuthenticatedTemplate, UnauthenticatedTemplate} from "@azure/msal-react";
+import axios from 'axios'
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -67,11 +69,26 @@ const msalInstance = new PublicClientApplication(msalConfig);
 // const msalInstance = new UserAgentApplication(msalConfig);
 
 function MyApp({ Component, pageProps, router }) {
+
+  
+  
+  
+  return (
+   
+  <MsalProvider instance={msalInstance}>
+    
+      <InnerApp Component={Component} pageProps={pageProps} router={router}/>
+    
+  </MsalProvider>
+  
+  )
+}
+
+
+const InnerApp = ({ Component, pageProps, router }) => {
+
+  // Show Hide Drawer Functionality
   const [showDraw, setShowDrawer] = useState (false);
-
-  const [email, setEmail] = useState(null);
-  const [pupilProgress, setPupilProgress] = useState(null);
-
   const handleDrawerClick = () => {
     setShowDrawer(true);
   }
@@ -80,28 +97,87 @@ function MyApp({ Component, pageProps, router }) {
     setShowDrawer(state)
   }
 
-  const AppState = {email, setEmail, pupilProgress, setPupilProgress}
+
+  const [pupilProgress, setPupilProgress] = useState(null);
+  const [pupilDetails, setPupilDetails] = useState(null);
   
-  return (
-   
-  <MsalProvider instance={msalInstance}>
-    <AppCtx.Provider value={AppState}>
+  const { instance, accounts, inProgress } = useMsal();
+  const account = useAccount(accounts[0] || {});
+
+  
+
+  const getEmail = () => {
+    console.log("Email is", account && account.username)
+    return (account && account.username.toLowerCase()) ? account.username.toLowerCase() : "Not logged in"
+  }
+
+  const AppState = {
+    account,  
+    getEmail, 
+    pupilProgress, setPupilProgress, 
+    pupilDetails, setPupilDetails
+  }
+  
+  const getPupilDetails = async (pupilId) => {
+
+    const {data} = await axios.get(`/api/details/${pupilId}`);
+
+    return (data == "") ? null : data;
+  }
+
+  // when the account changes, due to a log on.
+  useEffect(async () => {
+    console.log('Account has changed, loading the pupil details for ', getEmail());
+
+    if (account && getEmail()) {
       
-      <GlobalStyles />
-      <Navbar onClick={handleDrawerClick}></Navbar>
+      const details = await getPupilDetails(getEmail())
+
+      if (details) {
+        console.log('Found Pupil Details')
+        setPupilDetails (details)
+        console.log('Pupil Details are: ', details)
+
+        const {data} = await axios.get(`/api/watch-pupil/${getEmail()}`)
+        setPupilProgress(data);
+      } else {
+        
+        console.log(`Pupil Details for (${getEmail()}) not found, creating them`);
+
+        // Create a new pupil. 
+        const result = await axios.get(`/api/details/create/${getEmail()}`);
+
+        // set the pupil details
+        setPupilDetails({_id:getEmail(), firstName:"", familyName: "", className: ""});
+
+        // redirect to the new pupil page.
+        router.push(`/user-details/${getEmail()}`)
+
+      }
+      
+    } else {
+      setPupilProgress(null);
+    }
+
+  }, [account]);
+
+
+  return (
+    <>
+      <AppCtx.Provider value={AppState}>
+        <GlobalStyles />
+        <Navbar onClick={handleDrawerClick}></Navbar>
 
         <Drawer anchor="left" 
-                open={showDraw} 
-                onClose={() => toggleDrawer(false)}>
+              open={showDraw} 
+              onClose={() => toggleDrawer(false)}>
           <div className="drawer-inner">Hello World</div>
         </Drawer>
         <Page>
           <Component {...pageProps} />
         </Page>
-      
-    </AppCtx.Provider>
-  </MsalProvider>
-  
+      </AppCtx.Provider>
+    </>
   )
 }
 

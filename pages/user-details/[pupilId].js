@@ -1,8 +1,9 @@
 
 import {getAllPupilData, getPupilData} from '../api/details/[pupilId]';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import AppCtx from '../../components/app-context'
 
 const UserDetails = ({pupilId, firstName, familyName, className}) => {
     const [_firstName, setFirstName] = useState(firstName);
@@ -12,16 +13,27 @@ const UserDetails = ({pupilId, firstName, familyName, className}) => {
     
     const router = useRouter();
 
-    useEffect(()=> {
+    const {pupilDetails, setPupilDetails} = useContext(AppCtx);
+
+    useEffect(async ()=> {
         if (_isDirty){
             console.log("Changing Data on Server")
-            axios.post('/api/details/save', {
+            
+            const newPupilDetails =  {
                 _id: pupilId, 
                 firstName: _firstName, 
                 familyName: _familyName, 
                 className: _className
-            })
-            setIsDirty(false)
+            };
+
+            // save the details to the server
+            const {data} = await axios.post('/api/details/save', newPupilDetails);
+
+            // update pupil details in the context
+            setPupilDetails(newPupilDetails);
+
+            // set the state to clean
+            setIsDirty(false);
         }
         
     }, [_isDirty])
@@ -85,7 +97,6 @@ export async function getStaticProps(context) {
 
     const pupilDetails = await getPupilData(pupilId)
     
-
     return {
         props: {pupilId, ...pupilDetails}
     }

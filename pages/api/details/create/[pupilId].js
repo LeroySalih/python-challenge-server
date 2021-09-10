@@ -5,6 +5,10 @@ const handler = async (req, res) => {
 
     const {_id, firstName, familyName, className} = req.body
 
+    if (!_id){
+        return res.status(200).json({msg:`Save details rejected, _id is ${_id}`})
+    }
+    
     console.log('Saving ', {_id, firstName, familyName, className})
     
     const {db} = await connectToDatabase()

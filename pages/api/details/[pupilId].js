@@ -22,7 +22,7 @@ const getPupilData = async (_id) => {
 
     const result = await db.collection('details').findOne({_id})
 
-    console.log(result)
+    console.log(`Looking for ${_id}, found:`, result)
 
     return result;
 } 

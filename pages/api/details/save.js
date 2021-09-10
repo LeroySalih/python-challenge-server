@@ -8,7 +8,13 @@ const handler = async (req, res) => {
     console.log('Saving ', {_id, firstName, familyName, className})
     
     const {db} = await connectToDatabase()
-    const result = await db.collection('details').updateOne({_id}, {$set: {firstName, familyName, className}});
+    const result = await db.collection('details').updateOne(
+        {_id}, 
+        {$set: {firstName, familyName, className}},
+        {upsert: true}
+        );
+
+    console.log(JSON.stringify(result));
 
     return res.status(200).json({msg: "Saved"});
 }

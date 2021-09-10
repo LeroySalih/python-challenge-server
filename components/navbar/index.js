@@ -13,53 +13,24 @@ import AppCtx from '../app-context';
 import {useContext, useEffect} from 'react';
 import axios from 'axios'
 
-
+import {useRouter} from 'next/router'
 
 const Navbar = ({onClick, onLogin}) => {
 
     // const {login, logout, result, error} = useMsalAuthentication("popup");
-    
+    const router = useRouter();
+
     const handleClick = () => {
         onClick && onClick()
     }
 
-    const {email, setEmail, pupilProgress, setPupilProgress, setDetails} = useContext(AppCtx);
+    const {
+      email, setEmail, 
+      pupilProgress, setPupilProgress, 
+      pupilDetails, setPupilDetails
+    } = useContext(AppCtx);
     
     const { instance, accounts, inProgress } = useMsal();
-
-    const account = useAccount(accounts[0] || {});
-    const name = (account && account.name) || ""
-    
-    useEffect(async ()=> {
-      
-      setEmail((account && account.username.toLowerCase()) || 'Not Set')
-
-      if (account && email) {
-          
-        
-  
-        const pupilDetails = await axios.get(`/api/details/${email.toLowerCase()}`)
-
-        if (pupilDetails) {
-          setDetails (pupilDetails)
-          const {data} = await axios.get(`/api/watch-pupil/${email.toLowerCase()}`)
-          setPupilProgress(data);
-        } else {
-          // Create a new pupil. 
-          const result = await axios.get(`/api/details/create/${email.toLowerCase()}`)
-          // redirect to the new pupil page.
-          router.push(`/user-details/${email.toLowerCase()}`)
-
-        }
-        
-  
-      } else {
-        setPupilProgress(null);
-      }
-
-
-    }, [account])
-    
 
     const handleLogin = () => {
       instance.loginPopup();
@@ -88,7 +59,8 @@ const Navbar = ({onClick, onLogin}) => {
 
 
           <AuthenticatedTemplate>
-            <Link href="/profile"><span>{name}</span></Link>
+            {pupilDetails && <Link href="/profile"><span>{pupilDetails.firstName}</span></Link>}
+            {!pupilDetails && <Link href="/profile"><span>No Pupil Details Loaded</span></Link>}
             <Button color="inherit" onClick={handleLogout}>Logout</Button>
           </AuthenticatedTemplate>
 
