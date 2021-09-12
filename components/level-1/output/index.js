@@ -27,7 +27,7 @@ const MarkUp = ({email,  pupilProgress}) => (<motion.div variants={ContainerVari
     <Section id="what-we-are-building" >
         <SectionTitle>What We're Building</SectionTitle>
         <SectionDescription>In this lesson you'll learn to output the following to the console.</SectionDescription>
-        <ConsoleOutput text={`Hello World\n19\n👌`}/>
+        <ConsoleOutput text={`Hello World\n15\n👌`}/>
     </Section>
     <Section>
         <SectionTitle >Key Terms</SectionTitle>
