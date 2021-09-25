@@ -159,7 +159,11 @@ const MarkUp = ({email,  pupilProgress}) => (<motion.div variants={ContainerVari
                 
 
                 
-
+                <Activity repl="https://replit.com/@mrsalih/decisons-1-IF-THEN#main.py" 
+                          email={email} 
+                          challengeName="level-1::decisions-1" 
+                          pupilProgress={pupilProgress}
+                          />
                 
                 <Activity repl="https://replit.com/@mrsalih/decisons-2-IF-THEN-ELSE#challenge.md" 
                           email={email} 
