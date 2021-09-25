@@ -67,6 +67,8 @@ The middle letter is l
 
         <Section>
             <SectionTitle><CodeInline>or</CodeInline> Operator</SectionTitle>
+            <p>To use the <CodeInline>or</CodeInline> operator, use the following example.</p>
+            <CodeExample code={`print(False or True)`} output={`True`}/>
             <SectionText>
                 <table>
                     <tr><td>Input A</td><td>Input B</td><td>Result</td></tr>
@@ -81,6 +83,8 @@ The middle letter is l
 
         <Section>
             <SectionTitle><CodeInline>and</CodeInline> Operator</SectionTitle>
+            <p>To use the <CodeInline>and</CodeInline> operator, use the following example.</p>
+            <CodeExample code={`print(False and True)`} output={`False`}/>
             <SectionText>
                 <table>
                     <tr><td>Input A</td><td>Input B</td><td>Result</td></tr>
@@ -95,6 +99,8 @@ The middle letter is l
 
         <Section>
             <SectionTitle><CodeInline>not</CodeInline> Operator</SectionTitle>
+            <p>To use the <CodeInline>not</CodeInline> operator, use the following example.</p>
+            <CodeExample code={`print(not True)`} output={`False`}/>
             <SectionText>
                 <table>
                     <tr><td>Input A</td><td>Result</td></tr>
@@ -115,6 +121,12 @@ The middle letter is l
         <Activity repl="https://replit.com/@mrsalih/operators-booleans#challenge.md" 
                           email={email} 
                           challengeName="level-1::operators-booleans" 
+                          pupilProgress={pupilProgress}
+                          />
+
+        <Activity repl="https://replit.com/@mrsalih/operators-booleans-1#main.py" 
+                          email={email} 
+                          challengeName="level-1::operators-booleans-2" 
                           pupilProgress={pupilProgress}
                           />
 
