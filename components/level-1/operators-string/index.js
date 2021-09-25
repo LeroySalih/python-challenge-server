@@ -102,6 +102,9 @@ The middle letter is l
         <Section>
             <SectionTitle>Index Operator <CodeInline>[]</CodeInline></SectionTitle>
             <SectionText>
+                <p>The <CodeInline>[]</CodeInline>index operator is unusual in that it takes 2 operands, but in a different format.  The operands are the string that you want to extract characters from and the range of characters you want to extract.</p>
+                <p>To use the index operator, your code is written as below</p>
+                <CodeExample code={`name="Salih"\nfirstLetter = name[0]\nprint(firstLetter)`} output={`S`}></CodeExample>
                 <p>The <CodeInline>[]</CodeInline>index operator will return a section of a string; either a single character, or a selection of characters from the string.</p>
                 <p>The first character is at index 0, and the last character is at index 4.  The index of the last character can be calculated using <CodeInline>len(string) - 1</CodeInline></p>
                 <p>Python strings can also be indexed from the end of the string using the reversal index.   This starts at -1, indicating the last character, and decreases as you move towards the start of the string.</p>

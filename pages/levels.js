@@ -102,6 +102,7 @@ const LevelsPage = () => {
             {title: "Odds or Evens", markup: <OddsOrEvensMarkUp email={email} />}
         ],
         Challenges: [
+            // {title: "Temperature Converter - detect that the user has entered F or C and convert "}
             {title: "Letter Count ", markup: <LetterCountMarkUp email={email} />},
             {title: "Transpose", markup: <TransposeMarkUp email={email} />},
             {title: "Triangle", markup: <TrianglesMarkUp email={email}/>}
