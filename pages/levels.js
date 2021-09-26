@@ -8,6 +8,9 @@ import OperatorsNumericMarkUp from '../components/level-1/operators-numeric';
 import InputsMarkUp from '../components/level-1/inputs';
 import VariablesMarkUp from '../components/level-1/variables';
 import DecisionMarkUp from '../components/level-1/decisions';
+import RangeMarkUp from '../components/level-1/range';
+import LoopsForMarkUp from '../components/level-1/loops-for';
+
 import OperatorsStringMarkUp from '../components/level-1/operators-string';
 import OperatorsBooleanMarkUp from '../components/level-1/operators-boolean';
 
@@ -76,7 +79,9 @@ const LevelsPage = () => {
             {title: "Inputs", markup: <InputsMarkUp email={email}/>},
             {title: "Operators - Strings", markup: <OperatorsStringMarkUp email={email}/>},
             {title: "Operators - Booleans", markup: <OperatorsBooleanMarkUp email={email}/>},
-            {title: "Decisions", markup: <DecisionMarkUp email={email} />}
+            {title: "Decisions", markup: <DecisionMarkUp email={email} />},
+            {title: "Range", markup: <RangeMarkUp email={email} />},
+            {title: "Loops - For", markup: <LoopsForMarkUp email={email} />}
         ],
            
             /*
