@@ -21,6 +21,7 @@ import AverageRangeMarkUp from '../components/level-2/average-range';
 import LetterCountMarkUp from '../components/level-3/letter-count';
 import TransposeMarkUp from '../components/level-3/transpose';
 import TrianglesMarkUp from '../components/level-3/triangles';
+import TempConverterMarkUp from '../components/level-3/temp-converter';
 
 import {Page, 
     Lesson,
@@ -108,6 +109,7 @@ const LevelsPage = () => {
         ],
         Challenges: [
             // {title: "Temperature Converter - detect that the user has entered F or C and convert "}
+            {title: "Temp Converter", markup: <TempConverterMarkUp email={email} />},
             {title: "Letter Count ", markup: <LetterCountMarkUp email={email} />},
             {title: "Transpose", markup: <TransposeMarkUp email={email} />},
             {title: "Triangle", markup: <TrianglesMarkUp email={email}/>}
