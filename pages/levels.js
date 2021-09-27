@@ -22,6 +22,7 @@ import LetterCountMarkUp from '../components/level-3/letter-count';
 import TransposeMarkUp from '../components/level-3/transpose';
 import TrianglesMarkUp from '../components/level-3/triangles';
 import TempConverterMarkUp from '../components/level-3/temp-converter';
+import GradeCheckerMarkUp from '../components/level-3/grade-checker';
 
 import {Page, 
     Lesson,
@@ -110,6 +111,7 @@ const LevelsPage = () => {
         Challenges: [
             // {title: "Temperature Converter - detect that the user has entered F or C and convert "}
             {title: "Temp Converter", markup: <TempConverterMarkUp email={email} />},
+            {title: "Grade Checker", markup: <GradeCheckerMarkUp email={email} />},
             {title: "Letter Count ", markup: <LetterCountMarkUp email={email} />},
             {title: "Transpose", markup: <TransposeMarkUp email={email} />},
             {title: "Triangle", markup: <TrianglesMarkUp email={email}/>}
