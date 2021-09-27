@@ -16,6 +16,7 @@ import OperatorsBooleanMarkUp from '../components/level-1/operators-boolean';
 
 import InputValidationMarkUp from '../components/level-2/input-validation';
 import OddsOrEvensMarkUp from '../components/level-2/odds-or-evens';
+import AverageRangeMarkUp from '../components/level-2/average-range';
 
 import LetterCountMarkUp from '../components/level-3/letter-count';
 import TransposeMarkUp from '../components/level-3/transpose';
@@ -102,9 +103,8 @@ const LevelsPage = () => {
 
         Algorithms : [
             {title: "Input Validation", markup: <InputValidationMarkUp email={email} />},
-            // Play again Loop
-
-            {title: "Odds or Evens", markup: <OddsOrEvensMarkUp email={email} />}
+            {title: "Odds or Evens", markup: <OddsOrEvensMarkUp email={email}/>},
+            {title: "Average", markup: <AverageRangeMarkUp email={email} />},
         ],
         Challenges: [
             // {title: "Temperature Converter - detect that the user has entered F or C and convert "}

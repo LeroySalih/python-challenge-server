@@ -90,18 +90,25 @@ Printing 5
         </Section>
 
 
-        <Activity repl="https://replit.com/@mrsalih/input-1#challenge.md" 
+        <Activity repl="https://replit.com/@mrsalih/for-1#main.py" 
                           email={email} 
-                          challengeName="level-1::input-1" 
+                          challengeName="level-1::for-1" 
                           pupilProgress={pupilProgress}
                           />
 
-        <Activity repl="https://replit.com/@mrsalih/input-2#challenge.md" 
+        <Activity repl="https://replit.com/@mrsalih/for-2#main.py" 
                           email={email} 
-                          challengeName="level-1::input-2" 
+                          challengeName="level-1::for-2" 
+                          pupilProgress={pupilProgress}
+                          />
+        
+        <Activity repl="https://replit.com/@mrsalih/for-3#main.py" 
+                          email={email} 
+                          challengeName="level-1::for-3" 
                           pupilProgress={pupilProgress}
                           />
 
+        
     </motion.div>);
 
 export default MarkUp
