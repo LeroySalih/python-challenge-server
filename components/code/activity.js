@@ -28,8 +28,7 @@ const Component = ({repl, title, challengeName}) => {
         if (!pupilProgress || pupilProgress.length === 0)
             return <div>No history found</div>
 
-        console.log(pupilProgress)
-
+    
         const activityHistory = pupilProgress.filter(h => h._id.challenge_name == challengeName);
         const displayCreatedDate = (dt) => DateTime.fromISO(dt).toFormat('dd LLL yyyy')
 

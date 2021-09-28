@@ -11,6 +11,8 @@ import Drawer from '@material-ui/core/Drawer';
 import axios from 'axios';
 
 import {useState, useEffect} from 'react';
+import getLevels, {getTasks} from '../components/data/levels';
+import { DateTime, DATETIME_SHORT } from "luxon";
 
 export default function Profile() {
     
@@ -61,35 +63,9 @@ export default function Profile() {
                     <div className="drawer-inner">Hello World</div>
                 </Drawer>
                 
-                <h1>Profile data for: {name}</h1>
-
-                {profile && <div className="profile">
-                                <div>UPN:</div>
-                                <div>{profile.upn}</div> 
-                                <div>Email:</div>
-                                <div>{profile.email}</div> 
-                            </div>
-                }
-
+            
                 {
-                    progress && <div>
-                        
-                        {
-                            progress.map((p, i) => (<div key={i}>
-                                <div>
-                                    {p.challenge_name}
-                                </div>
-                                
-                                <div>
-                                    {p.latest.progress} %
-                                </div>
-                                
-                                <div>
-                                    {p.latest.created}
-                                </div>
-                            </div>))
-                        }
-                    </div>
+                    email && progress && <DisplayProgress tasks={getTasks(email)} progress={progress}/>
                 }
 
 
@@ -117,4 +93,56 @@ const ErrorComponent = ({error}) => {
 
 const Loading = () => {
     return <div variant="h6">Authentication in progress...</div>
+}
+
+const DisplayProgress = ({tasks, progress}) => {
+
+    console.log("Tasks are:", tasks, "progress", progress)
+
+    const getProgress = (tasks, progress) => {
+        const data = []
+
+        if (!tasks || !progress){
+            return []
+        }
+
+        tasks.forEach(t => {
+            const progressForTask = progress.filter(p => p.challenge_name == t)
+            
+
+            if (progressForTask && progressForTask.length == 1){
+                
+                data.push({name: t, progress:progressForTask[0].latest.progress, created:progressForTask[0].latest.created})
+            } else {
+                
+                data.push({name: t, progress:0, created:""})
+            }
+        });
+
+        return data;
+    }
+    
+    return <>
+
+        <h1>Displaying Progress</h1>
+        <div className="display">
+         {
+            tasks && 
+            progress && 
+            getProgress(tasks, progress).map(p => (
+                [<div>{p.name}</div>,
+                <div>{p.progress}</div>,
+                <div>{p.created && p.created.length && DateTime.fromISO(p.created).toLocaleString(DATETIME_SHORT)}</div>
+                ]
+            ))
+            }
+        </div> 
+        <style jsx>{`
+        
+            .display {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+            }
+        `}</style>
+    </>
 }

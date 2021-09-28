@@ -3,26 +3,8 @@ import {motion} from 'framer-motion';
 import {useState, useEffect} from 'react';
 import {useMsal, useAccount} from '@azure/msal-react'
 
-import OutputMarkUp from '../components/level-1/output';
-import OperatorsNumericMarkUp from '../components/level-1/operators-numeric';
-import InputsMarkUp from '../components/level-1/inputs';
-import VariablesMarkUp from '../components/level-1/variables';
-import DecisionMarkUp from '../components/level-1/decisions';
-import RangeMarkUp from '../components/level-1/range';
-import LoopsForMarkUp from '../components/level-1/loops-for';
+import getLevels from '../components/data/levels';
 
-import OperatorsStringMarkUp from '../components/level-1/operators-string';
-import OperatorsBooleanMarkUp from '../components/level-1/operators-boolean';
-
-import InputValidationMarkUp from '../components/level-2/input-validation';
-import OddsOrEvensMarkUp from '../components/level-2/odds-or-evens';
-import AverageRangeMarkUp from '../components/level-2/average-range';
-
-import LetterCountMarkUp from '../components/level-3/letter-count';
-import TransposeMarkUp from '../components/level-3/transpose';
-import TrianglesMarkUp from '../components/level-3/triangles';
-import TempConverterMarkUp from '../components/level-3/temp-converter';
-import GradeCheckerMarkUp from '../components/level-3/grade-checker';
 
 import {Page, 
     Lesson,
@@ -74,56 +56,9 @@ const LevelsPage = () => {
     const [email, setEmail] = useState('');
     const [pupilProgress, setPupilProgress] = useState([]);
 
-    const generateMarkUp = (email) => ({
-        Learn : [
-            {title: "Output", markup: <OutputMarkUp email={email} />},
-            {title: "Operators - Numeric", markup: <OperatorsNumericMarkUp email={email} />},
-            {title: "Variables", markup: <VariablesMarkUp email={email}/>},
-            {title: "Inputs", markup: <InputsMarkUp email={email}/>},
-            {title: "Operators - Strings", markup: <OperatorsStringMarkUp email={email}/>},
-            {title: "Operators - Booleans", markup: <OperatorsBooleanMarkUp email={email}/>},
-            {title: "Decisions", markup: <DecisionMarkUp email={email} />},
-            {title: "Range", markup: <RangeMarkUp email={email} />},
-            {title: "Loops - For", markup: <LoopsForMarkUp email={email} />}
-        ],
-           
-            /*
-            Variables
-            Input
-            Data Types
-            Operators - String
-            Operators - Logical
-            Decisions - IF
-            Decisions - IF ELSE
-            Decisions - IF ELIF ELSE
-            Loops - For
-            Loops - While
-            Defs - No params
-            Defs - Params
-            Defs - Return
-            */
+    
 
-        Algorithms : [
-            {title: "Input Validation", markup: <InputValidationMarkUp email={email} />},
-            {title: "Odds or Evens", markup: <OddsOrEvensMarkUp email={email}/>},
-            {title: "Average", markup: <AverageRangeMarkUp email={email} />},
-        ],
-        Challenges: [
-            // {title: "Temperature Converter - detect that the user has entered F or C and convert "}
-            {title: "Temp Converter", markup: <TempConverterMarkUp email={email} />},
-            {title: "Grade Checker", markup: <GradeCheckerMarkUp email={email} />},
-            {title: "Letter Count ", markup: <LetterCountMarkUp email={email} />},
-            {title: "Transpose", markup: <TransposeMarkUp email={email} />},
-            {title: "Triangle", markup: <TrianglesMarkUp email={email}/>}
-            // Pasword Generator
-            // Find First in List
-            // Find Highest in List
-            // Is each item in a correct position (items to the left are lower, items to the right are higher)
-        ],
-
-    })
-
-    const [markUp, setMarkUp] = useState(generateMarkUp(email, pupilProgress));
+    const [markUp, setMarkUp] = useState(getLevels(email, pupilProgress));
 
     const [level, setLevel] = useState(Object.keys(markUp)[0]);
 
@@ -133,7 +68,7 @@ const LevelsPage = () => {
         if (account) {
           setEmail(account.username.toLowerCase())
           
-          setMarkUp(generateMarkUp(email));
+          setMarkUp(getLevels(email));
     
         } else {
           setEmail(null);

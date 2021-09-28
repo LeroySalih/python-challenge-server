@@ -14,7 +14,7 @@
     "@material-ui/icons": "^4.11.2",
     "axios": "^0.21.1",
     "framer-motion": "^4.1.17",
-    "luxon": "^1.26.0",
+    "luxon": "^1.28.0",
     "mongodb": "^3.6.4",
     "next": "10.0.9",
     "react": "17.0.1",
