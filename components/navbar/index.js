@@ -60,7 +60,7 @@ const Navbar = ({onClick, onLogin}) => {
 
           <AuthenticatedTemplate>
             {pupilDetails && <Link href="/profile"><span>{pupilDetails.firstName}</span></Link>}
-            {!pupilDetails && <Link href="/profile"><span>No Pupil Details Loaded</span></Link>}
+            {!pupilDetails && <Link href="/profile"><span>Loading pupil data</span></Link>}
             <Button color="inherit" onClick={handleLogout}>Logout</Button>
           </AuthenticatedTemplate>
 

@@ -9,62 +9,48 @@ import { DateTime } from 'luxon';
 const Component = () => {
     
     const [lastUpdate, setLastUpdate] = useState(null)
-    const [currentClass, setCurrentClass] = useState("10CS::Cs");
-    const [currentChallenge, setCurrentChallenge] = useState("level-1::output");
+    const [currentClass, setCurrentClass] = useState("10CS");
     const [progressData, setProgressData] = useState(null);
-
+    const [tasks, setTasks] = useState(null);
 
     useEffect(async ()=> {
         
-        const {data} = await axios.get(`/api/watch-class/${currentClass}/${currentChallenge}`);
-        setProgressData(data);
+        const {data} = await axios.get(`/api/watch-class/${currentClass}`);
+        const {tasks, returnData} = data;
+        setProgressData(returnData);
+        setTasks(tasks);
         
-    }, [currentClass, currentChallenge, lastUpdate])
+    }, [lastUpdate])
 
-
-
-    const getProgress = (m) => {
-        const submissions = progressData.submissions.filter(s => s._id.email == m);
-
-        const progress = (submissions && submissions[0] && submissions[0].submissions[0].progress) || "No Data"
-        const name = (submissions && submissions[0] && submissions[0]._id.details.name) || ""
-
-        return {name, progress}
-
+    const getClassName = (progress) => {
+        console.log(progress)
+        return progress == 100.0 ? "green" : "grey"
     }
-        
-
-
 
     return (
         <div className="page">
             <div className="page-title">Watch Class</div>
             <div>
-                <Select value={currentClass} onChange={(e) => setCurrentClass(e.target.value)}>
-                    <MenuItem value={"10CS::Cs"}>10CS/Cs</MenuItem>
-                    <MenuItem value={"11CS::Cs"}>11CS/Cs</MenuItem>
-                </Select>
 
-
-                <Select value={currentChallenge} onChange={(e) => setCurrentChallenge(e.target.value)}>
-                    <MenuItem value={"level-1::output"}>Level 1 - Output</MenuItem>
-                    <MenuItem value={"level-1::decisions-2"}>Level 1 - Decisions 2</MenuItem>
-                    <MenuItem value={"level-1::decisions-3"}>Level 1 - Decisions 3</MenuItem>
-                    <MenuItem value={"level-1::modulo"}>Level 1 - Modulo</MenuItem>
-                    <MenuItem value={"level-2::input-validation"}>Level 2 - Input Validation</MenuItem>
-                    <MenuItem value={"level-3::letter-count"}>Level 3 - Letter Count</MenuItem>
-                    <MenuItem value={"level-3::transpose"}>Level 3 - Transpose</MenuItem>
-                </Select>
                 <Button onClick={()=> {setLastUpdate(DateTime.now())}}>Refresh</Button>
                 <div>{lastUpdate && lastUpdate.toISO()}</div>
                 
                 <div className="progress-grid">
-                    {progressData && progressData.classData.members.map((m, i) => {return [
-                        <div key={i}>{m}</div>,
-                        <div>{getProgress(m).name}</div>,
-                        <div>{getProgress(m).progress}</div>]})
-                    }
+                    {progressData && Object.keys(progressData).map(pd => [
+                        <div>{pd}</div>,
+                        
+                            tasks && tasks.map(t => (<div 
+                                tooltip={t}
+                                className={`
+                                    tooltip
+                                    ${getClassName((progressData[pd][t] && progressData[pd][t].progress) || 0)}
+                                    `} ><span className="tooltiptext">{t}</span></div>))
+                        
+                    ])}
                 </div>
+                
+                
+                
             </div>
 
             <style jsx>{`
@@ -83,14 +69,60 @@ const Component = () => {
                 .progress-grid {
                     margin-top: 30px;
                     display: grid;
-                    grid-template-columns: 1fr 1fr 100px;
+                    grid-template-columns: repeat(${tasks && (tasks.length + 1)}, 1fr);
                     grid-row-gap: 10px;
                     width: 80%;
+                }
+
+                .green {
+                    background-color: rgba(100, 150, 100, 0.5);
+                    margin: 0.1rem;
+                    border-radius: 0.5rem;
+                    padding: 0.1rem;
+                }
+
+                .grey {
+                    background-color: rgba(150, 150, 150, 0.3);
+                    margin: 0.1rem;
+                    border-radius: 0.5rem;
+                    padding: 0.1rem;
                 }
 
                 .progress-grid div {
                     border-bottom: dashed 1px silver;
                 }
+
+                /* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
             `}</style>
         </div>
     )

@@ -1,7 +1,8 @@
 import {connectToDatabase} from '../../../utils/mongodb';
 
+import { getTasks } from '../../../components/data/levels';
 
-export const getClassSubmissions = async (classId, challengeName) => {
+export const getClassSubmissions = async (classId) => {
 
     const agg = [
       {
@@ -12,31 +13,29 @@ export const getClassSubmissions = async (classId, challengeName) => {
         }
       }, {
         '$lookup': {
-          'from': 'pupils', 
+          'from': 'details', 
           'localField': 'email', 
-          'foreignField': 'email', 
-          'as': 'pupilDetails'
-        }
-      }, {
-        '$lookup': {
-          'from': 'classes', 
-          'localField': 'email', 
-          'foreignField': 'members', 
-          'as': 'classes'
+          'foreignField': '_id', 
+          'as': 'details'
         }
       }, {
         '$match': {
-          'challenge_name': challengeName, 
-          'classes': {
+          'details': {
+            '$size': 1
+          }
+        }
+      }, {
+        '$match': {
+          'details': {
             '$elemMatch': {
-              'class': classId
+              'className': classId
             }
           }
         }
       }, {
         '$sort': {
           'email': 1, 
-          'created': -1
+          'created': 1
         }
       }, {
         '$group': {
@@ -44,12 +43,13 @@ export const getClassSubmissions = async (classId, challengeName) => {
             'email': '$email', 
             'details': {
               '$arrayElemAt': [
-                '$pupilDetails', 0
+                '$details', 0
               ]
             }
           }, 
           'submissions': {
             '$push': {
+              'challenge_name': '$challenge_name', 
               'progress': '$progress', 
               'created': '$created', 
               'main': '$main'
@@ -66,9 +66,21 @@ export const getClassSubmissions = async (classId, challengeName) => {
 } 
 
 
-export const getClass = async (classId) => {
+export const getClasses = async (classId) => {
+
+  const agg = [
+    {
+      '$group': {
+        '_id': '$className', 
+        'count': {
+          '$sum': 1
+        }
+      }
+    }
+  ]
+
   const {db} = await connectToDatabase();
-  const result = (await db.collection('classes').find({class: classId.replace("::", "/")}).toArray())[0];
+  const result = await db.collection('details').aggregate(agg).toArray();
 
   return result;
 }
@@ -80,15 +92,35 @@ const handler = async (req, res) => {
     
 
     const result = await Promise.all([
-        getClass(classId),
-        getClassSubmissions(classId.replace("::", "/"), challengeId)
+        getClasses(),
+        
+        getClassSubmissions(classId)
         
     ]);
 
     const [classData, submissions] = result;
 
+    const returnData = {}
+
+    const tasksObject = getTasks().reduce((a, v) => ({...a, [v]: {}}), {})
+
     
-    res.status(200).json({classData, submissions});
+    submissions.forEach(s => {
+      if (returnData[s['_id']['email']] == undefined){
+        returnData[s['_id']['email']] = Object.assign({}, tasksObject);
+      }
+
+      
+      s.submissions.forEach(ss => {
+        returnData[s['_id']['email']][ss['challenge_name']] = ss;
+      })
+      
+      
+    })
+    
+
+    
+    res.status(200).json({returnData, tasks: getTasks()});
 }
 
 export default handler;
