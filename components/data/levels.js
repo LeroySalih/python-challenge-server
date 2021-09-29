@@ -29,7 +29,7 @@ const getLevels = (email) => ({
         {title: "Operators - Booleans", markup: <OperatorsBooleanMarkUp email={email} />, tasks:[`level-1::operators-booleans`]},
         {title: "Decisions", markup: <DecisionMarkUp email={email} />, tasks: [`level-1::decisions-1`, `level-1::decisions-2`, `level-1::decisions-3`] },
         {title: "Range", markup: <RangeMarkUp email={email} />, tasks:[`level-1::range-1`, `level-1::range-2`, `level-1::range-3`]},
-        {title: "Loops - For", markup: <LoopsForMarkUp email={email} />, tasks:[`level-1::for-1`, `level-2::for-2`, `level-3::for-3`]}
+        {title: "Loops - For", markup: <LoopsForMarkUp email={email} />, tasks:[`level-1::for-1`, `level-1::for-2`, `level-1::for-3`]}
     ],
        
         /*
