@@ -107,7 +107,7 @@ const InnerApp = ({ Component, pageProps, router }) => {
   
 
   const getEmail = () => {
-    console.log("Email is", account && account.username)
+    
     return (account && account.username.toLowerCase()) ? account.username.toLowerCase() : "Not logged in"
   }
 
@@ -127,22 +127,22 @@ const InnerApp = ({ Component, pageProps, router }) => {
 
   // when the account changes, due to a log on.
   useEffect(async () => {
-    console.log('Account has changed, loading the pupil details for ', getEmail());
+    
 
     if (account && getEmail()) {
       
       const details = await getPupilDetails(getEmail())
 
       if (details) {
-        console.log('Found Pupil Details')
+        
         setPupilDetails (details)
-        console.log('Pupil Details are: ', details)
+        
 
         const {data} = await axios.get(`/api/watch-pupil/${getEmail()}`)
         setPupilProgress(data);
       } else {
         
-        console.log(`Pupil Details for (${getEmail()}) not found, creating them`);
+        
 
         // Create a new pupil. 
         const result = await axios.get(`/api/details/create/${getEmail()}`);

@@ -97,8 +97,6 @@ const Loading = () => {
 
 const DisplayProgress = ({tasks, progress}) => {
 
-    console.log("Tasks are:", tasks, "progress", progress)
-
     const getProgress = (tasks, progress) => {
         const data = []
 

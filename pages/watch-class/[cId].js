@@ -2,16 +2,24 @@ import {useState, useEffect} from 'react'
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
+import { useRouter } from 'next/router'
 
 import axios from 'axios';
 import { DateTime } from 'luxon';
 
 const Component = () => {
     
+    const router = useRouter();
+    const {cId} = router.query;
+
     const [lastUpdate, setLastUpdate] = useState(null)
-    const [currentClass, setCurrentClass] = useState("10CS");
+    const [currentClass, setCurrentClass] = useState(cId);
     const [progressData, setProgressData] = useState(null);
     const [tasks, setTasks] = useState(null);
+
+    useEffect (()=>{
+        setCurrentClass(cId)
+    }, [cId]);
 
     useEffect(async ()=> {
         
@@ -20,16 +28,15 @@ const Component = () => {
         setProgressData(returnData);
         setTasks(tasks);
         
-    }, [lastUpdate])
+    }, [lastUpdate, currentClass])
 
     const getClassName = (progress) => {
-        console.log(progress)
         return progress == 100.0 ? "green" : "grey"
     }
 
     return (
         <div className="page">
-            <div className="page-title">Watch Class</div>
+            <div className="page-title">Watch Class ({currentClass})</div>
             <div>
 
                 <Button onClick={()=> {setLastUpdate(DateTime.now())}}>Refresh</Button>

@@ -9,8 +9,6 @@ const handler = async (req, res) => {
         return res.status(200).json({msg:`Save details rejected, _id is ${_id}`})
     }
     
-    console.log('Saving ', {_id, firstName, familyName, className})
-    
     const {db} = await connectToDatabase()
     const result = await db.collection('details').updateOne({_id}, {$set: {firstName, familyName, className}});
 

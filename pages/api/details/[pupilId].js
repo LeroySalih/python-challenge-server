@@ -21,9 +21,7 @@ const getPupilData = async (_id) => {
     const {db} = await connectToDatabase();
 
     const result = await db.collection('details').findOne({_id})
-
-    console.log(`Looking for ${_id}, found:`, result)
-
+    
     return result;
 } 
 

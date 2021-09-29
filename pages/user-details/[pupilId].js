@@ -17,7 +17,6 @@ const UserDetails = ({pupilId, firstName, familyName, className}) => {
 
     useEffect(async ()=> {
         if (_isDirty){
-            console.log("Changing Data on Server")
             
             const newPupilDetails =  {
                 _id: pupilId, 
