@@ -25,6 +25,7 @@ const MarkUp = ({email,  pupilProgress}) => (<motion.div variants={ContainerVari
    <Section id="what-we-are-building" >
         <SectionTitle>What We're Building</SectionTitle>
         <SectionDescription>In this challenge, you'll create a program, that can help people prioritise giving first aid in an emergancy situation.</SectionDescription>
+        <SectionDescription>In a real emergency, always consult a responsible adult.</SectionDescription>
         <ConsoleOutput text={`Is the area safe?y\nIs the victim breathing?y\nIs the victim bleeding?n\nIs the victim burned?y\nApply Cooling Dressing\nCall for 911`}/>
         
     </Section>
