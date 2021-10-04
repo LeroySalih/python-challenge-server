@@ -18,6 +18,7 @@ import TransposeMarkUp from '../level-3/transpose';
 import TrianglesMarkUp from '../level-3/triangles';
 import TempConverterMarkUp from '../level-3/temp-converter';
 import GradeCheckerMarkUp from '../level-3/grade-checker';
+import EmergencyResponseMarkUp from '../level-3/emergency-response';
 
 const getLevels = (email) => ({
     Learn : [
@@ -56,7 +57,8 @@ const getLevels = (email) => ({
     Challenges: [
         // {title: "Temperature Converter - detect that the user has entered F or C and convert "}
         {title: "Temp Converter", markup: <TempConverterMarkUp email={email} />},
-        {title: "Grade Checker", markup: <GradeCheckerMarkUp email={email} />},
+        {title: "Grade Checker",      markup: <GradeCheckerMarkUp email={email} />},
+        {title: "Emergency Response", markup: <EmergencyResponseMarkUp email={email} />},
         {title: "Letter Count ", markup: <LetterCountMarkUp email={email} />},
         {title: "Transpose", markup: <TransposeMarkUp email={email} />},
         {title: "Triangle", markup: <TrianglesMarkUp email={email}/>}
