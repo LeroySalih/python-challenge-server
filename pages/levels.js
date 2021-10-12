@@ -45,6 +45,17 @@ const Task = styled.div`
     height: calc(100vh - 100px);
 `
 
+const LevelLink = styled(motion.div)`
+    cursor: pointer;
+    color: ${({selected}) => selected ? 'red;' : 'black;'}
+    &:hover {text-decoration : underline}
+`
+const TaskLink = styled(motion.div)`
+    cursor: pointer;
+
+    color : ${({selected}) => selected ? 'red;' : 'black;'}
+    &:hover {text-decoration : underline}
+`
 
 const LevelsPage = () => {
     
@@ -98,7 +109,8 @@ const LevelsPage = () => {
 
 
 
-const DisplayLevels = ({levels, onClick}) => {
+const DisplayLevels = ({task, level, levels, onClick}) => {
+    
     const ContainerVariants = {
         hidden: {},
         show: {transition: {delay: 2, staggerChildren : 0.2}}
@@ -111,10 +123,11 @@ const DisplayLevels = ({levels, onClick}) => {
 
     return (<motion.div variants={ContainerVariants} initial="hidden" animate="show">
         {
-            levels.map((l, i) => <motion.div key={`DL${i}`} onClick={()=> onClick(l)}
+            levels.map((l, i) => <TaskLink selected={level==l} key={`DL${i}`} onClick={()=> onClick(l)}
                 variants={ItemVariants}
-            >{l}</motion.div>)
+            >{l}</TaskLink>)
         }
+       
     </motion.div>);
 }
 
@@ -130,11 +143,13 @@ const DisplayTasks = ({tasks, task, onClick}) => {
         show: { opacity: 1, x: 0}
     }
 
-    return (<motion.div variants={ContainerVariants} initial="hidden" animate="show">
-        {
-            tasks.map((t, i) => <motion.div key={`DT${i}`} onClick={()=>onClick(i)}variants={ItemVariants}>{t.title}</motion.div>)
-        }
-    </motion.div>)  
+    return (
+        <motion.div variants={ContainerVariants} initial="hidden" animate="show">
+            {
+                tasks.map((t, i) => <TaskLink key={`DT${i}`} selected={i == task} onClick={()=>onClick(i)}variants={ItemVariants}>{t.title}</TaskLink>)
+            }
+        </motion.div>
+    )  
 }
 
 

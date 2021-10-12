@@ -5,6 +5,7 @@ import VariablesMarkUp from '../level-1/variables';
 import DecisionMarkUp from '../level-1/decisions';
 import RangeMarkUp from '../level-1/range';
 import LoopsForMarkUp from '../level-1/loops-for';
+import LoopsWhileMarkUp from '../level-1/loops-while';
 
 import OperatorsStringMarkUp from '../level-1/operators-string';
 import OperatorsBooleanMarkUp from '../level-1/operators-boolean';
@@ -30,7 +31,8 @@ const getLevels = (email) => ({
         {title: "Operators - Booleans", markup: <OperatorsBooleanMarkUp email={email} />, tasks:[`level-1::operators-booleans`]},
         {title: "Decisions", markup: <DecisionMarkUp email={email} />, tasks: [`level-1::decisions-1`, `level-1::decisions-2`, `level-1::decisions-3`] },
         {title: "Range", markup: <RangeMarkUp email={email} />, tasks:[`level-1::range-1`, `level-1::range-2`, `level-1::range-3`]},
-        {title: "Loops - For", markup: <LoopsForMarkUp email={email} />, tasks:[`level-1::for-1`, `level-1::for-2`, `level-1::for-3`]}
+        {title: "Loops - For", markup: <LoopsForMarkUp email={email} />, tasks:[`level-1::for-1`, `level-1::for-2`, `level-1::for-3`]},
+        {title: "Loops - While", markup: <LoopsWhileMarkUp email={email} />, tasks:[`level-1::while-1`, `level-1::while-2`, `level-1::while-3`]}
     ],
        
         /*
@@ -56,9 +58,9 @@ const getLevels = (email) => ({
     ],
     Challenges: [
         // {title: "Temperature Converter - detect that the user has entered F or C and convert "}
-        {title: "Temp Converter", markup: <TempConverterMarkUp email={email} />},
         {title: "Grade Checker",      markup: <GradeCheckerMarkUp email={email} />},
         {title: "Emergency Response", markup: <EmergencyResponseMarkUp email={email} />},
+        {title: "Temp Converter", markup: <TempConverterMarkUp email={email} />},
         {title: "Letter Count ", markup: <LetterCountMarkUp email={email} />},
         {title: "Transpose", markup: <TransposeMarkUp email={email} />},
         {title: "Triangle", markup: <TrianglesMarkUp email={email}/>}
