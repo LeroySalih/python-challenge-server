@@ -110,7 +110,7 @@ const LevelsPage = () => {
 
 
 const DisplayLevels = ({task, level, levels, onClick}) => {
-    
+
     const ContainerVariants = {
         hidden: {},
         show: {transition: {delay: 2, staggerChildren : 0.2}}
@@ -123,11 +123,8 @@ const DisplayLevels = ({task, level, levels, onClick}) => {
 
     return (<motion.div variants={ContainerVariants} initial="hidden" animate="show">
         {
-            levels.map((l, i) => <TaskLink selected={level==l} key={`DL${i}`} onClick={()=> onClick(l)}
-                variants={ItemVariants}
-            >{l}</TaskLink>)
+            levels.map((l, i) => <TaskLink selected={level==l} key={`DL${i}`} onClick={()=> onClick(l)} variants={ItemVariants}>{l}</TaskLink>)
         }
-       
     </motion.div>);
 }
 

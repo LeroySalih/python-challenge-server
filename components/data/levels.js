@@ -15,6 +15,7 @@ import OddsOrEvensMarkUp from '../level-2/odds-or-evens';
 import AverageRangeMarkUp from '../level-2/average-range';
 
 import LetterCountMarkUp from '../level-3/letter-count';
+import BottlesOfPepsiMarkUp from '../level-3/bottles-of-pepsi';
 import TransposeMarkUp from '../level-3/transpose';
 import TrianglesMarkUp from '../level-3/triangles';
 import TempConverterMarkUp from '../level-3/temp-converter';
@@ -61,6 +62,7 @@ const getLevels = (email) => ({
         {title: "Grade Checker",      markup: <GradeCheckerMarkUp email={email} />},
         {title: "Emergency Response", markup: <EmergencyResponseMarkUp email={email} />},
         {title: "Temp Converter", markup: <TempConverterMarkUp email={email} />},
+        {title: "Bottle of Pepsi", markup: <BottlesOfPepsiMarkUp email={email} />},
         {title: "Letter Count ", markup: <LetterCountMarkUp email={email} />},
         {title: "Transpose", markup: <TransposeMarkUp email={email} />},
         {title: "Triangle", markup: <TrianglesMarkUp email={email}/>}
