@@ -6,6 +6,7 @@ import DecisionMarkUp from '../level-1/decisions';
 import RangeMarkUp from '../level-1/range';
 import LoopsForMarkUp from '../level-1/loops-for';
 import LoopsWhileMarkUp from '../level-1/loops-while';
+import DefMarkUp from '../level-1/defs';
 
 import OperatorsStringMarkUp from '../level-1/operators-string';
 import OperatorsBooleanMarkUp from '../level-1/operators-boolean';
@@ -33,7 +34,8 @@ const getLevels = (email) => ({
         {title: "Decisions", markup: <DecisionMarkUp email={email} />, tasks: [`level-1::decisions-1`, `level-1::decisions-2`, `level-1::decisions-3`] },
         {title: "Range", markup: <RangeMarkUp email={email} />, tasks:[`level-1::range-1`, `level-1::range-2`, `level-1::range-3`]},
         {title: "Loops - For", markup: <LoopsForMarkUp email={email} />, tasks:[`level-1::for-1`, `level-1::for-2`, `level-1::for-3`]},
-        {title: "Loops - While", markup: <LoopsWhileMarkUp email={email} />, tasks:[`level-1::while-1`, `level-1::while-2`, `level-1::while-3`]}
+        {title: "Loops - While", markup: <LoopsWhileMarkUp email={email} />, tasks:[`level-1::while-1`, `level-1::while-2`, `level-1::while-3`]},
+        {title: "Defs", markup: <DefMarkUp email={email} />, tasks:[`level-1::def-1`, `level-1::def-2`, `level-1::def-3`, `level-1::def-3`]}
     ],
        
         /*
