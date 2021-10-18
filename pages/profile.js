@@ -48,12 +48,34 @@ export default function Profile() {
     }, [email])
 
 
-    const getProgress = (progress) => {
-        return progress ? Math.round(
-            progress.reduce(
-                (a, c) => a + parseFloat(c.latest.progress), 0)
-                 / progress.length, 2) : 0
+    const getTaskCount = () => getProgressDisplayData(getTasks(email), progress).length
+    const getTaskCompletedCount = () => getProgressDisplayData(getTasks(email), progress).filter(t => t.progress === "100.0").length
+
+
+    const getProgressDisplayData = (tasks, progress) => {
+        const data = []
+
+        if (!tasks || !progress){
+            return []
+        }
+
+        tasks.forEach(t => {
+            const progressForTask = progress.filter(p => p.challenge_name == t)
+            
+
+            if (progressForTask && progressForTask.length == 1){
+                
+                data.push({name: t, progress:progressForTask[0].latest.progress, created:progressForTask[0].latest.created})
+            } else {
+                
+                data.push({name: t, progress:0, created:""})
+            }
+        });
+
+        return data;
     }
+
+    
 
     return (<>
         <UnauthenticatedTemplate>You must be logged on to see your profile.</UnauthenticatedTemplate>
@@ -72,12 +94,12 @@ export default function Profile() {
                 </Drawer>
                 
                 {
-                    <h2>You have completed {getProgress(progress)}% of tasks</h2>
+                    <h2>You have completed {getTaskCompletedCount()} of {getTaskCount()} tasks ({((getTaskCompletedCount() / getTaskCount()) * 100).toFixed(2) }%)</h2>
                 }
 
             
                 {
-                    email && progress && <DisplayProgress tasks={getTasks(email)} progress={progress}/>
+                    email && progress && <DisplayProgress displayData={getProgressDisplayData(getTasks(email), progress)} tasks={getTasks(email)} progress={progress}/>
                 }
 
 
@@ -107,39 +129,16 @@ const Loading = () => {
     return <div variant="h6">Authentication in progress...</div>
 }
 
-const DisplayProgress = ({tasks, progress}) => {
+const DisplayProgress = ({displayData}) => {
 
-    const getProgress = (tasks, progress) => {
-        const data = []
-
-        if (!tasks || !progress){
-            return []
-        }
-
-        tasks.forEach(t => {
-            const progressForTask = progress.filter(p => p.challenge_name == t)
-            
-
-            if (progressForTask && progressForTask.length == 1){
-                
-                data.push({name: t, progress:progressForTask[0].latest.progress, created:progressForTask[0].latest.created})
-            } else {
-                
-                data.push({name: t, progress:0, created:""})
-            }
-        });
-
-        return data;
-    }
+    
     
     return <>
 
         <h1>Displaying Progress</h1>
         <div className="display">
          {
-            tasks && 
-            progress && 
-            getProgress(tasks, progress).map(p => (
+            displayData && displayData.map(p => (
                 [<div>{p.name}</div>,
                 <div>{p.progress}</div>,
                 <div>{p.created && p.created.length && DateTime.fromISO(p.created).toLocaleString(DATETIME_SHORT)}</div>
