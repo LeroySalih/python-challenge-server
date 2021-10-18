@@ -35,7 +35,7 @@ const getLevels = (email) => ({
         {title: "Range", markup: <RangeMarkUp email={email} />, tasks:[`level-1::range-1`, `level-1::range-2`, `level-1::range-3`]},
         {title: "Loops - For", markup: <LoopsForMarkUp email={email} />, tasks:[`level-1::for-1`, `level-1::for-2`, `level-1::for-3`]},
         {title: "Loops - While", markup: <LoopsWhileMarkUp email={email} />, tasks:[`level-1::while-1`, `level-1::while-2`, `level-1::while-3`]},
-        {title: "Defs", markup: <DefMarkUp email={email} />, tasks:[`level-1::def-1`, `level-1::def-2`, `level-1::def-3`, `level-1::def-3`]}
+        {title: "Defs", markup: <DefMarkUp email={email} />, tasks:[`level-1::def-1`, `level-1::def-2`, `level-1::def-3`, `level-1::def-4`]}
     ],
        
         /*

@@ -49,7 +49,10 @@ export default function Profile() {
 
 
     const getProgress = (progress) => {
-        return progress ? Math.round((progress.reduce((a, c) => a + parseFloat(c.latest.progress), 0)), 2) / progress.length : 0
+        return progress ? Math.round(
+            progress.reduce(
+                (a, c) => a + parseFloat(c.latest.progress), 0)
+                 / progress.length, 2) : 0
     }
 
     return (<>
