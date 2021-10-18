@@ -22,8 +22,10 @@ const Component = () => {
     }, [cId]);
 
     useEffect(async ()=> {
-        
+        console.log("Getting Data")
         const {data} = await axios.get(`/api/watch-class/${currentClass}`);
+        console.log("Data Returned")
+        
         const {tasks, returnData} = data;
         setProgressData(returnData);
         setTasks(tasks);

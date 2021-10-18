@@ -47,6 +47,11 @@ export default function Profile() {
 
     }, [email])
 
+
+    const getProgress = (progress) => {
+        return progress ? Math.round((progress.reduce((a, c) => a + parseFloat(c.latest.progress), 0)), 2) / progress.length : 0
+    }
+
     return (<>
         <UnauthenticatedTemplate>You must be logged on to see your profile.</UnauthenticatedTemplate>
         <AuthenticatedTemplate>
@@ -63,6 +68,10 @@ export default function Profile() {
                     <div className="drawer-inner">Hello World</div>
                 </Drawer>
                 
+                {
+                    <h2>You have completed {getProgress(progress)}% of tasks</h2>
+                }
+
             
                 {
                     email && progress && <DisplayProgress tasks={getTasks(email)} progress={progress}/>
