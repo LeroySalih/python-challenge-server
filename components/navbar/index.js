@@ -12,7 +12,17 @@ import {useAccount, useMsal, useMsalAuthentication, AuthenticatedTemplate, Unaut
 import AppCtx from '../app-context';
 import {useContext, useEffect} from 'react';
 import axios from 'axios'
+import styled from 'styled-components'
+import Spinner from '../spinner';
 
+const ProfileLink = styled.span`
+  cursor: pointer;
+
+  &:hover {
+    color: red;
+    text-decoration: underline;
+  }
+`
 import {useRouter} from 'next/router'
 
 const Navbar = ({onClick, onLogin}) => {
@@ -59,8 +69,8 @@ const Navbar = ({onClick, onLogin}) => {
 
 
           <AuthenticatedTemplate>
-            {pupilDetails && <Link href="/profile"><span>{pupilDetails.firstName}</span></Link>}
-            {!pupilDetails && <Link href="/profile"><span>Loading pupil data</span></Link>}
+            {pupilDetails && <Link href="/profile"><div><ProfileLink>{pupilDetails.firstName}</ProfileLink></div></Link>}
+            {!pupilDetails && <span><Spinner/>Loading pupil data</span>}
             <Button color="inherit" onClick={handleLogout}>Logout</Button>
           </AuthenticatedTemplate>
 
