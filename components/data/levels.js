@@ -22,6 +22,7 @@ import TrianglesMarkUp from '../level-3/triangles';
 import TempConverterMarkUp from '../level-3/temp-converter';
 import GradeCheckerMarkUp from '../level-3/grade-checker';
 import EmergencyResponseMarkUp from '../level-3/emergency-response';
+import ElevatorControlMarkUp from '../level-3/elevator-instructions';
 
 const getLevels = (email) => ({
     Learn : [
@@ -67,7 +68,9 @@ const getLevels = (email) => ({
         {title: "Bottle of Pepsi", markup: <BottlesOfPepsiMarkUp email={email} />},
         {title: "Letter Count ", markup: <LetterCountMarkUp email={email} />},
         {title: "Transpose", markup: <TransposeMarkUp email={email} />},
-        {title: "Triangle", markup: <TrianglesMarkUp email={email}/>}
+        {title: "Triangle", markup: <TrianglesMarkUp email={email}/>},
+        {title: "Elevator Control", markup: <ElevatorControlMarkUp email={email}/>}
+        
         // Pasword Generator
         // Find First in List
         // Find Highest in List
