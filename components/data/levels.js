@@ -70,7 +70,7 @@ const getLevels = (email) => ({
         {title: "Letter Count ", markup: <LetterCountMarkUp email={email} />},
         {title: "Transpose", markup: <TransposeMarkUp email={email} />},
         {title: "Triangle", markup: <TrianglesMarkUp email={email}/>},
-        
+        {title: "Elevator Control", markup: <ElevatorControlMarkUp email={email}/>},
         
         // Pasword Generator
         // Find First in List
