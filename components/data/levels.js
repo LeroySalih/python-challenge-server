@@ -63,13 +63,14 @@ const getLevels = (email) => ({
     Challenges: [
         // {title: "Temperature Converter - detect that the user has entered F or C and convert "}
         {title: "Grade Checker",      markup: <GradeCheckerMarkUp email={email} />},
+        {title: "Elevator Control", markup: <ElevatorControlMarkUp email={email}/>},
         {title: "Emergency Response", markup: <EmergencyResponseMarkUp email={email} />},
         {title: "Temp Converter", markup: <TempConverterMarkUp email={email} />},
         {title: "Bottle of Pepsi", markup: <BottlesOfPepsiMarkUp email={email} />},
         {title: "Letter Count ", markup: <LetterCountMarkUp email={email} />},
         {title: "Transpose", markup: <TransposeMarkUp email={email} />},
         {title: "Triangle", markup: <TrianglesMarkUp email={email}/>},
-        {title: "Elevator Control", markup: <ElevatorControlMarkUp email={email}/>}
+        
         
         // Pasword Generator
         // Find First in List
