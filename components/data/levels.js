@@ -24,6 +24,8 @@ import GradeCheckerMarkUp from '../level-3/grade-checker';
 import EmergencyResponseMarkUp from '../level-3/emergency-response';
 import ElevatorControlMarkUp from '../level-3/elevator-instructions';
 
+import SqlCreateTableMarkUp from '../database/create-tables';
+
 const getLevels = (email) => ({
     Learn : [
         {title: "Output", markup: <OutputMarkUp email={email} tasks={['level-1::output']}/>, tasks:['level-1::output']},
@@ -71,12 +73,15 @@ const getLevels = (email) => ({
         {title: "Transpose", markup: <TransposeMarkUp email={email} />},
         {title: "Triangle", markup: <TrianglesMarkUp email={email}/>},
         {title: "Elevator Control", markup: <ElevatorControlMarkUp email={email}/>},
-        
+        // {title: "Coffee", markup: <ElevatorControlMarkUp email={email}/>},
         // Pasword Generator
         // Find First in List
         // Find Highest in List
         // Is each item in a correct position (items to the left are lower, items to the right are higher)
     ],
+    Database:[
+        {title: "Create Table", markup: <SqlCreateTableMarkUp email={email}/>},
+    ]
 
 })
 
