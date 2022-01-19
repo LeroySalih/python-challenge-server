@@ -81,36 +81,18 @@ const MarkUp = ({email,  pupilProgress}) => (<motion.div variants={ContainerVari
 
 
                 <Section >
-                    <SectionTitle >Using IF THEN ELIF ELSE Decisions</SectionTitle>
+                    <SectionTitle >DROP TABLE</SectionTitle>
                     <SectionText>
                         
-                        <p>We can chose between more than 2 paths by using the <CodeInline>elif</CodeInline> command.</p>
+                        <p>If you run your code to  create a table twice, the second time the code will produce an error, as you can not create a table when a table with the same name exists.  To correct this, before creating a table, you should drop any tables with the same name using the  <CodeInline>DROP TABLE IF EXISTS</CodeInline> command.</p>
 
-                        <p>When we group elif paths, the program .</p>
+                        <p>Before creating the ToDos table, add this code .</p>
 
                         <CodeExample 
-                            code={`if age > 12:\n\tprint("Too young for this film!")\nelif age == 12:\n\tprint("Perfect age for the film")\nelse:\n\tprint("You are too old enough to watch the film.")`}
+                            code={`DROP TABLE IF EXISTS Todos`}
                             
                         />
 
-                        <p>When the program finds an IF-THEN-ELIF-ELSE decision
-                            <ul>
-                                <li>If the condition is true, then</li>
-                                <li>run the first commands</li>
-                                <li>If the next condition is true, then</li>
-                                <li>run the command</li>
-                                <li>If the next condition is true, then</li>
-                                <li>run the command</li>
-                                
-                                <li>else (if none of the conditions were true)</li>
-                                <li>run the else commands</li>
-                            </ul>
-                        </p>
-                        
-                        
-
-                        <p>Again, remember that the commands to be executed must be properly indented.</p>
-                        
                         
                         
                         
@@ -121,32 +103,13 @@ const MarkUp = ({email,  pupilProgress}) => (<motion.div variants={ContainerVari
                 
 
                 
-                <Activity repl="https://replit.com/@mrsalih/decisons-1-IF-THEN#main.py" 
+                <Activity repl="https://replit.com/@mrsalih/sql-1-create-tables#main.py" 
                           email={email} 
-                          challengeName="level-1::decisions-1" 
+                          challengeName="databases::create-table" 
                           pupilProgress={pupilProgress}
                           />
                 
-                <Activity repl="https://replit.com/@mrsalih/decisons-2-IF-THEN-ELSE#challenge.md" 
-                          email={email} 
-                          challengeName="level-1::decisions-2" 
-                          pupilProgress={pupilProgress}
-                          />
                 
-                <Activity title="Decisions: IF-THEN-ELIF-ELSE (Delivery Charges)"
-                          repl="https://replit.com/@mrsalih/decisons-3-IF-THEN-ELIF-ELSE-1#challenge.md" 
-                          email={email} 
-                          challengeName="level-1::decisions-3" 
-                          pupilProgress={pupilProgress}
-                          />
-
-                <Activity title="Decisions: IF-THEN-ELIF-ELSE (Traffic Light)"
-                          repl="https://replit.com/@mrsalih/decisons-4-IF-THEN-ELIF-ELSE-2#main.py" 
-                          email={email} 
-                          challengeName="level-1::decisions-4" 
-                          pupilProgress={pupilProgress}
-                          />
-
     </motion.div>);
 
 export default MarkUp
