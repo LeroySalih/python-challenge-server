@@ -25,6 +25,7 @@ import EmergencyResponseMarkUp from '../level-3/emergency-response';
 import ElevatorControlMarkUp from '../level-3/elevator-instructions';
 
 import SqlCreateTableMarkUp from '../database/create-tables';
+import SqlInsertRecordMarkUp from '../database/insert-tables';
 
 const getLevels = (email) => ({
     Learn : [
@@ -81,6 +82,7 @@ const getLevels = (email) => ({
     ],
     Database:[
         {title: "Create Table", markup: <SqlCreateTableMarkUp email={email}/>},
+        {title: "Insert Record", markup: <SqlInsertRecordMarkUp email={email}/>},
     ]
 
 })
