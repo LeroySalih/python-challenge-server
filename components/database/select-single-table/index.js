@@ -125,7 +125,7 @@ const MarkUp = ({email,  pupilProgress}) => (<motion.div variants={ContainerVari
                 
                 <Activity repl="https://replit.com/@mrsalih/sql-1-select-guess-who-single#main.py" 
                           email={email} 
-                          challengeName="databases::insert-record" 
+                          challengeName="databases::select-single-table" 
                           pupilProgress={pupilProgress}
                           />
                 
