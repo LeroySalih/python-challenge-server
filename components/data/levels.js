@@ -27,6 +27,7 @@ import ElevatorControlMarkUp from '../level-3/elevator-instructions';
 import SqlCreateTableMarkUp from '../database/create-tables';
 import SqlInsertRecordMarkUp from '../database/insert-tables';
 import SqlSelectRecordMarkUp from '../database/select-single-table';
+import SqlDeleteRecordMarkUp from '../database/delete-rows';
 
 
 const getLevels = (email) => ({
@@ -85,7 +86,10 @@ const getLevels = (email) => ({
     Database:[
         {title: "Create Table", markup: <SqlCreateTableMarkUp email={email}/>},
         {title: "Insert Record", markup: <SqlInsertRecordMarkUp email={email}/>},
-        {title: "Select Single Table", markup: <SqlSelectRecordMarkUp email={email}/>}
+        {title: "Select Single Table", markup: <SqlSelectRecordMarkUp email={email}/>},
+        {title: "Delete Rows", markup: <SqlDeleteRecordMarkUp email={email}/>},
+
+
     ]
 
 })
