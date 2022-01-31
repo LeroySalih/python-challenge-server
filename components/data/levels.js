@@ -28,6 +28,7 @@ import SqlCreateTableMarkUp from '../database/create-tables';
 import SqlInsertRecordMarkUp from '../database/insert-tables';
 import SqlSelectRecordMarkUp from '../database/select-single-table';
 import SqlDeleteRecordMarkUp from '../database/delete-rows';
+import SqlUpdateRecordMarkUp from '../database/update-records';
 
 
 const getLevels = (email) => ({
@@ -88,6 +89,7 @@ const getLevels = (email) => ({
         {title: "Insert Record", markup: <SqlInsertRecordMarkUp email={email}/>},
         {title: "Select Single Table", markup: <SqlSelectRecordMarkUp email={email}/>},
         {title: "Delete Rows", markup: <SqlDeleteRecordMarkUp email={email}/>},
+        {title: "Update Rows", markup: <SqlUpdateRecordMarkUp email={email}/>},
 
 
     ]
