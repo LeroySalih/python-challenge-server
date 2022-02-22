@@ -11,8 +11,9 @@ import Drawer from '@material-ui/core/Drawer';
 import axios from 'axios';
 
 import {useState, useEffect} from 'react';
-import getLevels, {getTasks} from '../components/data/levels';
+import levels, {getLevels, getTasks} from '../components/data/levels';
 import { DateTime, DATETIME_SHORT } from "luxon";
+
 
 export default function Profile() {
     
@@ -99,7 +100,7 @@ export default function Profile() {
 
             
                 {
-                    email && progress && <DisplayProgress displayData={getProgressDisplayData(getTasks(email), progress)} tasks={getTasks(email)} progress={progress}/>
+                    email && progress && <DisplayProgress email={email} displayData={getProgressDisplayData(getTasks(email), progress)} tasks={getTasks(email)} progress={progress}/>
                 }
 
 
@@ -129,13 +130,17 @@ const Loading = () => {
     return <div variant="h6">Authentication in progress...</div>
 }
 
-const DisplayProgress = ({displayData}) => {
+const DisplayProgress = ({tasks, email, displayData}) => {
 
-    
-    
     return <>
 
         <h1>Displaying Progress</h1>
+        
+
+        <pre>{
+            levels['Learn'].map((l, i) => (<DisplayProgressLevel key={i} level={l}/>))
+        }</pre>
+        <pre>{JSON.stringify(levels, null, 2)}</pre>
         <div className="display">
          {
             displayData && displayData.map(p => (
@@ -155,3 +160,45 @@ const DisplayProgress = ({displayData}) => {
         `}</style>
     </>
 }
+
+const DisplayProgressLevel = ({level}) => {
+    return <>
+            <div className="level">
+            <Link href={`/levels/Learn/${level.title}`}>
+                <div className="levelName">
+                    {level.title}
+                </div> 
+            </Link>
+            {level.tasks.map(t => <div className="task">&nbsp;</div>)}
+            </div>
+            <style jsx>{`
+
+                .level {
+                    display: flex;
+                    flex-direction: row;
+                    height: 2rem;
+                }
+
+                .levelName {
+                    
+                    width: 15rem;
+                    cursor: pointer;
+                }
+
+                .levelName:hover {
+                    color: red;
+                    text-decoration: underline;
+                }
+
+                .task {
+                    border: silver 1px solid; 
+                    width: 1.75rem;
+                    height: 1.75rem;
+                    margin-right: 0.25rem;
+                    border-radius: 50%;
+                }
+            
+            `}</style>
+          </>
+}
+    

@@ -3,7 +3,8 @@ import {motion} from 'framer-motion';
 import {useState, useEffect} from 'react';
 import {useMsal, useAccount} from '@azure/msal-react'
 
-import getLevels from '../components/data/levels';
+import {getLevels} from '../../components/data/levels';
+import { useRouter } from 'next/router'
 
 
 import {Page, 
@@ -16,13 +17,13 @@ import {Page,
     KeyTerms,
     KeyTerm,
     KeyTermTitle,
-    LessonHeader} from '../components/format'
+    LessonHeader} from '../../components/format'
 
 import {CodeExample, 
     Python, 
     CodeInline, 
     ConsoleOutput,
-    Activity} from '../components/code';
+    Activity} from '../../components/code';
 import { LocalConvenienceStoreOutlined } from '@material-ui/icons';
 
 const PageLayout = styled.div`
@@ -68,10 +69,32 @@ const LevelsPage = () => {
     const [pupilProgress, setPupilProgress] = useState([]);
 
     
+    const router = useRouter()
+    const { slug } = router.query
 
     const [markUp, setMarkUp] = useState(getLevels(email, pupilProgress));
 
-    const [level, setLevel] = useState(Object.keys(markUp)[0]);
+    // Set a default first level
+    let firstLevel = Object.keys(getLevels(email, pupilProgress))[0];
+
+    const [level, setLevel] = useState(firstLevel);
+
+    useEffect(() => {
+        // if a Level has been specified in the URL
+        if (slug && slug.length > 0) {
+            console.log("Slug detected", slug)
+
+            // Find the index of the first slug in the keys of levels
+            const result = Object.keys(getLevels(email, pupilProgress)).findIndex(e => e == slug[0])
+            
+            console.log("Result", result)
+            
+            // if the slug has been found, set firstLevel to matching index
+            firstLevel = result > -1 ? result : 0
+            
+            setLevel(Object.keys(getLevels(email, pupilProgress))[firstLevel]);
+        }
+    }, [slug])
 
     useEffect(async () => {
         
