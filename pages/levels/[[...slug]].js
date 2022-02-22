@@ -94,6 +94,16 @@ const LevelsPage = () => {
             
             setLevel(Object.keys(getLevels(email, pupilProgress))[firstLevel]);
         }
+
+        if (slug && slug.length == 2) {
+            // look for task 
+            const tasks = getLevels(email, pupilProgress)[slug[0]]
+            let result = (tasks && tasks.findIndex(e => e.title == slug[1])) || 0
+            result = result == -1 ? 0 : result
+            console.log("Tasks Found", tasks)
+            setTask(result)
+        }
+
     }, [slug])
 
     useEffect(async () => {
