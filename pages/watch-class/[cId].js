@@ -16,6 +16,11 @@ const Component = () => {
     const [currentClass, setCurrentClass] = useState(cId);
     const [progressData, setProgressData] = useState(null);
     const [tasks, setTasks] = useState(null);
+    const [pupilData, setPupilData] = useState(null);
+
+    const [from, setFrom] = useState("2010-01-01")
+    const [to, setTo] = useState("2099-12-30")
+
 
     useEffect (()=>{
         setCurrentClass(cId)
@@ -23,7 +28,7 @@ const Component = () => {
 
     useEffect(async ()=> {
         console.log("Getting Data")
-        const {data} = await axios.get(`/api/watch-class/${currentClass}`);
+        const {data} = await axios.get(`/api/watch-class/${currentClass}?from=${from}&to=${to}`);
         console.log("Data Returned")
         
         const {tasks, returnData} = data;
@@ -36,10 +41,14 @@ const Component = () => {
         return progress == 100.0 ? "green" : "grey"
     }
 
+    console.log("Progress Data", progressData)
+
     return (
         <div className="page">
             <div className="page-title">Watch Class ({currentClass})</div>
             <div>
+                <input placeholder="from" value={from} onChange={(e) => setFrom(e.target.value)}></input>
+                <input placeholder="to" value={to} onChange={(e) => setTo(e.target.value)}></input>
 
                 <Button onClick={()=> {setLastUpdate(DateTime.now())}}>Refresh</Button>
                 <div>{lastUpdate && lastUpdate.toISO()}</div>

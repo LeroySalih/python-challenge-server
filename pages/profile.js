@@ -92,6 +92,9 @@ export default function Profile() {
                         open={showDraw} 
                         onClose={() => toggleDrawer(false)}>
                     <div className="drawer-inner">Hello World</div>
+                    {
+                        
+                    }
                 </Drawer>
                 
                 {
@@ -183,7 +186,7 @@ const DisplayProgressLevel = ({level, levelName}) => {
                     {level.title}
                 </div> 
             </Link>
-            {level.tasks.map(t => <div className="task">&nbsp;</div>)}
+            {level.tasks.map(t => <div className="task tooltip"><span className="tooltiptext">{t}</span></div>)}
             </div>
             <style jsx>{`
 
@@ -211,6 +214,38 @@ const DisplayProgressLevel = ({level, levelName}) => {
                     margin-right: 0.25rem;
                     border-radius: 50%;
                 }
+
+                /* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  width: 120px;
+bottom: 100%;
+left: 50%;
+margin-left: -60px;
+}
             
             `}</style>
           </>

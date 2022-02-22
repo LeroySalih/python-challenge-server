@@ -2,13 +2,20 @@ import {connectToDatabase} from '../../../utils/mongodb';
 
 import { getTasks } from '../../../components/data/levels';
 
-export const getClassSubmissions = async (classId) => {
+export const getClassSubmissions = async (classId, from, to) => {
+
+    from = from == undefined ? '2020-01-01' : from
+    to = to == undefined ? '2099-12-31' : to 
 
     const agg = [
       {
         '$match': {
           'email': {
             '$ne': null
+          }, 
+          'created': {
+            '$gte': new Date(from), 
+            '$lt': new Date(to)
           }
         }
       }, {
@@ -87,14 +94,14 @@ export const getClasses = async (classId) => {
 
 const handler = async (req, res) => {
 
-    const {params} = req.query;
+    const {from, to, params} = req.query;
     const [classId, challengeId] = params;
     
 
     const result = await Promise.all([
         getClasses(),
         
-        getClassSubmissions(classId)
+        getClassSubmissions(classId, from, to)
         
     ]);
 
@@ -106,6 +113,8 @@ const handler = async (req, res) => {
 
     
     submissions.forEach(s => {
+
+      //check if this is a new record
       if (returnData[s['_id']['email']] == undefined){
         returnData[s['_id']['email']] = Object.assign({}, tasksObject);
       }
