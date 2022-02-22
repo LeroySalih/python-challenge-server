@@ -136,10 +136,17 @@ const DisplayProgress = ({tasks, email, displayData}) => {
 
         <h1>Displaying Progress</h1>
         
+        {
+            Object.keys(levels).map( k => ([
+                <div className="levelTitle">{k}</div>,
+                <div>{
+                    levels[k].map((l, i) => (<DisplayProgressLevel key={i} levelName={k} level={l}/>))
+                }</div>
+            ]
+            ))
+        }
+        
 
-        <pre>{
-            levels['Learn'].map((l, i) => (<DisplayProgressLevel key={i} level={l}/>))
-        }</pre>
         <pre>{JSON.stringify(levels, null, 2)}</pre>
         <div className="display">
          {
@@ -153,6 +160,13 @@ const DisplayProgress = ({tasks, email, displayData}) => {
         </div> 
         <style jsx>{`
         
+            .levelTitle {
+                font-weight: bold;
+                font-size: 1.5rem;
+                margin-top: 2rem;
+
+            }
+
             .display {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
@@ -161,10 +175,10 @@ const DisplayProgress = ({tasks, email, displayData}) => {
     </>
 }
 
-const DisplayProgressLevel = ({level}) => {
+const DisplayProgressLevel = ({level, levelName}) => {
     return <>
             <div className="level">
-            <Link href={`/levels/Learn/${level.title}`}>
+            <Link href={`/levels/${levelName}/${level.title}`}>
                 <div className="levelName">
                     {level.title}
                 </div> 
