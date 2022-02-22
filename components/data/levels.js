@@ -7,6 +7,7 @@ import RangeMarkUp from '../level-1/range';
 import LoopsForMarkUp from '../level-1/loops-for';
 import LoopsWhileMarkUp from '../level-1/loops-while';
 import DefMarkUp from '../level-1/defs';
+import ListsMarkUp from '../level-1/lists';
 
 import OperatorsStringMarkUp from '../level-1/operators-string';
 import OperatorsBooleanMarkUp from '../level-1/operators-boolean';
@@ -34,7 +35,7 @@ import SqlUpdateRecordMarkUp from '../database/update-records';
 const getLevels = (email) => ({
     Learn : [
         {title: "Output", markup: <OutputMarkUp email={email} tasks={['level-1::output']}/>, tasks:['level-1::output']},
-        {title: "Operators - Numeric", markup: <OperatorsNumericMarkUp email={email} />, tasks:[`level-1::operations-numeric`]},        
+        {title: "Operators - Numeric", markup: <OperatorsNumericMarkUp email={email} />, tasks:[`level-1::operators-numeric`]},        
         {title: "Variables", markup: <VariablesMarkUp email={email} />, tasks:[`level-1::variables-1`, `level-1::variables-2`, `level-1::variables-3`]},
         {title: "Inputs", markup: <InputsMarkUp email={email} />, tasks: [`level-1::input-1`, `level-1::input-2`, `level-1::input-3`]},
         {title: "Operators - Strings", markup: <OperatorsStringMarkUp email={email} />, tasks: [`level-1::operators-string`]},
@@ -43,7 +44,8 @@ const getLevels = (email) => ({
         {title: "Range", markup: <RangeMarkUp email={email} />, tasks:[`level-1::range-1`, `level-1::range-2`, `level-1::range-3`]},
         {title: "Loops - For", markup: <LoopsForMarkUp email={email} />, tasks:[`level-1::for-1`, `level-1::for-2`, `level-1::for-3`]},
         {title: "Loops - While", markup: <LoopsWhileMarkUp email={email} />, tasks:[`level-1::while-1`, `level-1::while-2`, `level-1::while-3`]},
-        {title: "Defs", markup: <DefMarkUp email={email} />, tasks:[`level-1::def-1`, `level-1::def-2`, `level-1::def-3`, `level-1::def-4`]}
+        {title: "Defs", markup: <DefMarkUp email={email} />, tasks:[`level-1::def-1`, `level-1::def-2`, `level-1::def-3`, `level-1::def-4`]},
+        {title: "Lists", markup: <ListsMarkUp email={email} />, tasks:[`level-1:lists-1`, `level-1:lists-2`, `level-1:lists-3`,`level-1:lists-4`, `level-1:lists-5`]} 
     ],
        
         /*

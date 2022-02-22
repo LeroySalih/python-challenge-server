@@ -92,7 +92,7 @@ const MarkUp = ({email,  pupilProgress}) => (<motion.div variants={ContainerVari
 
         <Activity repl="https://replit.com/@mrsalih/operations-numeric#challenge.md" 
                           email={email} 
-                          challengeName="level-1::operations-numeric" 
+                          challengeName="level-1::operators-numeric" 
                           pupilProgress={pupilProgress}
                           />
 
