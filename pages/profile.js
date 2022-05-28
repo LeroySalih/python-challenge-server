@@ -133,8 +133,9 @@ const Loading = () => {
     return <div variant="h6">Authentication in progress...</div>
 }
 
-const DisplayProgress = ({tasks, email, displayData}) => {
+const DisplayProgress = ({tasks, email, displayData, progress}) => {
 
+    
     return <>
 
         <h1>Displaying Progress</h1>
@@ -143,24 +144,15 @@ const DisplayProgress = ({tasks, email, displayData}) => {
             Object.keys(levels).map( k => ([
                 <div className="levelTitle">{k}</div>,
                 <div>{
-                    levels[k].map((l, i) => (<DisplayProgressLevel key={i} levelName={k} level={l}/>))
+                    levels[k].map((l, i) => (<DisplayProgressLevel key={`progress::${i}`} levelName={k} level={l} progress={progress}/>))
                 }</div>
             ]
             ))
         }
         
 
-        <pre>{JSON.stringify(levels, null, 2)}</pre>
-        <div className="display">
-         {
-            displayData && displayData.map(p => (
-                [<div>{p.name}</div>,
-                <div>{p.progress}</div>,
-                <div>{p.created && p.created.length && DateTime.fromISO(p.created).toLocaleString(DATETIME_SHORT)}</div>
-                ]
-            ))
-            }
-        </div> 
+       
+        
         <style jsx>{`
         
             .levelTitle {
@@ -178,7 +170,9 @@ const DisplayProgress = ({tasks, email, displayData}) => {
     </>
 }
 
-const DisplayProgressLevel = ({level, levelName}) => {
+const DisplayProgressLevel = ({level, levelName, progress}) => {
+    const getProgress = (p) => p && p.length > 0 ? JSON.stringify(p[0].latest.progress) : "" 
+    const light = (l) =>  l === '"100.0"' ? 'green-light' : l
     return <>
             <div className="level">
             <Link href={`/levels/${levelName}/${level.title}`}>
@@ -186,9 +180,17 @@ const DisplayProgressLevel = ({level, levelName}) => {
                     {level.title}
                 </div> 
             </Link>
-            {level.tasks.map(t => <div className="task tooltip"><span className="tooltiptext">{t}</span></div>)}
+            {level.tasks.map((t, i) => <div key={t} className={`task  ${light(getProgress(progress.filter(p => p.challenge_name == t)))} tooltip`}>
+                <span className="tooltiptext">
+                    {t}
+                {}
+                </span></div>)
+            }
             </div>
             <style jsx>{`
+                .green-light {
+                    background-color: green;
+                }
 
                 .level {
                     display: flex;
@@ -219,7 +221,7 @@ const DisplayProgressLevel = ({level, levelName}) => {
 .tooltip {
   position: relative;
   display: inline-block;
-  cursor: pointer;
+  
   
 }
 

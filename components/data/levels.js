@@ -31,6 +31,9 @@ import SqlSelectRecordMarkUp from '../database/select-single-table';
 import SqlDeleteRecordMarkUp from '../database/delete-rows';
 import SqlUpdateRecordMarkUp from '../database/update-records';
 
+import MancalaLoopForward from '../mancala/LoopForward';
+
+
 const levels = {
     Learn : [
         {title: "Output", markup: <OutputMarkUp   tasks={['level-1::output']}/>, tasks:['level-1::output']},
@@ -44,26 +47,26 @@ const levels = {
         {title: "Loops - For", markup: <LoopsForMarkUp   />, tasks:[`level-1::for-1`, `level-1::for-2`, `level-1::for-3`]},
         {title: "Loops - While", markup: <LoopsWhileMarkUp   />, tasks:[`level-1::while-1`, `level-1::while-2`, `level-1::while-3`]},
         {title: "Defs", markup: <DefMarkUp   />, tasks:[`level-1::def-1`, `level-1::def-2`, `level-1::def-3`, `level-1::def-4`]},
-        {title: "Lists", markup: <ListsMarkUp   />, tasks:[`level-1:lists-1`, `level-1:lists-2`, `level-1:lists-3`,`level-1:lists-4`, `level-1:lists-5`]} 
+        {title: "Lists", markup: <ListsMarkUp   />, tasks:[`level-1::lists-1`, `level-1::lists-2`, `level-1::lists-3`,`level-1::lists-4`, `level-1::lists-5`]} 
     ],
        
         
     Algorithms : [
-        {title: "Input Validation", markup: <InputValidationMarkUp   />, tasks: []},
-        {title: "Odds or Evens", markup: <OddsOrEvensMarkUp  />, tasks: []},
-        {title: "Average", markup: <AverageRangeMarkUp   />, tasks: []},
+        {title: "Input Validation", markup: <InputValidationMarkUp   />, tasks: ["level-2::input-validation"]},
+        {title: "Odds or Evens", markup: <OddsOrEvensMarkUp  />, tasks: ["level-2::odds-or-evens"]},
+        {title: "Average", markup: <AverageRangeMarkUp   />, tasks: ["level-2::average-range"]},
     ],
     Challenges: [
         // {title: "Temperature Converter - detect that the user has entered F or C and convert "}
-        {title: "Grade Checker",      markup: <GradeCheckerMarkUp   />, tasks: []},
-        {title: "Elevator Control", markup: <ElevatorControlMarkUp  />, tasks: []},
-        {title: "Emergency Response", markup: <EmergencyResponseMarkUp   />, tasks: []},
-        {title: "Temp Converter", markup: <TempConverterMarkUp   />, tasks: []},
-        {title: "Bottle of Pepsi", markup: <BottlesOfPepsiMarkUp   />, tasks: []},
-        {title: "Letter Count ", markup: <LetterCountMarkUp   />, tasks: []},
-        {title: "Transpose", markup: <TransposeMarkUp   />, tasks: []},
-        {title: "Triangle", markup: <TrianglesMarkUp  />, tasks: []},
-        {title: "Elevator Control", markup: <ElevatorControlMarkUp  />, tasks: []},
+        {title: "Grade Checker",      markup: <GradeCheckerMarkUp   />, tasks: ["level-3::grade-checker"]},
+        {title: "Elevator Control", markup: <ElevatorControlMarkUp  />, tasks: ["level-3::elevator-control"]},
+        {title: "Emergency Response", markup: <EmergencyResponseMarkUp   />, tasks: ["level-3::emergency-response"]},
+        {title: "Temp Converter", markup: <TempConverterMarkUp   />, tasks: ["level-3::temp-converter"]},
+        {title: "Bottle of Pepsi", markup: <BottlesOfPepsiMarkUp   />, tasks: ["level-3::bottles-of-pepsi"]},
+        {title: "Letter Count ", markup: <LetterCountMarkUp   />, tasks: ["level-3::letter-count"]},
+        {title: "Transpose", markup: <TransposeMarkUp   />, tasks: ["level-3::transpose"]},
+        {title: "Triangles", markup: <TrianglesMarkUp  />, tasks: ["level-3::triangles"]},
+        {title: "Elevator Control", markup: <ElevatorControlMarkUp  />, tasks: ["level-3::elevator-control"]},
         // {title: "Coffee", markup: <ElevatorControlMarkUp  />},
         // Pasword Generator
         // Find First in List
@@ -76,8 +79,10 @@ const levels = {
         {title: "Select Single Table", markup: <SqlSelectRecordMarkUp  />, tasks: ['db-task-select']},
         {title: "Delete Rows", markup: <SqlDeleteRecordMarkUp  />, tasks: ['db-task-delete']},
         {title: "Update Rows", markup: <SqlUpdateRecordMarkUp  />, tasks: ['db-task-update']},
+    ],
 
-
+    Mancala: [
+        {title: "Looping Forward", markup: <MancalaLoopForward  />, tasks: []},
     ]
 
 }
