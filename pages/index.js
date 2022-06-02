@@ -25,6 +25,8 @@ import PupilProgressLink from '../components/format/pupil-progress-link';
 
 import Image from 'next/image'
 import CodePanelAnimation from '../components/code-panel';
+import Data from '../components/data/levels';
+
 
 const ErrorComponent = ({error}) => {
   return <div >An Error Occurred: {error.errorCode}</div>;
@@ -39,7 +41,7 @@ const Loading = () => {
 
 
 const HeroPanel = styled.div`
-  height: calc(100vh - 80px);
+  height: calc(50vh - 80px);
   width:100vw;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -127,15 +129,12 @@ export default function Home() {
     ...loginRequest
   };
 
-
-
-
   return (
     <>
     <div className="container">
 
       <Head>
-        <title>Python Challenges</title>
+        <title>Python Steps</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
    
@@ -143,7 +142,8 @@ export default function Home() {
 
 
       <main className="main">
-        <div>Server ID: {JSON.stringify(process.env.NEXT_PUBLIC_SERVER_ID)}</div>
+        
+
         <HeroPanel>
           <AnimatePresence exitBeforeEnter>
           {showTitle && <motion.div className="title-panel"
@@ -154,7 +154,7 @@ export default function Home() {
             >
             <motion.div className="title-block">
             <h2>mr salih's</h2>
-            <h1>Python Challenges</h1>
+            <h1>Python Steps</h1>
             <h3>
               A collection of resources and challenges to help you learn programming in python.
             </h3>
@@ -168,195 +168,19 @@ export default function Home() {
           </div>
         </HeroPanel>
         
-        <div style={{width: "80%", marginLeft: "auto", marginRight: "auto", marginTop: "30px", display: "flex", flexDirection: "row"}}>
-          <div>
-            <h1>Learning Computing, Computer Science and ICT concepts</h1>
-            {email && <h3>{email}</h3>}
-            <UnauthenticatedTemplate></UnauthenticatedTemplate>
-            
-          </div>
-          <div>
-              
-        </div>
+       
+        <div className="contents-container">
+          {
+            Object.keys(Data).map(k => <div key={k}>
+              <h3>{k}</h3>
+              <ul>
+                {Data[k].map(t => <li><Link href={`/levels/${k}/${t.title}`}><span className="link">{t.title}</span></Link></li>)}
+              </ul>
+              </div>)
+          }
+         
         </div>
         
-        {/* Topic Choser */}
-        <div className="topic-grid">
-          <div>
-            <div><Button onClick={() => setTabIndex(0)}> Programming with Python</Button></div>
-            
-          </div>
-          <div>
-          {tabIndex == 0 && <div>
-          <div className="level-title">Level 1 - Learn the Language</div>
-          <div className="level-container">
-
-            <ul>
-              <li>
-                
-                <PupilProgressLink 
-                  href="/level-1/output" 
-                  email={email} title="Output" 
-                  challengeName="level-1::output" 
-                  pupilProgress={pupilProgress} />
-                </li>
-              <li>Operators - Numeric</li>
-              <li>Operators - Strings</li>
-              <li>Variables</li>
-              <li>Data Types</li>
-              <li>Input</li>
-            </ul>
-
-            <ul>
-              <li>Operators - Boolean Equalities</li>
-              <li>Operators - Boolean Logic</li>
-              <li>
-                
-                <PupilProgressLink 
-                  href="/level-1/decisions" 
-                  email={email} title="Decisions" 
-                  challengeName="level-1::decisions-2" 
-                  pupilProgress={pupilProgress} />  
-              </li>
-              <li>Compound Decisions</li>
-              
-            </ul>
-
-            <ul>
-              <li>Loops - For</li>
-              <li>Loops - While</li>
-              <li>Defs & parameters</li>
-              <li>Defs with Returns</li>
-              <li><PupilProgressLink 
-                  href="/level-1/modulo-operator" 
-                  email={email} title="Modulo" 
-                  challengeName="level-1::modulo" 
-                  pupilProgress={pupilProgress} />  </li>
-              <li>Lists</li>
-              <li>Dictionaries</li>
-            </ul>
-            
-          </div>
-          
-          <div className="level-title">Level 2 - Small Blocks</div>
-          <div className="level-container">
-
-            <ul>
-              <li>Processing Lists</li>
-              <li>Files - Create &amp; Write</li>
-              <li>Files - Read &amp; Process</li>
-              <li>
-              <PupilProgressLink 
-                  href="/level-2/input-validation" 
-                  email={email} 
-                  title="Input Validation" 
-                  challengeName="level-2::input-validation" 
-                  pupilProgress={pupilProgress} />  
-                </li>
-            </ul>
-
-            <ul>
-              <li><PupilProgressLink 
-                  href="/level-2/odds-or-evens" 
-                  email={email} title="Odds or Evens" 
-                  challengeName="level-2::odds-or-evens" 
-                  pupilProgress={pupilProgress} />  </li>
-              <li>FizzBuzz</li>
-              <li>Counters</li>
-            </ul>
-
-            <ul>
-              
-            </ul>
-            
-          </div>
-          
-          <div className="level-title">Level 3 - Challenges</div>
-          <div className="level-container">
-
-            <ul>
-              <li>Cheat at Maths</li>
-              <li>Algebra Solver</li>
-              <li>All about triangles</li>
-            </ul>
-
-            <ul>
-              <li>Break the code</li>
-              <li>
-              <PupilProgressLink 
-                  href="/level-3/letter-count" 
-                  email={email} 
-                  title="Letter Count" 
-                  challengeName="level-3::letter-count" 
-                  pupilProgress={pupilProgress} /> 
-
-                </li>
-              <li>Dictionary Searcher</li>
-            </ul>
-
-           
-
-            <ul>
-              <li>Ceasar Cypher</li>
-              <li>
-                
-                <PupilProgressLink 
-                  href="/level-3/transpose" 
-                  email={email} 
-                  title="Transpose Cypher" 
-                  challengeName="level-3::transpose" 
-                  pupilProgress={pupilProgress} /> 
-              </li>
-              <li></li>
-            </ul>
-            
-          </div>
-        
-          
-        </div>
-          }
-
-          {tabIndex == 1 && <div>
-            
-          <div className="level-title">Level 1 - White Belt</div>  
-          <div className="level-container">
-            <ul>Layout
-              <li>Anatomy of a Web Page</li>
-              <li>Block markup</li>
-              <li>Inline markup</li>
-            </ul>
-
-            <ul> Styling
-              <li>Inline Styling</li>
-              <li>RBG Colours</li>
-              <li>Inline markup</li>
-            </ul>
-            <ul> Interaction
-              <li>Interactive Styling</li>
-              <li></li>
-            </ul>
-          </div>
-          
-
-          <div className="level-title">Level 2 - Green Belt</div>  
-          <div className="level-container">
-            <ul></ul>
-            <ul></ul>
-            <ul></ul>
-          </div>
-
-          <div className="level-title">Level 3 - Black Belt</div>  
-          <div className="level-container">
-            <ul></ul>
-            <ul></ul>
-            <ul></ul>
-          </div>
-
-
-        </div>
-          }
-          </div>
-        </div>
         
         
         
@@ -369,6 +193,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
+          <div>Server ID: {JSON.stringify(process.env.NEXT_PUBLIC_SERVER_ID)}</div>
           Powered by{' '}
           <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
         </a>
@@ -382,6 +207,22 @@ export default function Home() {
           flex-direction: column;
           align-items: center;
 
+      }
+
+      .link {
+        cursor: pointer;
+
+      }
+
+      .link:hover {
+        text-decoration : underline;
+        color: red;
+      }
+
+      .contents-container {
+        display: flex;
+        justify-content: space-around;
+        width: 80%;
       }
 
       .topic-grid {
@@ -407,7 +248,7 @@ export default function Home() {
       }
 
       .main {
-        padding: 5rem 0;
+       
         flex: 1;
         display: flex;
         flex-direction: column;
