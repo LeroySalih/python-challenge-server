@@ -25,32 +25,15 @@ const MarkUp = ({email,  pupilProgress}) => (<motion.div variants={ContainerVari
    <Section id="what-we-are-building" >
         <SectionTitle>What We're Building</SectionTitle>
         <SectionDescription>In this challenge, you'll print the lyrics to the song "Bottles of Pepsi"</SectionDescription>
-        <ConsoleOutput text={`99 bottles of pepsi on the wall.
-99 bottles of pepsi.
-Take one down, pass it around.
-98 bottles of pepsi on the wall.
-
-...
-
-2 bottles of pepsi on the wall.
-2 bottles of pepsi.
-Take one down, pass it around.
-1 bottle of pepsi on the wall.
-
-1 bottle of pepsi on the wall.
-1 bottle of pepsi.
-Take one down, pass it around.
-No more bottles of pepsi on the wall.
-        
-        `}/>
+        <ConsoleOutput text={`Enter number 1: 7\nEnter number 2: 9\nHighest: 9`}/>
 
     </Section>
     
             
-    <Activity title="Bottles Of Pepsi"
-                repl="https://replit.com/@mrsalih/bottles-of-pepsi#main.py" 
+    <Activity title="IO"
+                repl="https://replit.com/@mrsalih/skills-io" 
                 email={email} 
-                challengeName="level-3::bottles-of-pepsi" 
+                challengeName="skills-io" 
                 pupilProgress={pupilProgress}
                 />
             

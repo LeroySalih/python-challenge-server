@@ -31,8 +31,8 @@ import SqlSelectRecordMarkUp from '../database/select-single-table';
 import SqlDeleteRecordMarkUp from '../database/delete-rows';
 import SqlUpdateRecordMarkUp from '../database/update-records';
 
-import MancalaLoopForward from '../mancala/LoopForward';
-
+import SkillsTestIO from '../python-skills/io';
+import SkillsTestSimpleDecision from '../python-skills/simple-decision';
 
 const levels = {
     Learn : [
@@ -81,8 +81,9 @@ const levels = {
         {title: "Update Rows", markup: <SqlUpdateRecordMarkUp  />, tasks: ['db-task-update']},
     ],
 
-    Mancala: [
-        {title: "Looping Forward", markup: <MancalaLoopForward  />, tasks: []},
+    "Python Skills Test": [
+        {title: "IO", markup: <SkillsTestIO  />, tasks: ["skills::io"]},
+        {title: "Simple Decision", markup: <SkillsTestSimpleDecision  />, tasks: ["skills::simple-decision"]},
     ]
 
 }
