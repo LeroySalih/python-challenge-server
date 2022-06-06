@@ -85,6 +85,7 @@ const levels = {
     "Python Skills Test": [
         {title: "IO", markup: <SkillsTestIO  />, tasks: ["skills::io"]},
         {title: "Simple Decision", markup: <SkillsTestSimpleDecision  />, tasks: ["skills::simple-decision"]},
+        {title: "While loops", markup: <SkillsTestWhileLoops  />, tasks: ["skills::while-loops"]},
     ]
 
 }
