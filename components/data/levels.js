@@ -33,6 +33,7 @@ import SqlUpdateRecordMarkUp from '../database/update-records';
 
 import SkillsTestIO from '../python-skills/io';
 import SkillsTestSimpleDecision from '../python-skills/simple-decision';
+import SkillsTestWhileLoops from '../python-skills/while-loops';
 
 const levels = {
     Learn : [
