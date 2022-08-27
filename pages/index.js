@@ -2,17 +2,15 @@ import Head from 'next/head'
 import Link from 'next/link';
 import { useRouter } from 'next/router'
 
-import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
-import { MsalAuthenticationTemplate, useMsal, useAccount } from "@azure/msal-react";
-import { useMsalAuthentication } from "@azure/msal-react";
+
+import { useMsal, useAccount } from "@azure/msal-react";
 
 
-import { InteractionStatus, InteractionType } from "@azure/msal-browser";
 import { loginRequest } from "../components/authConfig";
 import {useState, useEffect} from 'react';
 
 import {AnimatePresence, motion} from 'framer-motion';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
 
 
@@ -125,10 +123,7 @@ export default function Home() {
 
   }, [account])
 
-  const authRequest = {
-    ...loginRequest
-  };
-
+  
   return (
     <>
     <div className="container">
