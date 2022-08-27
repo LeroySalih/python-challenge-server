@@ -174,7 +174,7 @@ export default function Home() {
             Object.keys(Data).map(k => <div key={k}>
               <h3>{k}</h3>
               <ul>
-                {Data[k].map(t => <li><Link href={`/levels/${k}/${t.title}`}><span className="link">{t.title}</span></Link></li>)}
+                {Data[k].map(t => <li key={t.title}><Link href={`/levels/${k}/${t.title}`}><span className="link">{t.title}</span></Link></li>)}
               </ul>
               </div>)
           }
