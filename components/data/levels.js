@@ -24,6 +24,7 @@ import TempConverterMarkUp from '../level-3/temp-converter';
 import GradeCheckerMarkUp from '../level-3/grade-checker';
 import EmergencyResponseMarkUp from '../level-3/emergency-response';
 import ElevatorControlMarkUp from '../level-3/elevator-instructions';
+import CardConverterMarkUp from '../level-2/card-converter';
 
 import SqlCreateTableMarkUp from '../database/create-tables';
 import SqlInsertRecordMarkUp from '../database/insert-tables';
@@ -61,6 +62,8 @@ const levels = {
         {title: "🌶 Grade Checker",      markup: <GradeCheckerMarkUp   />, tasks: ["level-3::grade-checker"]},
         {title: "🌶 Temp Converter", markup: <TempConverterMarkUp   />, tasks: ["level-3::temp-converter"]},
         {title: "🌶🌶 Elevator Control", markup: <ElevatorControlMarkUp  />, tasks: ["level-3::elevator-control"]},
+        {title: "🌶🌶 Card Converter", markup: <CardConverterMarkUp  />, tasks: ["level-2::card-converter-1", "level-2::card-converter-2", "level-3::card-converter-3"]},
+        
         {title: "🌶🌶🌶 Emergency Response", markup: <EmergencyResponseMarkUp   />, tasks: ["level-3::emergency-response"]},
         {title: "🌶🌶🌶 Bottle of Pepsi", markup: <BottlesOfPepsiMarkUp   />, tasks: ["level-3::bottles-of-pepsi"]},
         {title: "🌶🌶🌶 Letter Count ", markup: <LetterCountMarkUp   />, tasks: ["level-3::letter-count"]},
