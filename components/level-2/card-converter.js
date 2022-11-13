@@ -25,8 +25,8 @@ const MarkUp = ({email,  pupilProgress}) => (<motion.div variants={ContainerVari
     <Section id="what-we-are-building" >
                     
         <SectionTitle>What We're Building</SectionTitle>
-        <SectionDescription>In this lesson you'll practise using the modulo operator to find if a number is odd or even.</SectionDescription>
-        <ConsoleOutput text={`IsEven(4) #True\nIsEven(2) #False`}/>
+        <SectionDescription>In this session you'll practise using the index operator to examine characters of a code and calculate the value of a card.</SectionDescription>
+        <ConsoleOutput text={`5H #Has a value of 5\nAH #HAs a value of 10\n3D is the 3 of Diamonds`}/>
     </Section>
      
 
