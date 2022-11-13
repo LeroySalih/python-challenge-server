@@ -26,7 +26,7 @@ const MarkUp = ({email,  pupilProgress}) => (<motion.div variants={ContainerVari
                     
         <SectionTitle>What We're Building</SectionTitle>
         <SectionDescription>In this session you'll practise using the index operator to examine characters of a code and calculate the value of a card.</SectionDescription>
-        <ConsoleOutput text={`5H #Has a value of 5\nAH #HAs a value of 10\n3D is the 3 of Diamonds`}/>
+        <ConsoleOutput text={`5H #Has a value of 5\nAH #Has a value of 10\n3D #3 of Diamonds`}/>
     </Section>
      
 
