@@ -43,7 +43,7 @@ const levels = {
         {title: "Variables", markup: <VariablesMarkUp   />, tasks:[`level-1::variables-1`, `level-1::variables-2`, `level-1::variables-3`]},
         {title: "Inputs", markup: <InputsMarkUp   />, tasks: [`level-1::input-1`, `level-1::input-2`, `level-1::input-3`]},
         {title: "Operators - Strings", markup: <OperatorsStringMarkUp   />, tasks: [`level-1::operators-string`]},
-        {title: "Operators - Booleans", markup: <OperatorsBooleanMarkUp   />, tasks:[`level-1::operators-booleans`]},
+        {title: "Operators - Booleans", markup: <OperatorsBooleanMarkUp   />, tasks:[`level-1::operators-booleans-1`, `level-1::operators-booleans-2`]},
         {title: "Decisions", markup: <DecisionMarkUp   />, tasks: [`level-1::decisions-1`, `level-1::decisions-2`, `level-1::decisions-3`] },
         {title: "Range", markup: <RangeMarkUp   />, tasks:[`level-1::range-1`, `level-1::range-2`, `level-1::range-3`]},
         {title: "Loops - For", markup: <LoopsForMarkUp   />, tasks:[`level-1::for-1`, `level-1::for-2`, `level-1::for-3`]},

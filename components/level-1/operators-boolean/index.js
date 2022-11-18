@@ -118,13 +118,13 @@ The middle letter is l
         
         
 
-        <Activity repl="https://replit.com/@mrsalih/operators-booleans#challenge.md" 
+        <Activity repl="https://replit.com/@mrsalih/operators-booleans-1#challenge.md" 
                           email={email} 
-                          challengeName="level-1::operators-booleans" 
+                          challengeName="level-1::operators-booleans-1#challenge.md" 
                           pupilProgress={pupilProgress}
                           />
 
-        <Activity repl="https://replit.com/@mrsalih/operators-booleans-1#main.py" 
+        <Activity repl="https://replit.com/@mrsalih/operators-booleans-2#challenge.md" 
                           email={email} 
                           challengeName="level-1::operators-booleans-2" 
                           pupilProgress={pupilProgress}
