@@ -15,6 +15,7 @@
     "@svgr/webpack": "^5.5.0",
     "axios": "^0.21.1",
     "framer-motion": "^4.1.17",
+    "install": "^0.13.0",
     "luxon": "^1.28.0",
     "mongodb": "^3.6.4",
     "next": "^10.0.9",

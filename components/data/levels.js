@@ -62,7 +62,7 @@ const levels = {
         {title: "🌶 Grade Checker",      markup: <GradeCheckerMarkUp   />, tasks: ["level-3::grade-checker"]},
         {title: "🌶 Temp Converter", markup: <TempConverterMarkUp   />, tasks: ["level-3::temp-converter"]},
         {title: "🌶🌶 Elevator Control", markup: <ElevatorControlMarkUp  />, tasks: ["level-3::elevator-control"]},
-        {title: "🌶🌶 Card Converter", markup: <CardConverterMarkUp  />, tasks: ["level-2::card-converter-1", "level-2::card-converter-2", "level-3::card-converter-3"]},
+        {title: "🌶🌶 Card Converter", markup: <CardConverterMarkUp  />, tasks: ["level-2::card-value-1", "level-2::card-value-2", "level-2::card-value-3"]},
         
         {title: "🌶🌶🌶 Emergency Response", markup: <EmergencyResponseMarkUp   />, tasks: ["level-3::emergency-response"]},
         {title: "🌶🌶🌶 Bottle of Pepsi", markup: <BottlesOfPepsiMarkUp   />, tasks: ["level-3::bottles-of-pepsi"]},

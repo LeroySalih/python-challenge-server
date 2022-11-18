@@ -98,7 +98,10 @@ export default function Profile() {
                 </Drawer>
                 
                 {
-                    <h2>You have completed {getTaskCompletedCount()} of {getTaskCount()} tasks ({((getTaskCompletedCount() / getTaskCount()) * 100).toFixed(2) }%)</h2>
+                    <>
+                        {name}({email})
+                        <h2>You have completed {getTaskCompletedCount()} of {getTaskCount()} tasks ({((getTaskCompletedCount() / getTaskCount()) * 100).toFixed(2) }%)</h2>
+                    </>
                 }
 
             
