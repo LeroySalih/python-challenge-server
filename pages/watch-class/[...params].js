@@ -10,10 +10,16 @@ import { DateTime } from 'luxon';
 const Component = () => {
     
     const router = useRouter();
-    const {cId} = router.query;
+    const {params} = router.query;
+    console.log(params)
+    //const [cId, section] = params
+    
+
 
     const [lastUpdate, setLastUpdate] = useState(null)
-    const [currentClass, setCurrentClass] = useState(cId);
+    const [currentClass, setCurrentClass] = useState(null);
+    const [currentSection, setCurrentSection] = useState('Learn')
+
     const [progressData, setProgressData] = useState(null);
     const [tasks, setTasks] = useState(null);
     const [pupilData, setPupilData] = useState(null);
@@ -23,12 +29,18 @@ const Component = () => {
 
 
     useEffect (()=>{
+        if (params === undefined) {
+            return
+        }
+        const cId = params[0]
+        const section = params.length > 0 ? params[1] : "Learn"
         setCurrentClass(cId)
-    }, [cId]);
+        setCurrentSection(section)
+    }, [params]);
 
     useEffect(async ()=> {
         console.log("Getting Data")
-        const {data} = await axios.get(`/api/watch-class/${currentClass}?from=${from}&to=${to}`);
+        const {data} = await axios.get(`/api/watch-class/${currentClass}?from=${from}&to=${to}&section=${currentSection}`);
         console.log("Data Returned")
         
         const {tasks, returnData} = data;
@@ -42,6 +54,7 @@ const Component = () => {
     }
 
     console.log("Progress Data", progressData)
+    console.log("Tasks", tasks)
 
     return (
         <div className="page">

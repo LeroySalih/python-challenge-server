@@ -94,10 +94,10 @@ export const getClasses = async (classId) => {
 
 const handler = async (req, res) => {
 
-    const {from, to, params} = req.query;
+    const {from, to, section, params} = req.query;
     const [classId, challengeId] = params;
     
-
+    console.log()
     const result = await Promise.all([
         getClasses(),
         
@@ -109,7 +109,7 @@ const handler = async (req, res) => {
 
     const returnData = {}
 
-    const tasksObject = getTasks().reduce((a, v) => ({...a, [v]: {}}), {})
+    const tasksObject = getTasks(section).reduce((a, v) => ({...a, [v]: {}}), {})
 
     
     submissions.forEach(s => {
@@ -129,7 +129,7 @@ const handler = async (req, res) => {
     
 
     
-    res.status(200).json({returnData, tasks: getTasks()});
+    res.status(200).json({returnData, tasks: getTasks(section)});
 }
 
 export default handler;

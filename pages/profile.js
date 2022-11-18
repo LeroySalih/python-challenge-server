@@ -49,8 +49,8 @@ export default function Profile() {
     }, [email])
 
 
-    const getTaskCount = () => getProgressDisplayData(getTasks(email), progress).length
-    const getTaskCompletedCount = () => getProgressDisplayData(getTasks(email), progress).filter(t => t.progress === "100.0").length
+    const getTaskCount = () => getProgressDisplayData(getTasks(), progress).length
+    const getTaskCompletedCount = () => getProgressDisplayData(getTasks(), progress).filter(t => t.progress === "100.0").length
 
 
     const getProgressDisplayData = (tasks, progress) => {
@@ -106,7 +106,7 @@ export default function Profile() {
 
             
                 {
-                    email && progress && <DisplayProgress email={email} displayData={getProgressDisplayData(getTasks(email), progress)} tasks={getTasks(email)} progress={progress}/>
+                    email && progress && <DisplayProgress email={email} displayData={getProgressDisplayData(getTasks(), progress)} tasks={getTasks()} progress={progress}/>
                 }
 
 

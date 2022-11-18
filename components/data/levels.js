@@ -93,8 +93,8 @@ const levels = {
 
 const getLevels = () => (levels)
 
-const getTasks = (email) => (
-    getLevels(email)['Learn'].map(t => t.tasks).flat()
+const getTasks = ( section = 'Learn') => (
+    getLevels()[section].map(t => t.tasks).flat()
     )
 
 export default levels
