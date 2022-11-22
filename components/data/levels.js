@@ -26,6 +26,7 @@ import EmergencyResponseMarkUp from '../level-3/emergency-response';
 import ElevatorControlMarkUp from '../level-3/elevator-instructions';
 import CardConverterMarkUp from '../level-2/card-converter';
 import PackageSorterMarkup from '../level-2/package-sorter';
+import RhymingWordsMarkup from '../level-2/rhyming-words';
 
 import SqlCreateTableMarkUp from '../database/create-tables';
 import SqlInsertRecordMarkUp from '../database/insert-tables';
@@ -62,6 +63,7 @@ const levels = {
         {title: "🌶 Average", markup: <AverageRangeMarkUp   />, tasks: ["level-2::average-range"]},
         {title: "🌶 Grade Checker",      markup: <GradeCheckerMarkUp   />, tasks: ["level-3::grade-checker"]},
         {title: "🌶 Temp Converter", markup: <TempConverterMarkUp   />, tasks: ["level-3::temp-converter"]},
+        {title: "🌶🌶 Rhyming Words", markup: <RhymingWordsMarkup  />, tasks: ["level-2::rhyming-words-1", "level-2::rhyming-words-2", "level-2::rhyming-words-3", ]},
         {title: "🌶🌶 Elevator Control", markup: <ElevatorControlMarkUp  />, tasks: ["level-3::elevator-control"]},
         {title: "🌶🌶 Card Converter", markup: <CardConverterMarkUp  />, tasks: ["level-2::card-value-1", "level-2::card-value-2", "level-2::card-value-3"]},
         {title: "🌶🌶 Package Sorter", markup: <PackageSorterMarkup  />, tasks: ["level-2::package-sorter-1", "level-2::package-sorter-2", "level-2::package-sorter-3"]},
