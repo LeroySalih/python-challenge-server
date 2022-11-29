@@ -54,7 +54,7 @@ print(firstLetter)
     </Section>
 
     <Activity title="Package Sorter" 
-        repl="https://replit.com/@mrsalih/rhyming-words-1#main.py" 
+        repl="https://replit.com/@mrsalih/rhymingwords1#main.py" 
         email={email} 
         challengeName="level-2::rhyming-words-1" 
         pupilProgress={pupilProgress}
@@ -62,14 +62,14 @@ print(firstLetter)
 
 
 <Activity title="Package Sorter" 
-        repl="https://replit.com/@mrsalih/rhyming-words-2#main.py" 
+        repl="https://replit.com/@mrsalih/rhymingwords2#main.py" 
         email={email} 
         challengeName="level-2::package-sorter-2" 
         pupilProgress={pupilProgress}
         />
 
 <Activity title="Package Sorter" 
-        repl="https://replit.com/@mrsalih/rhyming-words-3#main.py" 
+        repl="https://replit.com/@mrsalih/rhymingwords3#main.py" 
         email={email} 
         challengeName="level-2::package-sorter-3" 
         pupilProgress={pupilProgress}
