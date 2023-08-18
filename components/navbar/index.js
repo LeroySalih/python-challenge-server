@@ -62,6 +62,7 @@ const Navbar = ({onClick, onLogin}) => {
                 src="/images/logo.png"
                 width="146"
                 height="34"
+                alt="site logo"
 
               />
             </Link>

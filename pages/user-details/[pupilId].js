@@ -15,25 +15,30 @@ const UserDetails = ({pupilId, firstName, familyName, className}) => {
 
     const {pupilDetails, setPupilDetails} = useContext(AppCtx);
 
-    useEffect(async ()=> {
-        if (_isDirty){
+    useEffect(()=> {
+        const loadData = async () => {
+
+            if (_isDirty){
             
-            const newPupilDetails =  {
-                _id: pupilId, 
-                firstName: _firstName, 
-                familyName: _familyName, 
-                className: _className
-            };
-
-            // save the details to the server
-            const {data} = await axios.post('/api/details/save', newPupilDetails);
-
-            // update pupil details in the context
-            setPupilDetails(newPupilDetails);
-
-            // set the state to clean
-            setIsDirty(false);
+                const newPupilDetails =  {
+                    _id: pupilId, 
+                    firstName: _firstName, 
+                    familyName: _familyName, 
+                    className: _className
+                };
+    
+                // save the details to the server
+                const {data} = await axios.post('/api/details/save', newPupilDetails);
+    
+                // update pupil details in the context
+                setPupilDetails(newPupilDetails);
+    
+                // set the state to clean
+                setIsDirty(false);
+            }
         }
+
+        loadData();
         
     }, [_isDirty])
 

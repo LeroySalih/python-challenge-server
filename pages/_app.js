@@ -58,7 +58,6 @@ const GlobalStyles = createGlobalStyle`
 `
 
 const Page = styled.div`
-  
   width: 80vw;
   margin: auto;
   margin-top: 5rem;
@@ -126,38 +125,42 @@ const InnerApp = ({ Component, pageProps, router }) => {
   }
 
   // when the account changes, due to a log on.
-  useEffect(async () => {
+  useEffect(() => {
     
-
-    if (account && getEmail()) {
+    const loadData = async () => {
+      if (account && getEmail()) {
       
-      const details = await getPupilDetails(getEmail())
-
-      if (details) {
+        const details = await getPupilDetails(getEmail())
+  
+        if (details) {
+          
+          setPupilDetails (details)
+          
+  
+          const {data} = await axios.get(`/api/watch-pupil/${getEmail()}`)
+          setPupilProgress(data);
+        } else {
+          
+          
+  
+          // Create a new pupil. 
+          const result = await axios.get(`/api/details/create/${getEmail()}`);
+  
+          // set the pupil details
+          setPupilDetails({_id:getEmail(), firstName:"", familyName: "", className: ""});
+  
+          // redirect to the new pupil page.
+          router.push(`/user-details/${getEmail()}`)
+  
+        }
         
-        setPupilDetails (details)
-        
-
-        const {data} = await axios.get(`/api/watch-pupil/${getEmail()}`)
-        setPupilProgress(data);
       } else {
-        
-        
-
-        // Create a new pupil. 
-        const result = await axios.get(`/api/details/create/${getEmail()}`);
-
-        // set the pupil details
-        setPupilDetails({_id:getEmail(), firstName:"", familyName: "", className: ""});
-
-        // redirect to the new pupil page.
-        router.push(`/user-details/${getEmail()}`)
-
+        setPupilProgress(null);
       }
-      
-    } else {
-      setPupilProgress(null);
     }
+
+    loadData();
+    
 
   }, [account]);
 
@@ -173,9 +176,9 @@ const InnerApp = ({ Component, pageProps, router }) => {
               onClose={() => toggleDrawer(false)}>
           <div className="drawer-inner">Hello World</div>
         </Drawer>
-        <Page>
+        <div style={{width: "80vw", margin: "auto", marginTop: "5rem"}}>
           <Component {...pageProps} />
-        </Page>
+        </div>
       </AppCtx.Provider>
     </>
   )

@@ -1,3 +1,5 @@
+"use client"
+
 import Head from 'next/head'
 import Link from 'next/link';
 import { useRouter } from 'next/router'
@@ -105,20 +107,25 @@ export default function Home() {
     router.push('/levels')
   }
 
-  useEffect(async () => {
+  useEffect(() => {
     
-
-    if (account) {
-      setEmail(account.username.toLowerCase())
-      const {data} = await axios.get(`/api/watch-pupil/${account.username.toLowerCase()}`)
-
-      setPupilProgress(data);
-
-
-    } else {
-      setEmail(null);
-      setPupilProgress(null);
+    async function loadData  () {
+      
+      if (account) {
+        setEmail(account.username.toLowerCase())
+        const {data} = await axios.get(`/api/watch-pupil/${account.username.toLowerCase()}`)
+  
+        setPupilProgress(data);
+  
+  
+      } else {
+        setEmail(null);
+        setPupilProgress(null);
+      }
     }
+
+    loadData();
+    
     
 
   }, [account])
@@ -138,7 +145,7 @@ export default function Home() {
 
       <main className="main">
         
-
+    {/*}
         <HeroPanel>
           <AnimatePresence exitBeforeEnter>
           {showTitle && <motion.div className="title-panel"
@@ -158,11 +165,15 @@ export default function Home() {
           </motion.div>
           }
           </AnimatePresence >
+          
           <div className="animation-panel">
             <CodePanelAnimation hover={hover} setHover={setHover} onClick={handleClick} />
           </div>
+          
+          
         </HeroPanel>
-        
+        */
+        }
        
         <div className="contents-container">
           {

@@ -38,14 +38,19 @@ const Component = () => {
         setCurrentSection(section)
     }, [params]);
 
-    useEffect(async ()=> {
-        console.log("Getting Data")
-        const {data} = await axios.get(`/api/watch-class/${currentClass}?from=${from}&to=${to}&section=${currentSection}`);
-        console.log("Data Returned")
+    useEffect(()=> {
+        const loadData = async () => {
+            console.log("Getting Data")
+            const {data} = await axios.get(`/api/watch-class/${currentClass}?from=${from}&to=${to}&section=${currentSection}`);
+            console.log("Data Returned")
+            
+            const {tasks, returnData} = data;
+            setProgressData(returnData);
+            setTasks(tasks);
+        }
+
+        loadData()
         
-        const {tasks, returnData} = data;
-        setProgressData(returnData);
-        setTasks(tasks);
         
     }, [lastUpdate, currentClass])
 

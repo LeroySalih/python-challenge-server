@@ -106,18 +106,24 @@ const LevelsPage = () => {
 
     }, [slug])
 
-    useEffect(async () => {
+    useEffect(() => {
         
-    
-        if (account) {
-          setEmail(account.username.toLowerCase())
+        const loadData = async () => {
+
+            if (account) {
+                setEmail(account.username.toLowerCase())
+                
+                setMarkUp(getLevels(email));
           
-          setMarkUp(getLevels(email));
-    
-        } else {
-          setEmail(null);
-          
+              } else {
+                setEmail(null);
+                
+              }
         }
+
+        loadData();
+    
+        
         
       }, [account])
 

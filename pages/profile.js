@@ -38,13 +38,15 @@ export default function Profile() {
     }
 
     useEffect( async ()=> { 
-        if (!email)
-            return;
+        const loadData = async () => {
+            if (!email)
+                return;
 
+            const {data} = await axios.get(`/api/profile/${email}`)
+            setProfile(data[0]);
+            setProgress(data[1]);
+        }
         
-        const {data} = await axios.get(`/api/profile/${email}`)
-        setProfile(data[0]);
-        setProgress(data[1]);
 
     }, [email])
 
