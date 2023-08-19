@@ -37,15 +37,18 @@ export default function Profile() {
     setShowDrawer(state)
     }
 
-    useEffect( async ()=> { 
+    useEffect( ()=> { 
         const loadData = async () => {
             if (!email)
                 return;
 
             const {data} = await axios.get(`/api/profile/${email}`)
+            console.log("Data", data);
             setProfile(data[0]);
             setProgress(data[1]);
         }
+
+        loadData();
         
 
     }, [email])
@@ -146,9 +149,9 @@ const DisplayProgress = ({tasks, email, displayData, progress}) => {
         <h1>Displaying Progress</h1>
         
         {
-            Object.keys(levels).map( k => ([
-                <div className="levelTitle">{k}</div>,
-                <div>{
+            Object.keys(levels).map( (k,i) => ([
+                <div className="levelTitle" key={`display-progress-${i}`}>{k}</div>,
+                <div key={`display-progress-2-${i}`}>{
                     levels[k].map((l, i) => (<DisplayProgressLevel key={`progress::${i}`} levelName={k} level={l} progress={progress}/>))
                 }</div>
             ]
@@ -185,7 +188,7 @@ const DisplayProgressLevel = ({level, levelName, progress}) => {
                     {level.title}
                 </div> 
             </Link>
-            {level.tasks.map((t, i) => <div key={t} className={`task  ${light(getProgress(progress.filter(p => p.challenge_name == t)))} tooltip`}>
+            {level.tasks.map((t, i) => <div key={`display-progress-level-${t}`} className={`task  ${light(getProgress(progress.filter(p => p.challenge_name == t)))} tooltip`}>
                 <span className="tooltiptext">
                     {t}
                 {}

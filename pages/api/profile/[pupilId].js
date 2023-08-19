@@ -49,9 +49,13 @@ const getPupilProgressById = async (pupilId) => {
 
 const getPupilProfileById = async (pupilId) => {
     
+    console.log("PupilId", pupilId);
+
     const {db} = await connectToDatabase();
 
     const result = await db.collection('pupils').find({_id: pupilId}).toArray()
+
+    console.log("results", result);
 
     return result[0] || null;
 }

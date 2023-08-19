@@ -81,7 +81,7 @@ const levels = {
         // Find Highest in List
         // Is each item in a correct position (items to the left are lower, items to the right are higher)
     ],
-    Database:[
+/*    Database:[
         {title: "Create Table", markup: <SqlCreateTableMarkUp  />, tasks: ['db-task-create']},
         {title: "Insert Record", markup: <SqlInsertRecordMarkUp  />, tasks: ['db-task-insert']},
         {title: "Select Single Table", markup: <SqlSelectRecordMarkUp  />, tasks: ['db-task-select']},
@@ -92,7 +92,7 @@ const levels = {
     "Python Skills Test": [
         
     ]
-
+*/
 }
 
 const getLevels = () => (levels)
