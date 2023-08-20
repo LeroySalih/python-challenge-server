@@ -38,6 +38,12 @@ import SkillsTestIO from '../python-skills/io';
 import SkillsTestSimpleDecision from '../python-skills/simple-decision';
 import SkillsTestWhileLoops from '../python-skills/while-loops';
 
+import RearrangeCodeMarkUp1 from "../gcse-practice/rearrange-code-1";
+import RearrangeCodeMarkUp2 from "../gcse-practice/rearrange-code-2";
+
+import FixCodeMarkUp1 from "../gcse-practice/fix-code-1";
+
+
 const levels = {
     Learn : [
         {title: "Output", markup: <OutputMarkUp   tasks={['level-1::output']}/>, tasks:['level-1::output']},
@@ -52,6 +58,12 @@ const levels = {
         {title: "Loops - While", markup: <LoopsWhileMarkUp   />, tasks:[`level-1::while-1`, `level-1::while-2`, `level-1::while-3`]},
         {title: "Defs", markup: <DefMarkUp   />, tasks:[`level-1::def-1`, `level-1::def-2`, `level-1::def-3`, `level-1::def-4`]},
         {title: "Lists", markup: <ListsMarkUp   />, tasks:[`level-1::lists-1`, `level-1::lists-2`, `level-1::lists-3`,`level-1::lists-4`, `level-1::lists-5`]} 
+    ],
+
+    "GCSE-practice":[
+        {title: "Rearrange code 1", markup: <RearrangeCodeMarkUp1  />, tasks: ['gcse-practice::rearrange-code-1']},
+        {title: "Rearrange code 2", markup: <RearrangeCodeMarkUp2  />, tasks: ['gcse-practice::rearrange-code-2']},
+        {title: "Fix code 1", markup: <FixCodeMarkUp1  />, tasks: ['gcse-practice::fix-code-1']},
     ],
     
     Challenges: [
@@ -81,18 +93,8 @@ const levels = {
         // Find Highest in List
         // Is each item in a correct position (items to the left are lower, items to the right are higher)
     ],
-/*    Database:[
-        {title: "Create Table", markup: <SqlCreateTableMarkUp  />, tasks: ['db-task-create']},
-        {title: "Insert Record", markup: <SqlInsertRecordMarkUp  />, tasks: ['db-task-insert']},
-        {title: "Select Single Table", markup: <SqlSelectRecordMarkUp  />, tasks: ['db-task-select']},
-        {title: "Delete Rows", markup: <SqlDeleteRecordMarkUp  />, tasks: ['db-task-delete']},
-        {title: "Update Rows", markup: <SqlUpdateRecordMarkUp  />, tasks: ['db-task-update']},
-    ],
+   
 
-    "Python Skills Test": [
-        
-    ]
-*/
 }
 
 const getLevels = () => (levels)
